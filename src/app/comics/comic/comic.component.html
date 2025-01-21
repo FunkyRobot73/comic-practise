@@ -1,7 +1,7 @@
 <div class="container mt-2 bt-2 mb-2">
     <div class="row">
         <h1>Posts</h1>
-        <div class="column col-lg-6" *ngFor="let record of $records | async">
+        <div class="column col-lg-6" *ngFor="let record of records">
         <!-- @for(record of $records | async; track record.id) -->
             <div class="container course-card rounder">
                 <div class="course-title">

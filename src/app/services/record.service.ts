@@ -1,5 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    "artist": "Prince",
+    "title": "Thriller",
+    "year": "1999",
+    "type": "LPP"
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +25,12 @@ export class RecordService {
   
   
   getRecords() {
-    return this.http.get<any>(this.apiUrl01);
+    return this.http.get<any>(this.apiUrl01).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any){
+    console.log(error);
+    return throwError(()=> new Error(`Something went poop!`));
   }
   
   getRecord(id: number) {
@@ -32,6 +47,11 @@ export class RecordService {
   
   deleteRecord(id: number) {
     return this.http.delete(this.apiUrl01+'/'+id);
+  }
+
+  getRecordsWithParams(userId: number){
+    let params = new HttpParams().set('userId', userId)
+    return this.http.get(this.apiUrl01, {params})
   }
 
 }

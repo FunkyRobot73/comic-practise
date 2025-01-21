@@ -5,16 +5,34 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RecordService } from '../../services/record.service';
 
+interface Record{
+  artist: string;
+  title: string;
+  year: string;
+  type: string;
+}
+
 
 @Component({
   selector: 'app-comic',
-  imports: [AppComponent, RouterOutlet, CommonModule],
+  imports: [CommonModule],
   templateUrl: './comic.component.html',
   styleUrl: './comic.component.css'
 })
 export class ComicComponent {
   
   recordService = inject(RecordService)
-  $records = this.recordService.getRecords();
+  records:Record[] = [];
+
+  constructor() {
+    this.recordService.getRecords().subscribe({
+      next: (data) => {
+        this.records = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 
 }
