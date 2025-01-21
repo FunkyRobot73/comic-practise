@@ -1,0 +1,18 @@
+<div class="container mt-2 bt-2 mb-2">
+    <div class="row">
+        <h1>Posts</h1>
+        <div class="column col-lg-6" *ngFor="let record of $records | async">
+        <!-- @for(record of $records | async; track record.id) -->
+            <div class="container course-card rounder">
+                <div class="course-title">
+                    <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{record.artist}}</h2>
+                </div>
+                <h3>{{record.title}}</h3>
+                <h4>{{record.year}}</h4>
+                <h5>{{record.type}}</h5>
+            </div>
+    
+        
+    </div>
+    </div>
+</div>
