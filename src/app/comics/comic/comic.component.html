@@ -63,15 +63,15 @@
  </div>
  </div>
 
-
+<!-- Display & View Cards of Comic Books -->
 
 <div class="container mt-2 bt-2 mb-2">
     <div class="row">
-        <h1>Posts</h1>
-        <div><button (click)="addComic()">Add Comic</button></div>
-        <div class="column col-lg-6" *ngFor="let item of comicbooks">
+        <h1>Comic Books</h1>
+        <!-- <div><button (click)="addComic()">Add Comic</button></div> -->
+        <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
         <!-- @for(item of $items | async; track item.id) -->
-            <div class="container course-card rounder">
+            <div class="container course-card rounder  h-100">
                 <div class="course-title rounder height-div">
                     <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
                    
@@ -79,7 +79,7 @@
                 <h3>{{item.artist}}</h3>
                 <h5>{{item.type}}</h5>
                 <h4>{{item.year}}</h4>
-                <img width="75%" alt="Comic Book for sale" [src]="'http://back.swap2go.ca/public/' + item.image" class="mt-2">
+                <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + item.image" class="mt-2">
                 <div>
                     <div class="course-description">
                 
