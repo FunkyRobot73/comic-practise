@@ -9,13 +9,37 @@
     
 <div class="row mt-3 bg-card">
 
-     <div class="col-md-2">
+     <div class="col-md-4">
         <label>Title:</label>
        <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text" value="Justice League of America">
      </div>
      <div class="col-md-2">
         <label>Issue No.:</label>
        <input class="form-control" [(ngModel)]="issue" placeholder="Issue #" type="text" value="200">
+     </div>
+     
+     <div class="col-md-2">
+        <label>Type:</label>
+       <input class="form-control" [(ngModel)]="type" placeholder="Trade" type="text" value="TPB">
+     </div>
+     <div class="col-md-2">
+        <label>Year:</label>
+       <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999">
+     </div>
+     <div class="col-md-2">
+        <label>Publisher:</label>
+       <input class="form-control" [(ngModel)]="publisher" placeholder="DC" type="text" value="DC">
+     </div>
+
+     <!-- Every 4 Forms -->
+
+     <div class="col-md-2">
+        <label>Condition:</label>
+       <input class="form-control" [(ngModel)]="condition" placeholder="Condition" type="text" value="5">
+     </div>
+     <div class="col-md-2">
+        <label>Key:</label>
+       <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="Batman Appearance">
      </div>
      
      <div class="col-md-2">
