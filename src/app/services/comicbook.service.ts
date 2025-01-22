@@ -4,10 +4,24 @@ import { catchError, throwError } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "artist": "Prince",
-    "title": "Thriller",
-    "year": "1999",
-    "type": "LPP"
+  "title" : "Justice League of America",
+  "issue" : "200",
+  "type" : "TPB",
+  "year" : "1990",
+  "publisher" : "DC",
+  "condition" : "5",
+  "key" : "1st Mister Miracle",
+  "description" : "Amazing Comic",
+  "short" : "Great Story & Art",
+  "characters" : "Batman",
+  'writer' : "Grant Morrison",
+  "artist" : "George Perez",
+  "image" : "dc.webp",
+  "value" : 50,
+  "slabbed" : "Yes",
+  "createdAt" : "",
+  "isbn" : "999-999-001",
+  "qty" : 1,
   })
 }
 
@@ -19,7 +33,7 @@ export class ComicbookService {
   constructor() { }
 
   private apiUrl01 = "https://back.swap2go.ca/comics";
-  private apiUrl02 = "https://back.swap2go.ca/addcomic";
+  private apiUrl02 = "https://back.swap2go.ca/addcomics";
 
   http = inject(HttpClient);
   

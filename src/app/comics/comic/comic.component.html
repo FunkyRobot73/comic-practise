@@ -3,28 +3,28 @@
         <div class="horizontal">
             <h2 class="text-center">
             <img class="logo" src="images/comic-01.jpg">Create New Comic Book
-            <img class="logo" src="images/comic-01.jng">
+            <img class="logo" src="images/comic-01.jpg">
             </h2>
         </div>
     
 <div class="row mt-3 bg-card">
 
      <div class="col-md-2">
-        <label>Artist Name:</label>
-       <input class="form-control" [(ngModel)]="artist" placeholder="Artist" type="text" value="Michael Jackson">
+        <label>Title:</label>
+       <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text" value="Justice League of America">
      </div>
      <div class="col-md-2">
-        <label>Album Title:</label>
-       <input class="form-control" [(ngModel)]="title" placeholder="Thriller" type="text" value="Thriller">
+        <label>Issue No.:</label>
+       <input class="form-control" [(ngModel)]="issue" placeholder="Issue #" type="text" value="200">
      </div>
      
      <div class="col-md-2">
-        <label>Year:</label>
-       <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999">
+        <label>Type:</label>
+       <input class="form-control" [(ngModel)]="type" placeholder="Trade" type="text" value="TPB">
      </div>
      <div class="col-md-2">
-        <label>Type:</label>
-       <input class="form-control" [(ngModel)]="type" placeholder="LP" type="text" value="LP">
+        <label>Year:</label>
+       <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999">
      </div>
      
      
@@ -33,7 +33,7 @@
 
     
      <div class="col-md-2">
-       <button class="btn btn-primary" (click)="addRecord()">ADD</button>
+       <button class="btn btn-primary" (click)="addComic()">ADD</button>
        </div>
    </div>
  </div>
@@ -44,16 +44,32 @@
 <div class="container mt-2 bt-2 mb-2">
     <div class="row">
         <h1>Posts</h1>
-        <div><button (click)="addRecord()">Add Record</button></div>
-        <div class="column col-lg-6" *ngFor="let record of records">
-        <!-- @for(record of $records | async; track record.id) -->
+        <div><button (click)="addComic()">Add Comic</button></div>
+        <div class="column col-lg-6" *ngFor="let item of comicbooks">
+        <!-- @for(item of $items | async; track item.id) -->
             <div class="container course-card rounder">
-                <div class="course-title">
-                    <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{record.artist}}</h2>
+                <div class="course-title rounder height-div">
+                    <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
+                   
                 </div>
-                <h3>{{record.title}}</h3>
-                <h4>{{record.year}}</h4>
-                <h5>{{record.type}}</h5>
+                <h3>{{item.artist}}</h3>
+                <h5>{{item.type}}</h5>
+                <h4>{{item.year}}</h4>
+                <img width="75%" alt="Comic Book for sale" [src]="'http://back.swap2go.ca/public/' + item.image" class="mt-2">
+                <div>
+                    <div class="course-description">
+                
+                        <p class="short">{{(item.short | slice:0:64) + "..."}}</p>
+                
+                    </div>
+                    <h3 class="money">{{item.value | currency}}</h3>
+                    <h5>{{item.type}}</h5>
+                    <h4>{{item.year}}</h4>
+                    <button  class="btn btn-primary ms-2 mb-2">Add 2 Cart!</button> 
+                    <button  class="btn btn-primary ms-2 mb-2">Offer Swap</button> 
+
+                <p><button role="link" class="rounded btn-ebay mt-2 mb-2"><a href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{item.title}}+{{item.publisher}}+{{item.issue}}&_sacat=63" style="text-decoration:none" class="ebay" target=”_blank”>Compare on eBay</a></button></p>
+                </div>
             </div>
     
         

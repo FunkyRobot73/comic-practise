@@ -5,12 +5,28 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RecordService } from '../../services/record.service';
 import { FormsModule } from '@angular/forms';
+import { ComicbookService } from '../../services/comicbook.service';
 
-interface Record{
-  artist: string;
+interface Comicbook{
+  id:number;
   title: string;
-  year: string;
+  issue: string;
   type: string;
+  year: string;
+  publisher:string;
+  condition:string;
+  key: string;
+  description:string;
+  short:string;
+  characters:number;
+  writer: string;
+  artist: string;
+  image: string;
+  value: number;
+  slabbed: string;
+  createdAt: string;
+  isbn: string;
+  qty: number;
 }
 
 
@@ -22,18 +38,33 @@ interface Record{
 })
 export class ComicComponent {
 
-  artist = "Michael Jackson";
-  title = "Thriller";
-  year = "1982";
-  type = "LP-7";
   
-  recordService = inject(RecordService)
-  records:Record[] = [];
+  title = "Justice League of America";
+  issue = "200";
+  type = "TPB";
+  year = "1990";
+  publisher = "DC";
+  condition = "5";
+  key = "1st Mister Miracle";
+  description = "Amazing Comic";
+  short = "Great Story & Art";
+  characters = "Batman";
+  writer = "Grant Morrison";
+  artist = "George Perez";
+  image = "dc.webp";
+  value = 50;
+  slabbed = "Yes";
+  createdAt = "";
+  isbn = "999-999-001";
+  qty = 1;
+  
+  comicbookService = inject(ComicbookService)
+  comicbooks:Comicbook[] = [];
 
   constructor() {
-    this.recordService.getRecords().subscribe({
+    this.comicbookService.getComics().subscribe({
       next: (data) => {
-        this.records = data;
+        this.comicbooks = data;
       },
       error: (err) => {
         console.log(err);
@@ -41,13 +72,32 @@ export class ComicComponent {
     })
   }
 
-    addRecord(){
-      this.recordService.createRecord({
+    addComic(){
+      this.comicbookService.createComic({
 
-        artist: this.artist,
+        // artist: this.artist,
+        // title: this.title,
+        // year: this.year,
+        // type: this.type,
+
         title: this.title,
+        issue: this.issue,
+        type: this.type,
         year: this.year,
-        type: this.type
+        publisher: this.publisher,
+        condition: this.condition,
+        key:  this.key,
+        description: this.description,
+        short: this.short,
+        characters: this.characters,
+        writer:  this.writer,
+        artist:  this.artist,
+        image:  this.image,
+        value: this.value,
+        slabbed:  this.slabbed,
+        createdAt:  this.createdAt,
+        isbn:  this.isbn,
+        qty: this.qty
 
       }).subscribe({
         next: (data) => {
