@@ -2,8 +2,8 @@
     <div class="card mt-1 p-3 bg-card">
         <div class="horizontal">
             <h2 class="text-center">
-            <img class="logo" src="images/comic-01.jpg">Create New Comic Book
-            <img class="logo" src="images/comic-01.jng">
+            <img class="logo" src="images/vinyl-01.jpg">Create New Album
+           
             </h2>
         </div>
     
@@ -26,14 +26,8 @@
         <label>Type:</label>
        <input class="form-control" [(ngModel)]="type" placeholder="LP" type="text" value="LP">
      </div>
-     
-     
-              
-     
-
-    
-     <div class="col-md-2">
-       <button class="btn btn-primary" (click)="addRecord()">ADD</button>
+     <div class="col-md-8">        
+        <button class="btn btn-primary" (click)="addRecord()">ADD</button>
        </div>
    </div>
  </div>
@@ -43,8 +37,8 @@
 
 <div class="container mt-2 bt-2 mb-2">
     <div class="row">
-        <h1>Posts</h1>
-        <div><button (click)="addRecord()">Add Record</button></div>
+        <h1>Current Albums</h1>
+        
         <div class="column col-lg-6" *ngFor="let record of records">
         <!-- @for(record of $records | async; track record.id) -->
             <div class="container course-card rounder">
