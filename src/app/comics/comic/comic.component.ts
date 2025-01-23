@@ -7,6 +7,7 @@ import { RecordService } from '../../services/record.service';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 
+
 interface Comicbook{
   id:number;
   title: string;
@@ -43,7 +44,7 @@ export class ComicComponent {
   issue = "200";
   type = "TPB";
   year = "1990";
-  publisher = "DC";
+  publisher = "";
   condition = "5";
   key = "1st Mister Miracle";
   description = "Amazing Comic";
@@ -57,6 +58,8 @@ export class ComicComponent {
   createdAt = "";
   isbn = "999-999-001";
   qty = 1;
+
+  
   
   comicbookService = inject(ComicbookService)
   comicbooks:Comicbook[] = [];
@@ -71,6 +74,10 @@ export class ComicComponent {
       }
     })
   }
+
+    addCompany(){
+      this.comicbookService.createCompany(this.publisher)
+    }
 
     addComic(){
       this.comicbookService.createComic({
@@ -107,6 +114,9 @@ export class ComicComponent {
           console.log(err);
         }
       })
-    }
+    };
+
+    
+  
 
 }

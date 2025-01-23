@@ -8,7 +8,7 @@ const httpOptions = {
   "issue" : "200",
   "type" : "TPB",
   "year" : "1990",
-  "publisher" : "DC",
+  "publisher" : "",
   "condition" : "5",
   "key" : "1st Mister Miracle",
   "description" : "Amazing Comic",
@@ -34,6 +34,7 @@ export class ComicbookService {
 
   private apiUrl01 = "https://back.swap2go.ca/comics";
   private apiUrl02 = "https://back.swap2go.ca/addcomics";
+  private apiUrl03 = "https://back.swap2go.ca/addcompany";
 
   http = inject(HttpClient);
   
@@ -44,6 +45,14 @@ export class ComicbookService {
     private handleError(error: any){
       console.log(error);
       return throwError(()=> new Error(`Something went poop!`));
+    }
+
+    createCompany(x:any) {
+
+      this.http.post("https://back.swap2go.ca/addcompany", { name: x }).subscribe(data => {
+        console.log(data);
+      });
+  
     }
     
     getComic(id: number) {
