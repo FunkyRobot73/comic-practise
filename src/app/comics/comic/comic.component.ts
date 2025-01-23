@@ -28,6 +28,10 @@ interface Comicbook{
   createdAt: string;
   isbn: string;
   qty: number;
+};
+
+interface Company{
+  name: string;
 }
 
 
@@ -58,11 +62,13 @@ export class ComicComponent {
   createdAt = "";
   isbn = "999-999-001";
   qty = 1;
+  addPublisher = "Indy"
 
   
   
   comicbookService = inject(ComicbookService)
   comicbooks:Comicbook[] = [];
+  companys:Company[] = [];
 
   constructor() {
     this.comicbookService.getComics().subscribe({
@@ -72,11 +78,19 @@ export class ComicComponent {
       error: (err) => {
         console.log(err);
       }
-    })
+    });
+    this.comicbookService.getCompanys().subscribe({
+      next: (data) => {
+        this.companys = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
     addCompany(){
-      this.comicbookService.createCompany(this.publisher)
+      this.comicbookService.createCompany(this.addPublisher)
     }
 
     addComic(){

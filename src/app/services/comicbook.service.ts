@@ -34,7 +34,8 @@ export class ComicbookService {
 
   private apiUrl01 = "https://back.swap2go.ca/comics";
   private apiUrl02 = "https://back.swap2go.ca/addcomics";
-  private apiUrl03 = "https://back.swap2go.ca/addcompany";
+  private apiUrl03 = "https://back.swap2go.ca/company";
+  private apiUrl04 = "https://back.swap2go.ca/addcompany";
 
   http = inject(HttpClient);
   
@@ -53,6 +54,15 @@ export class ComicbookService {
         console.log(data);
       });
   
+    };
+
+    getCompanys() {
+      return this.http.get<any>(this.apiUrl03).pipe(catchError(this.handleError2));
+    }
+  
+    private handleError2(error: any){
+      console.log(error);
+      return throwError(()=> new Error(`Something went poop!`));
     }
     
     getComic(id: number) {
