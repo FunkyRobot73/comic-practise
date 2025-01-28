@@ -93,6 +93,10 @@
     <div class="col-md-2 mt-4">
       <button class="btn btn-primary" (click)="addComic()">ADD COMIC</button>
       </div>
+      
+     <!-- Add Publisher to DB -->
+
+
 
      <!-- Add Publisher to DB -->
 
@@ -106,7 +110,10 @@
      </div>
     </div>
               
-     
+    <div class="col-md-2">
+      <label>Show Only (Publisher):</label>
+      <input class="form-control" [(ngModel)]="sortPublisher" type="text" value="">
+    </div>
 
     
       
@@ -114,10 +121,60 @@
    </div>
  </div>
  </div>
+<!-- Display & View Cards of Comic Books -->
+
 
  
 
 <!-- Display & View Cards of Comic Books -->
+
+<div class="container card mt-2">
+  <table class="table mt-2 mb-z table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID:</th>
+        <th scope="col">Title:</th>
+        <th scope="col">Artist:</th>
+        <th scope="col">Type:</th>
+        <th scope="col">Year:</th>
+        <!-- <th scope="col">Set</th> -->
+        <th scope="col">Publisher</th>
+        <th scope="col">Value</th>
+        
+      </tr>
+    </thead>
+
+      <tbody *ngFor="let comic of comicbooks">
+      
+        <tr class=" align-items-center"  *ngIf="comic.publisher==sortPublisher">
+          <!-- <ul class="list-group mt-3"> -->
+        <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
+           <!-- <td>{{customer.fName}}</td>  -->
+            
+           
+           <th scope="row">{{comic.id}}</th>
+            <td>{{comic.title}}</td>
+            <td>{{comic.artist}}</td>
+            <td>{{comic.type}}</td>
+            <td>{{comic.year}}</td>
+            <!-- <td>{{cust.pbSet}}</td> -->
+            <td>{{comic.publisher}}</td>
+            <td>{{comic.value}}</td>
+           
+
+           
+           <!-- <td><button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button></td> -->
+           <!-- <td><button class="btn btn-danger" (click)="deleteCustomer(i)">DELETE</button></td> -->
+          <!-- <button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button> -->
+        <!-- </li> -->
+      <!-- </ul> -->
+    </tr>
+    
+  </tbody>
+  </table>
+</div>
+
+<!-- DELETE?? -->
 
 <div class="container mt-2 bt-2 mb-2">
     <div class="row">
@@ -125,10 +182,11 @@
         <!-- <div><button (click)="addComic()">Add Comic</button></div> -->
         <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
         <!-- @for(item of $items | async; track item.id) -->
+         
             <div class="container course-card rounder  h-100">
                 <div class="course-title rounder height-div">
-                    <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
-                   
+                  
+                  <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
                 </div>
                 <h3>{{item.artist}}</h3>
                 <h5>{{item.type}}</h5>
@@ -149,9 +207,10 @@
                 <p><button role="link" class="rounded btn-ebay mt-2 mb-2"><a href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{item.title}}+{{item.publisher}}+{{item.issue}}&_sacat=63" style="text-decoration:none" class="ebay" target=”_blank”>Compare on eBay</a></button></p>
                 </div>
             </div>
-    
+          
         
-    </div>
+          
+          </div>
     </div>
 
 </div>

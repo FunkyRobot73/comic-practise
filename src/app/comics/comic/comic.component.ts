@@ -1,11 +1,8 @@
 import { Component, Inject, inject, Input, NgModule } from '@angular/core';
-import { AppComponent } from '../../app.component';
-import { RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RecordService } from '../../services/record.service';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
+
 
 
 interface Comicbook{
@@ -48,7 +45,7 @@ export class ComicComponent {
   issue = "200";
   type = "TPB";
   year = "1990";
-  publisher = "";
+  publisher = "DC";
   condition = "5";
   key = "1st Mister Miracle";
   description = "Amazing Comic";
@@ -62,8 +59,9 @@ export class ComicComponent {
   createdAt = "";
   isbn = "999-999-001";
   qty = 1;
-  addPublisher = "Indy"
+  addPublisher = "DC"
 
+  sortPublisher = ""
   
   
   comicbookService = inject(ComicbookService)
