@@ -16,7 +16,7 @@ const httpOptions = {
   "characters" : "Batman",
   'writer' : "Grant Morrison",
   "artist" : "George Perez",
-  "image" : "dc.webp",
+  "image" : "",
   "value" : 50,
   "slabbed" : "Yes",
   "createdAt" : "",

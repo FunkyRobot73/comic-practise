@@ -28,7 +28,9 @@ interface Comicbook{
 };
 
 interface Company{
+  id: number;
   name: string;
+  image: string;
 }
 
 
@@ -59,9 +61,9 @@ export class ComicComponent {
   createdAt = "";
   isbn = "999-999-001";
   qty = 1;
-  addPublisher = "DC"
+  addPublisher = "NEW"
 
-  sortPublisher = ""
+  sortPublisher = "IDW"
   
   
   comicbookService = inject(ComicbookService)

@@ -20,7 +20,13 @@
      
      <div class="col-md-2">
         <label>Type:</label>
-       <input class="form-control" [(ngModel)]="type" placeholder="Trade" type="text" value="TPB">
+       <select class="form-control" [(ngModel)]="type" placeholder="TPB">
+        <option>Single Issue</option>
+        <option>TPB</option>
+        <option>book</option>
+        <option>set</option>
+        <option>hard cover</option>
+       </select>
      </div>
      <div class="col-md-2">
         <label>Year:</label>
@@ -80,6 +86,10 @@
         <label>Qty:</label>
         <input class="form-control" [(ngModel)]="qty" placeholder="1" type="number" value="1">
      </div>
+     <div class="col-md-4">
+      <label>Image:</label>
+      <input class="form-control" [(ngModel)]="image" type="file" name="avatar">
+   </div>
      
      <div class="col-md-12">
       <label>Short:</label>
@@ -100,20 +110,23 @@
 
      <!-- Add Publisher to DB -->
 
-    <div class="row mt-5">
-      <div class="col-md-2">
-        <label>NEW Publisher:</label>
-       <input class="form-control" [(ngModel)]="addPublisher" placeholder="Indie" type="text" value="addPublisher">
+    
+      <div class="row mt-5">
+        <div class="col-md-2">
+          <label>NEW Publisher:</label>
+         <input class="form-control" [(ngModel)]="addPublisher" placeholder="Indie" type="text">
+       </div>
+       <div class="col-md-4">
+        <label>Image:</label>
+        <input class="form-control" [(ngModel)]="image" type="file" name="avatar">
      </div>
-     <div class="col-md-2 mt-4">
-      <button class="btn btn-primary" (click)="addCompany()">ADD Company</button>
-     </div>
-    </div>
+       <div class="col-md-2 mt-4">
+        <button class="btn btn-primary" (click)="addCompany()">ADD Company</button>
+       </div>
+      </div>
+    
               
-    <div class="col-md-2">
-      <label>Show Only (Publisher):</label>
-      <input class="form-control" [(ngModel)]="sortPublisher" type="text" value="">
-    </div>
+    
 
     
       
@@ -121,14 +134,35 @@
    </div>
  </div>
  </div>
-<!-- Display & View Cards of Comic Books -->
+
+ <!-- list of Publishers -->
+
+ <div class="container card mt-2">
+  <table class="table mt-2 mb-z table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Company</th>
+        <th scope="col">Image</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let comp of companys">
+      <tr>
+              <th>{{comp.id}}</th>
+              <td>{{comp.name}}</td>
+              <td>{{comp.image}}</td>
+              <td><img width="10%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comp.image" class="mt-2"></td>
+      </tr>
+    </tbody>
+   </table>
+ </div>
 
 
- 
-
-<!-- Display & View Cards of Comic Books -->
+<!-- Display & quick list of Comic Books -->
 
 <div class="container card mt-2">
+  <h3>Comics Added</h3>
   <table class="table mt-2 mb-z table-striped">
     <thead class="thead-light">
       <tr>
@@ -138,7 +172,18 @@
         <th scope="col">Type:</th>
         <th scope="col">Year:</th>
         <!-- <th scope="col">Set</th> -->
-        <th scope="col">Publisher</th>
+        <th scope="col">
+          <div class="col-md-6"><label>Publisher</label>
+            <select class="form-control" [(ngModel)]="sortPublisher">
+              <option class="column col-lg-6 mb-2" *ngFor="let item of companys">{{item.name}}</option>
+            <!-- <option>No</option> -->
+            <!-- <option>Fancy</option> -->
+            <!-- <option>Kids</option> -->
+            <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
+           </select>
+          
+           </div>
+      </th>
         <th scope="col">Value</th>
         
       </tr>
@@ -153,7 +198,7 @@
             
            
            <th scope="row">{{comic.id}}</th>
-            <td>{{comic.title}}</td>
+            <td>{{comic.title}} ({{comic.issue}})</td>
             <td>{{comic.artist}}</td>
             <td>{{comic.type}}</td>
             <td>{{comic.year}}</td>
@@ -173,6 +218,11 @@
   </tbody>
   </table>
 </div>
+
+
+
+
+
 
 <!-- DELETE?? -->
 
