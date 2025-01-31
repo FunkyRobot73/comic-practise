@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 
+import { KeyValue } from '@angular/common';
 
 
 interface Comicbook{
@@ -42,6 +43,7 @@ interface Company{
 })
 export class ComicComponent {
 
+  
   
   title = "Justice League of America";
   issue = "200";
@@ -130,7 +132,8 @@ export class ComicComponent {
       })
     };
 
-    
+
+
   
 
 }
