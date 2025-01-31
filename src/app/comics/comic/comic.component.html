@@ -230,11 +230,10 @@
     <div class="row">
         <h1>Comic Books</h1>
         <!-- <div><button (click)="addComic()">Add Comic</button></div> -->
-        <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks | keyvalue:indexOrderAsc">
-          {{item.key}} : {{item.value}}
+        <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
         <!-- @for(item of $items | async; track item.id) -->
          
-            <!-- <div class="container course-card rounder  h-100">
+            <div class="container course-card rounder  h-100">
                 <div class="course-title rounder height-div">
                   
                   <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
@@ -257,7 +256,7 @@
 
                 <p><button role="link" class="rounded btn-ebay mt-2 mb-2"><a href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{item.title}}+{{item.publisher}}+{{item.issue}}&_sacat=63" style="text-decoration:none" class="ebay" target=”_blank”>Compare on eBay</a></button></p>
                 </div>
-            </div> -->
+            </div>
           
         
           
