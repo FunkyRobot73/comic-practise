@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AngularComponent } from "./angular/angular/angular.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,5 +11,5 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'comic-practice';
-  JLA = ["batman", "superman", "flash"]
+ 
 }

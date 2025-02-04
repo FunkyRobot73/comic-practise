@@ -52,7 +52,7 @@ export class AddComicComponent {
   writer = "Grant Morrison";
   artist = "George Perez";
   image = "dc.webp";
-  value = 50;
+  value='';
   slabbed = "Yes";
   createdAt = "";
   isbn = "999-999-001";
