@@ -120,30 +120,45 @@
      </div>
 </form> -->
 
- <!-- list of Publishers -->
+<!-- list of Publishers -->
 
- <!-- Add Publisher to DB -->
-   
-        
- <form>
+<!-- Add Publisher to DB -->
+
+<form>
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-2">
         <label>NEW Publisher:</label>
-       <input class="form-control" [(ngModel)]="addPublisher" name="addPublisher" type="text">
-     </div>
-     <div class="col-md-4">
-      <label>Image:</label>
-      <input class="form-control" [(ngModel)]="image" type="file" name="image">
-    </div>
-     <div class="col-md-2 mt-4">
-      <button class="btn btn-primary" (click)="addCompany()" name="addCompany">ADD Company</button>
-     </div>
+        <input
+          class="form-control"
+          [(ngModel)]="addPublisher"
+          name="addPublisher"
+          type="text"
+        />
+      </div>
+      <div class="col-md-4">
+        <label>Image:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="image"
+          type="file"
+          name="image"
+        />
+      </div>
+      <div class="col-md-2 mt-4">
+        <button
+          class="btn btn-primary"
+          (click)="addCompany()"
+          name="addCompany"
+        >
+          ADD Company
+        </button>
+      </div>
     </div>
   </div>
- </form>
+</form>
 
- <div class="container card mt-2">
+<div class="container card mt-2">
   <table class="table mt-2 mb-z table-striped">
     <thead class="thead-light">
       <tr>
@@ -155,15 +170,21 @@
     </thead>
     <tbody *ngFor="let comp of companys">
       <tr>
-              <th>{{comp.id}}</th>
-              <td>{{comp.name}}</td>
-              <td>{{comp.image}}</td>
-              <td><img width="10%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comp.image" class="mt-2"></td>
+        <th>{{ comp.id }}</th>
+        <td>{{ comp.name }}</td>
+        <td>{{ comp.image }}</td>
+        <td>
+          <img
+            width="10%"
+            alt="Comic Book for sale"
+            [src]="'https://back.swap2go.ca/public/' + comp.image"
+            class="mt-2"
+          />
+        </td>
       </tr>
     </tbody>
-   </table>
- </div>
-
+  </table>
+</div>
 
 <!-- Display & quick list of Comic Books -->
 
@@ -179,46 +200,43 @@
         <th scope="col">Year:</th>
         <!-- <th scope="col">Set</th> -->
         <th scope="col">
-          <div class="col-md-6"><label>Publisher</label>
-            <select class="form-control" [(ngModel)]="sortPublisher" name="sortPublisher">
-              <option class="column col-lg-6 mb-2" *ngFor="let item of companys">{{item.name}}</option>
-            <!-- <option>No</option> -->
-            <!-- <option>Fancy</option> -->
-            <!-- <option>Kids</option> -->
-            <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
-           </select>
-          
-           </div>
-      </th>
+          <div class="col-md-6">
+            <label>Publisher</label>
+            <select
+              class="form-control"
+              [(ngModel)]="sortPublisher"
+              name="sortPublisher"
+            >
+              <option
+                class="column col-lg-6 mb-2"
+                *ngFor="let item of companys"
+              >
+                {{ item.name }}
+              </option>
+              <!-- <option>No</option> -->
+              <!-- <option>Fancy</option> -->
+              <!-- <option>Kids</option> -->
+              <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
+            </select>
+          </div>
+        </th>
         <th scope="col">Value</th>
-        
       </tr>
     </thead>
 
-      <tbody *ngFor="let comic of comicbooks">
-      
-          <tr class=" align-items-center"  *ngIf="comic.publisher==sortPublisher">
-         
-            
-           
-           <th scope="row">{{comic.id}}</th>
-            <td>{{comic.title}} ({{comic.issue}})</td>
-            <td>{{comic.artist}}</td>
-            <td>{{comic.type}}</td>
-            <td>{{comic.year}}</td>
-            <td>{{comic.publisher}}</td>
-            <td>{{comic.value}}</td>
-      
-        </tr>
-    
-       </tbody>
+    <tbody *ngFor="let comic of comicbooks">
+      <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher">
+        <th scope="row">{{ comic.id }}</th>
+        <td>{{ comic.title }} ({{ comic.issue }})</td>
+        <td>{{ comic.artist }}</td>
+        <td>{{ comic.type }}</td>
+        <td>{{ comic.year }}</td>
+        <td>{{ comic.publisher }}</td>
+        <td>{{ comic.value }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
-
-
-
-
-
 
 <!-- DELETE?? -->
 
@@ -260,4 +278,3 @@
     </div>
 
 </div> -->
-
