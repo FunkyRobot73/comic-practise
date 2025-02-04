@@ -38,7 +38,8 @@ interface Company{
   styleUrl: './add-comic.component.css'
 })
 export class AddComicComponent {
-title = "Justice League of America";
+  
+  title = "Justice League of America";
   issue = "200";
   type = "TPB";
   year = "1990";

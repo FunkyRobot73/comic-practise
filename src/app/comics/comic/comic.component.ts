@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 
-
-
 interface Comicbook{
   id:number;
   title: string;
@@ -31,8 +29,7 @@ interface Company{
   id: number;
   name: string;
   image: string;
-}
-
+};
 
 @Component({
   selector: 'app-comic',
@@ -41,7 +38,6 @@ interface Company{
   styleUrl: './comic.component.css'
 })
 export class ComicComponent {
-
   
   title = "Justice League of America";
   issue = "200";

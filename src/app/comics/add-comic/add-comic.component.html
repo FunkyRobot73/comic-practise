@@ -12,7 +12,7 @@
     
          <div class="col-md-4">
             <label>Title:</label>
-           <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text" value="Justice League of America">
+           <input class="form-control" [(ngModel)]="title" name="title" placeholder="Title" type="text" value="Justice League of America">
          </div>
          <div class="col-md-2">
             <label>Issue No.:</label>
@@ -21,7 +21,7 @@
          
          <div class="col-md-2">
             <label>Type:</label>
-           <select class="form-control" [(ngModel)]="type" placeholder="TPB">
+           <select class="form-control" [(ngModel)]="type" name="type" placeholder="TPB">
             <option>Single Issue</option>
             <option>TPB</option>
             <option>book</option>
@@ -31,12 +31,12 @@
          </div>
          <div class="col-md-2">
             <label>Year:</label>
-           <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999">
+           <input class="form-control" [(ngModel)]="year" name="year" placeholder="1999" type="text" value="1999">
          </div>
          
     
          <div class="col-md-2"><label>Publisher</label>
-          <select class="form-control" [(ngModel)]="publisher">
+          <select class="form-control" [(ngModel)]="publisher" name="publisher" >
             <option class="column col-lg-6 mb-2" *ngFor="let item of companys">{{item.name}}</option>
             <!-- <option>No</option> -->
             <!-- <option>Fancy</option> -->
@@ -50,55 +50,55 @@
     
          <div class="col-md-2">
             <label>Condition:</label>
-           <input class="form-control" [(ngModel)]="condition" placeholder="Condition" type="text" value="5">
+           <input class="form-control" [(ngModel)]="condition" name="condition" placeholder="Condition" type="text" value="5">
          </div>
          <div class="col-md-2">
             <label>Key:</label>
-           <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="1st Mister Miracle">
+           <input class="form-control" [(ngModel)]="key" name="key" placeholder="" type="text" value="1st Mister Miracle">
          </div>
          
          <div class="col-md-2">
             <label>Characters:</label>
-           <input class="form-control" [(ngModel)]="characters" placeholder="Batman" type="text" value="Batman">
+           <input class="form-control" [(ngModel)]="characters" name="characters" placeholder="Batman" type="text" value="Batman">
          </div>
          <div class="col-md-2">
             <label>Writer:</label>
-           <input class="form-control" [(ngModel)]="writer" placeholder="Grant Morrison" type="text" value="Grant Morrison">
+           <input class="form-control" [(ngModel)]="writer" name="writer" placeholder="Grant Morrison" type="text" value="Grant Morrison">
          </div>
          <div class="col-md-2">
           <label>Artist:</label>
-          <input class="form-control" [(ngModel)]="artist" placeholder="George Perez" type="text" value="George Perez">
+          <input class="form-control" [(ngModel)]="artist" name="artist" placeholder="George Perez" type="text" value="George Perez">
          </div>
           <div class="col-md-2">
             <label>Value:</label>
-            <input class="form-control" [(ngModel)]="value" placeholder="100.00" type="number" value="100">
+            <input class="form-control" [(ngModel)]="value" name="value" placeholder="100.00" type="number" value="100">
           </div>
     
     
          <div class="col-md-2">
            <label>Slabbed:</label>
-           <input class="form-control" [(ngModel)]="slabbed" placeholder="Slabbed?  Yes or No" type="text" value="No">
+           <input class="form-control" [(ngModel)]="slabbed" name="slabbed" placeholder="Slabbed?  Yes or No" type="text" value="No">
          </div>
          <div class="col-md-2">
            <label>ISBN:</label>
-           <input class="form-control" [(ngModel)]="isbn" placeholder="ISBN: 999-999-0001" type="text" value="999-999-001">
+           <input class="form-control" [(ngModel)]="isbn" name="isbn" placeholder="ISBN: 999-999-0001" type="text" value="999-999-001">
          </div>
          <div class="col-md-2">
             <label>Qty:</label>
-            <input class="form-control" [(ngModel)]="qty" placeholder="1" type="number" value="1">
+            <input class="form-control" [(ngModel)]="qty" name="qty" placeholder="1" type="number" value="1">
          </div>
          <div class="col-md-4">
           <label>Image:</label>
-          <input class="form-control" [(ngModel)]="image" type="file" name="avatar">
+          <input class="form-control" [(ngModel)]="image" name="image" type="file" name="avatar">
        </div>
          
          <div class="col-md-12">
           <label>Short:</label>
-          <input class="form-control" [(ngModel)]="short" placeholder="Short Desc." type="text" value="Great Story & Art">
+          <input class="form-control" [(ngModel)]="short" name="short" placeholder="Short Desc." type="text" value="Great Story & Art">
         </div>
         <div class="col-md-12">
           <label>Description:</label>
-          <input class="form-control" [(ngModel)]="description" placeholder="Amazing" type="text" value="Amazing">
+          <input class="form-control" [(ngModel)]="description" name="description" placeholder="Amazing" type="text" value="Amazing">
         </div>
     
         <div class="col-md-2 mt-4">
@@ -115,7 +115,7 @@
           <div class="row mt-5">
             <div class="col-md-2">
               <label>NEW Publisher:</label>
-             <input class="form-control" [(ngModel)]="addPublisher" placeholder="Indie" type="text">
+             <input class="form-control" [(ngModel)]="addPublisher" name="addPublisher"  placeholder="Indie" type="text">
            </div>
            <div class="col-md-4">
             <label>Image:</label>
