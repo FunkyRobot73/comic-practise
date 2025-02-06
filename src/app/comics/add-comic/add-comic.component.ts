@@ -2,7 +2,28 @@ import { Component, Inject, inject, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
-import { ImageUploadService } from '../../services/image-upload.service';
+
+interface Comicbook{
+  id:number;
+  title: string;
+  issue: string;
+  type: string;
+  year: string;
+  publisher:string;
+  condition:string;
+  key: string;
+  description:string;
+  short:string;
+  characters:number;
+  writer: string;
+  artist: string;
+  image: string;
+  value: number;
+  slabbed: string;
+  createdAt: string;
+  isbn: string;
+  qty: number;
+};
 
 interface Company{
   id: number;
@@ -18,19 +39,42 @@ interface Company{
 })
 export class AddComicComponent {
   
+  title = "Justice League of America";
+  issue = "200";
+  type = "TPB";
+  year = "1990";
+  publisher = "DC";
+  condition = "5";
+  key = "1st Mister Miracle";
+  description = "Amazing Comic";
+  short = "Great Story & Art";
+  characters = "Batman";
+  writer = "Grant Morrison";
+  artist = "George Perez";
+  image = "dc.webp";
+  value='';
+  slabbed = "Yes";
+  createdAt = "";
+  isbn = "999-999-001";
+  qty = 1;
   addPublisher = "NEW"
-  image = "";
 
-  selectedFile: File | null = null;
-  uploadStatus: string | null = null;
+  sortPublisher = "IDW"
   
   
   comicbookService = inject(ComicbookService)
-  
+  comicbooks:Comicbook[] = [];
   companys:Company[] = [];
 
-  constructor(private imageUploadService: ImageUploadService) {
-    
+  constructor() {
+    this.comicbookService.getComics().subscribe({
+      next: (data) => {
+        this.comicbooks = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
     this.comicbookService.getCompanys().subscribe({
       next: (data) => {
         this.companys = data;
@@ -39,29 +83,46 @@ export class AddComicComponent {
         console.log(err);
       }
     });
-  };
-
-  onFileSelected(event: Event): void {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFile = fileInput.files[0];
-    }
-  }
-
-  onUpload(): void {
-    if (this.selectedFile) {
-      this.imageUploadService.uploadImage(this.selectedFile).subscribe({
-        next: (response) => (this.uploadStatus = 'Upload successful!'),
-        error: (err) => (this.uploadStatus = 'Upload failed. Please try again.'),
-      });
-    }
   }
 
     addCompany(){
-      this.comicbookService.createCompany(this.addPublisher, this.image)
+      this.comicbookService.createCompany(this.addPublisher)
+    }
+
+    addComic(){
+      this.comicbookService.createComic({
+
+        // artist: this.artist,
+        // title: this.title,
+        // year: this.year,
+        // type: this.type,
+
+        title: this.title,
+        issue: this.issue,
+        type: this.type,
+        year: this.year,
+        publisher: this.publisher,
+        condition: this.condition,
+        key:  this.key,
+        description: this.description,
+        short: this.short,
+        characters: this.characters,
+        writer:  this.writer,
+        artist:  this.artist,
+        image:  this.image,
+        value: this.value,
+        slabbed:  this.slabbed,
+        createdAt:  this.createdAt,
+        isbn:  this.isbn,
+        qty: this.qty
+
+      }).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
     };
-
-    deleteCompany(){};
-
-    
-};
+}
