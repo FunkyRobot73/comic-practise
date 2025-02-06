@@ -1,9 +1,4 @@
-<div class="container">
-  <h2>Image Upload</h2>
-<input type="file" (change)="onFileSelected($event)" />
-<button (click)="onUpload()" [disabled]="!selectedFile">Upload Image</button>
-<p *ngIf="uploadStatus">{{ uploadStatus }}</p>
-</div>
+
 
 
 
@@ -133,7 +128,13 @@
 
 <!-- Add Publisher to DB -->
 
-<form>
+
+
+<!-- Add Photos -->
+
+<!-- [formGroup]="registerCompany" -->
+
+<form (ngSubmit)="addCompany()">
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-2">
@@ -145,18 +146,35 @@
           type="text"
         />
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <label>Image:</label>
         <input class="form-control" type="file" name="image"/>
+      </div> -->
+
+      <div class="col-md-2">
+        <label>Image Name:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="image"
+          name="image"
+          type="text"
+        />
       </div>
+
+      <!-- NEW BUTTON -->
+
+      <div class="container">
+        <label class="form-label">Image Upload</label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"/>
+      <!-- <button (click)="onUpload()" [disabled]="!selectedFile">Upload Image</button> -->
+      <p *ngIf="uploadStatus">Is this on?{{ uploadStatus}}</p>
+      
+      </div>
+
+      <!-- END BUTTON -->
+
       <div class="col-md-2 mt-4">
-        <button
-          class="btn btn-primary"
-          (click)="addCompany()"
-          name="addCompany"
-        >
-          ADD Company
-        </button>
+        <button class="btn btn-primary" type="submit">ADD Company</button>
       </div>
     </div>
   </div>

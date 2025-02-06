@@ -23,6 +23,7 @@ export class AddComicComponent {
 
   selectedFile: File | null = null;
   uploadStatus: string | null = null;
+  selectedFile2: string = "";
   
   
   comicbookService = inject(ComicbookService)
@@ -58,7 +59,18 @@ export class AddComicComponent {
   }
 
     addCompany(){
-      this.comicbookService.createCompany(this.addPublisher, this.image)
+     
+      this.comicbookService.createCompany(
+        this.addPublisher, this.image
+          
+      
+      )
+      if (this.selectedFile) {
+        this.imageUploadService.uploadImage(this.selectedFile).subscribe({
+          next: (response) => (this.uploadStatus = 'Upload successful!'),
+          error: (err) => (this.uploadStatus = 'Upload failed. Please try again.'),
+        });
+      }
     };
 
     deleteCompany(){};

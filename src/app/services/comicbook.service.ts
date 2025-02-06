@@ -48,10 +48,10 @@ export class ComicbookService {
       return throwError(()=> new Error(`Something went poop!`));
     }
 
-    createCompany(x:any, b:any) {
+    createCompany(x:any,b:any) {
 
-      this.http.post("https://back.swap2go.ca/addcompany", { name: x, image: b }).subscribe(data => {
-        console.log(data);
+      this.http.post("https://back.swap2go.ca/addcompany", {x, b}).subscribe(data => {
+        console.log("Not sure");
       });
   
     };
