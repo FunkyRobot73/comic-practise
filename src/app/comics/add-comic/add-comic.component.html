@@ -168,7 +168,8 @@
       <input type="file" (change)="onFileSelected($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"/>
       <!-- <button (click)="onUpload()" [disabled]="!selectedFile">Upload Image</button> -->
       <p *ngIf="uploadStatus">Is this on?{{ uploadStatus}}</p>
-      
+      <p>{{addPublisher}}</p>
+      <p>{{image}}</p>
       </div>
 
       <!-- END BUTTON -->
@@ -205,7 +206,7 @@
           />
         </td>
         <td>
-          <button class="btn btn-primary"(click)="addCompany()" name="addCompany">DELETE</button>
+          <button class="btn btn-primary"(click)="deleteCompany()" name="addCompany">DELETE</button>
         </td>
       </tr>
     </tbody>

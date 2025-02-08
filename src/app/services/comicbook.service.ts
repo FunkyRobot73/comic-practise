@@ -16,7 +16,7 @@ const httpOptions = {
   "characters" : "Batman",
   'writer' : "Grant Morrison",
   "artist" : "George Perez",
-  "image" : "",
+  "image" : "ACE-00001.jpg",
   "value" : 50,
   "slabbed" : "Yes",
   "createdAt" : "",
@@ -35,7 +35,7 @@ export class ComicbookService {
   private apiUrl01 = "https://back.swap2go.ca/comics";
   private apiUrl02 = "https://back.swap2go.ca/addcomics";
   private apiUrl03 = "https://back.swap2go.ca/company";
-  private apiUrl04 = "https://back.swap2go.ca/addcompany";
+  
 
   http = inject(HttpClient);
   
@@ -48,13 +48,12 @@ export class ComicbookService {
       return throwError(()=> new Error(`Something went poop!`));
     }
 
-    createCompany(x:any,b:any) {
+    createComic(post: any) {
+      return this.http.post(this.apiUrl02, post, httpOptions);
+    }
 
-      this.http.post("https://back.swap2go.ca/addcompany", {x, b}).subscribe(data => {
-        console.log("Not sure");
-      });
-  
-    };
+    
+    
 
     getCompanys() {
       return this.http.get<any>(this.apiUrl03).pipe(catchError(this.handleError2));
@@ -69,9 +68,6 @@ export class ComicbookService {
       return this.http.get(this.apiUrl01+'/'+id);
     }
     
-    createComic(post: any) {
-      return this.http.post(this.apiUrl02, post, httpOptions);
-    }
     
     updateComic(post: any) {
       return this.http.put(this.apiUrl01+'/'+post.id, post);

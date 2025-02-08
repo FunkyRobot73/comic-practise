@@ -85,9 +85,7 @@ export class ComicComponent {
     });
   }
 
-    addCompany(){
-      this.comicbookService.createCompany(this.addPublisher, this.image)
-    }
+    
 
     addComic(){
       this.comicbookService.createComic({

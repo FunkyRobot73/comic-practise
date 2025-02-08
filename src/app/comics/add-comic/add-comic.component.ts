@@ -2,6 +2,7 @@ import { Component, Inject, inject, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
+import { CreateCompanyService } from '../../services/create-company.service';
 import { ImageUploadService } from '../../services/image-upload.service';
 
 interface Company{
@@ -19,7 +20,7 @@ interface Company{
 export class AddComicComponent {
   
   addPublisher = "NEW"
-  image = "";
+  image = "ACE-00001.jpg";
 
   selectedFile: File | null = null;
   uploadStatus: string | null = null;
@@ -27,6 +28,7 @@ export class AddComicComponent {
   
   
   comicbookService = inject(ComicbookService)
+  companyService = inject(CreateCompanyService)
   
   companys:Company[] = [];
 
@@ -60,17 +62,35 @@ export class AddComicComponent {
 
     addCompany(){
      
-      this.comicbookService.createCompany(
-        this.addPublisher, this.image
-          
       
-      )
       if (this.selectedFile) {
+        this.companyService.createCompany({
+          name: this.addPublisher,
+          image: this.image 
+        }).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
         this.imageUploadService.uploadImage(this.selectedFile).subscribe({
           next: (response) => (this.uploadStatus = 'Upload successful!'),
           error: (err) => (this.uploadStatus = 'Upload failed. Please try again.'),
         });
-      }
+      };
+      this.companyService.createCompany({
+        name: this.addPublisher,
+        image: this.image 
+      }).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
     };
 
     deleteCompany(){};
