@@ -1,0 +1,49 @@
+<form (ngSubmit)="addCompany()">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-2">
+          <label>NEW Publisher:</label>
+          <input class="form-control" [(ngModel)]="addPublisher" name="addPublisher" type="text"
+          />
+        </div>
+  
+        <div class="container">
+          <label class="form-label">Image Upload</label>
+          <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"
+          />
+          <p>{{ addPublisher }}</p>
+        </div>
+  
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-primary" type="submit">ADD Company</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <div class="container card mt-2">
+    <table class="table mt-2 mb-z table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Company</th>
+          <th scope="col">Image</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let comp of companys">
+        <tr>
+          <th>{{ comp.id }}</th>
+          <td>{{ comp.name }}</td>
+  
+          <td>
+            <img width="15%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comp.image" class="mt-2"
+            />
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="deleteCompany()" name="addCompany">DELETE</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

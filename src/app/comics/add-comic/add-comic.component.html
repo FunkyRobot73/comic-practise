@@ -1,177 +1,232 @@
-
-
-
-
-<!-- <form>
-    <div class="container">
-        <div class="card mt-1 p-3 bg-card">
-            <div class="horizontal">
-                <h2 class="text-center">
-                <img class="logo" src="images/comic-01.jpg">Create New Comic Book
-                <img class="logo" src="images/comic-01.jpg">
-                </h2>
-            </div>
-        
-      <div class="row mt-3 bg-card">
-    
-         <div class="col-md-4">
-            <label>Title:</label>
-           <input class="form-control" [(ngModel)]="title" name="title" placeholder="Title" type="text" value="Justice League of America">
-         </div>
-         <div class="col-md-2">
-            <label>Issue No.:</label>
-           <input class="form-control" [(ngModel)]="issue" name="issue" placeholder="Issue #" type="text" value="200">
-         </div>
-         
-         <div class="col-md-2">
-            <label>Type:</label>
-           <select class="form-control" [(ngModel)]="type" name="type" placeholder="TPB">
-            <option>Single Issue</option>
-            <option>TPB</option>
-            <option>book</option>
-            <option>set</option>
-            <option>hard cover</option>
-           </select>
-         </div>
-         <div class="col-md-2">
-            <label>Year:</label>
-           <input class="form-control" [(ngModel)]="year" name="year" placeholder="1999" type="text" value="1999">
-         </div>
-         
-    
-         <div class="col-md-2"><label>Publisher</label>
-          <select class="form-control" [(ngModel)]="publisher" name="publisher" >
-            <option class="column col-lg-6 mb-2" *ngFor="let item of companys">{{item.name}}</option>
-            <option>No</option>
-            <option>Fancy</option>
-            <option>Kids</option>
-            <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   
-          </select>
-          
-        </div>
-    
-        
-    
-         <div class="col-md-2">
-            <label>Condition:</label>
-           <input class="form-control" [(ngModel)]="condition" name="condition" placeholder="Condition" type="text" value="5">
-         </div>
-         <div class="col-md-2">
-            <label>Key:</label>
-           <input class="form-control" [(ngModel)]="key" name="key" placeholder="" type="text" value="1st Mister Miracle">
-         </div>
-         
-         <div class="col-md-2">
-            <label>Characters:</label>
-           <input class="form-control" [(ngModel)]="characters" name="characters" placeholder="Batman" type="text" value="Batman">
-         </div>
-         <div class="col-md-2">
-            <label>Writer:</label>
-           <input class="form-control" [(ngModel)]="writer" name="writer" placeholder="Grant Morrison" type="text" value="Grant Morrison">
-         </div>
-         <div class="col-md-2">
-          <label>Artist:</label>
-          <input class="form-control" [(ngModel)]="artist" name="artist" placeholder="George Perez" type="text" value="George Perez">
-         </div>
-          <div class="col-md-2">
-            <label>Value:</label>
-            <input class="form-control" [(ngModel)]="value" name="value" placeholder="100.00" type="number" value="100">
-          </div>
-    
-    
-         <div class="col-md-2">
-           <label>Slabbed:</label>
-           <input class="form-control" [(ngModel)]="slabbed" name="slabbed" placeholder="Slabbed?  Yes or No" type="text" value="No">
-         </div>
-         <div class="col-md-2">
-           <label>ISBN:</label>
-           <input class="form-control" [(ngModel)]="isbn" name="isbn" placeholder="ISBN: 999-999-0001" type="text" value="999-999-001">
-         </div>
-         <div class="col-md-2">
-            <label>Qty:</label>
-            <input class="form-control" [(ngModel)]="qty" name="qty" placeholder="1" type="number" value="1">
-         </div>
-         <div class="col-md-4">
-          <label>Image:</label>
-          <input class="form-control" [(ngModel)]="image" name="imageComic" type="file" name="avatar">
-       </div>
-         
-         <div class="col-md-12">
-          <label>Short:</label>
-          <input class="form-control" [(ngModel)]="short" name="short" placeholder="Short Desc." type="text" value="Great Story & Art">
-        </div>
-        <div class="col-md-12">
-          <label>Description:</label>
-          <input class="form-control" [(ngModel)]="description" name="description" placeholder="Amazing" type="text" value="Amazing">
-        </div>
-    
-        <div class="col-md-2 mt-4">
-          <button class="btn btn-primary" name="addComic" (click)="addComic()">ADD COMIC</button>
-          </div>
-        </div>
-        <div>
-          
-         
-        
-                  
-        
-    
-        
-          
-           
-       </div>
-     </div>
-     </div>
-</form> -->
-
-<!-- list of Publishers -->
-
-<!-- Add Publisher to DB -->
-
-
-
-<!-- Add Photos -->
-
-<!-- [formGroup]="registerCompany" -->
-
 <form (ngSubmit)="addCompany()">
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-2">
-        <label>NEW Publisher:</label>
+<div class="container">
+  <div class="card mt-1 p-3 bg-card">
+    <div class="horizontal">
+      <h2 class="text-center">
+        <img class="logo" src="images/comic-01.jpg" />Create New Comic Book
+        <img class="logo" src="images/comic-01.jpg" />
+      </h2>
+    </div>
+
+    <div class="row mt-3 bg-card">
+      <div class="col-md-4">
+        <label>Title:</label>
         <input
           class="form-control"
-          [(ngModel)]="addPublisher"
-          name="addPublisher"
+          [(ngModel)]="title"
+          placeholder="Title"
           type="text"
+          value="Justice League of America"
         />
       </div>
-      <!-- <div class="col-md-4">
+      <div class="col-md-2">
+        <label>Issue No.:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="issue"
+          placeholder="Issue #"
+          type="text"
+          value="200"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label>Type:</label>
+        <select class="form-control" [(ngModel)]="type" placeholder="TPB">
+          <option>Single Issue</option>
+          <option>TPB</option>
+          <option>book</option>
+          <option>set</option>
+          <option>hard cover</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label>Year:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="year"
+          placeholder="1999"
+          type="text"
+          value="1999"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label>Publisher</label>
+        <select class="form-control" [(ngModel)]="publisher">
+          <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
+            {{ item.name }}
+          </option>
+          <!-- <option>No</option> -->
+          <!-- <option>Fancy</option> -->
+          <!-- <option>Kids</option> -->
+          <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
+        </select>
+      </div>
+
+      <!-- Every 4 Forms -->
+
+      <div class="col-md-2">
+        <label>Condition:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="condition"
+          placeholder="Condition"
+          type="text"
+          value="5"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Key:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="key"
+          placeholder=""
+          type="text"
+          value="1st Mister Miracle"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label>Characters:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="characters"
+          placeholder="Batman"
+          type="text"
+          value="Batman"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Writer:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="writer"
+          placeholder="Grant Morrison"
+          type="text"
+          value="Grant Morrison"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Artist:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="artist"
+          placeholder="George Perez"
+          type="text"
+          value="George Perez"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Value:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="value"
+          placeholder="100.00"
+          type="number"
+          value="100"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label>Slabbed:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="slabbed"
+          placeholder="Slabbed?  Yes or No"
+          type="text"
+          value="No"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>ISBN:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="isbn"
+          placeholder="ISBN: 999-999-0001"
+          type="text"
+          value="999-999-001"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Qty:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="qty"
+          placeholder="1"
+          type="number"
+          value="1"
+        />
+      </div>
+      <div class="col-md-4">
         <label>Image:</label>
-        <input class="form-control" type="file" name="image"/>
+        <input
+          class="form-control"
+          [(ngModel)]="image"
+          type="file"
+          name="avatar"
+        />
+      </div>
+
+      <div class="col-md-12">
+        <label>Short:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="short"
+          placeholder="Short Desc."
+          type="text"
+          value="Great Story & Art"
+        />
+      </div>
+      <div class="col-md-12">
+        <label>Description:</label>
+        <input
+          class="form-control"
+          [(ngModel)]="description"
+          placeholder="Amazing"
+          type="text"
+          value="Amazing"
+        />
+      </div>
+
+      <!-- <div class="col-md-2 mt-4">
+        <button class="btn btn-primary" (click)="addComic()">ADD COMIC</button>
       </div> -->
 
-      
+      <!-- Add Publisher to DB -->
 
-      <!-- NEW BUTTON -->
+      <!-- Add Publisher to DB -->
 
-      <div class="container">
-        <label class="form-label">Image Upload</label>
-      <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"/>
-      <!-- <button (click)="onUpload()" [disabled]="!selectedFile">Upload Image</button> -->
-      
-      <p>{{addPublisher}}</p>
-      <!-- <p>{{image}}</p> -->
-      </div>
-
-      <!-- END BUTTON -->
-
-      <div class="col-md-2 mt-4">
-        <button class="btn btn-primary" type="submit">ADD Company</button>
-      </div>
+      <!-- <div class="row mt-5">
+        <div class="col-md-2">
+          <label>NEW Publisher:</label>
+          <input
+            class="form-control"
+            [(ngModel)]="addPublisher"
+            placeholder="Indie"
+            type="text"
+          />
+        </div>
+        <div class="col-md-4">
+          <label>Image:</label>
+          <input
+            class="form-control"
+            [(ngModel)]="image"
+            type="file"
+            name="avatar"
+          />
+        </div>
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-primary" (click)="addCompany()">
+            ADD Company
+          </button>
+        </div>
+      </div> -->
     </div>
   </div>
-</form>
+</div>
+
+<!-- list of Publishers -->
 
 <div class="container card mt-2">
   <table class="table mt-2 mb-z table-striped">
@@ -180,41 +235,30 @@
         <th scope="col">ID</th>
         <th scope="col">Company</th>
         <th scope="col">Image</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Image</th>
       </tr>
     </thead>
     <tbody *ngFor="let comp of companys">
       <tr>
         <th>{{ comp.id }}</th>
         <td>{{ comp.name }}</td>
-        <!-- <td>{{ comp.image }}</td> -->
-        
+        <td>{{ comp.image }}</td>
         <td>
           <img
-            width="15%"
+            width="10%"
             alt="Comic Book for sale"
             [src]="'https://back.swap2go.ca/public/' + comp.image"
             class="mt-2"
           />
-        </td>
-        <td>
-          <button class="btn btn-primary"(click)="deleteCompany()" name="addCompany">DELETE</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- NEW HTML FOR IMAGE UPLOAD -->
-
-
-
-
-
-
 <!-- Display & quick list of Comic Books -->
 
-<!-- <div class="container card mt-2">
+<div class="container card mt-2">
   <h3>Comics Added</h3>
   <table class="table mt-2 mb-z table-striped">
     <thead class="thead-light">
@@ -224,22 +268,21 @@
         <th scope="col">Artist:</th>
         <th scope="col">Type:</th>
         <th scope="col">Year:</th>
-       
+        <!-- <th scope="col">Set</th> -->
         <th scope="col">
           <div class="col-md-6">
             <label>Publisher</label>
-            <select
-              class="form-control"
-              [(ngModel)]="sortPublisher"
-              name="sortPublisher"
-            >
+            <select class="form-control" [(ngModel)]="sortPublisher">
               <option
                 class="column col-lg-6 mb-2"
                 *ngFor="let item of companys"
               >
                 {{ item.name }}
               </option>
-              
+              <!-- <option>No</option> -->
+              <!-- <option>Fancy</option> -->
+              <!-- <option>Kids</option> -->
+              <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
             </select>
           </div>
         </th>
@@ -249,55 +292,80 @@
 
     <tbody *ngFor="let comic of comicbooks">
       <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher">
+        <!-- <ul class="list-group mt-3"> -->
+        <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
+        <!-- <td>{{customer.fName}}</td>  -->
+
         <th scope="row">{{ comic.id }}</th>
         <td>{{ comic.title }} ({{ comic.issue }})</td>
         <td>{{ comic.artist }}</td>
         <td>{{ comic.type }}</td>
         <td>{{ comic.year }}</td>
+        <!-- <td>{{cust.pbSet}}</td> -->
         <td>{{ comic.publisher }}</td>
         <td>{{ comic.value }}</td>
+
+        <!-- <td><button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button></td> -->
+        <!-- <td><button class="btn btn-danger" (click)="deleteCustomer(i)">DELETE</button></td> -->
+        <!-- <button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button> -->
+        <!-- </li> -->
+        <!-- </ul> -->
       </tr>
     </tbody>
   </table>
-</div> -->
+</div>
 
 <!-- DELETE?? -->
 
-<!-- <div class="container mt-2 bt-2 mb-2">
-    <div class="row">
-        <h1>Comic Books</h1>
-        
-        <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
-        
-         
-            <div class="container course-card rounder  h-100">
-                <div class="course-title rounder height-div">
-                  
-                  <h2 class="form-background mt-2 pt-2 pb-2 rounder">{{item.title}} #  {{item.issue}}</h2>
-                </div>
-                <h3>{{item.artist}}</h3>
-                <h5>{{item.type}}</h5>
-                <h4>{{item.year}}</h4>
-                <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + item.image" class="mt-2">
-                <div>
-                    <div class="course-description">
-                
-                        <p class="short">{{(item.short | slice:0:64) + "..."}}</p>
-                
-                    </div>
-                    <h3 class="money">{{item.value | currency}}</h3>
-                    <h5>{{item.type}}</h5>
-                    <h4>{{item.year}}</h4>
-                    <button  class="btn btn-primary ms-2 mb-2">Add 2 Cart!</button> 
-                    <button  class="btn btn-primary ms-2 mb-2">Offer Swap</button> 
+<div class="container mt-2 bt-2 mb-2">
+  <div class="row">
+    <h1>Comic Books</h1>
+    <!-- <div><button (click)="addComic()">Add Comic</button></div> -->
+    <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
+      <!-- @for(item of $items | async; track item.id) -->
 
-                <p><button role="link" class="rounded btn-ebay mt-2 mb-2"><a href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{item.title}}+{{item.publisher}}+{{item.issue}}&_sacat=63" style="text-decoration:none" class="ebay" target=”_blank”>Compare on eBay</a></button></p>
-                </div>
-            </div>
-          
-        
-          
+      <div class="container course-card rounder h-100">
+        <div class="course-title rounder height-div">
+          <h2 class="form-background mt-2 pt-2 pb-2 rounder">
+            {{ item.title }} # {{ item.issue }}
+          </h2>
+        </div>
+        <h3>{{ item.artist }}</h3>
+        <h5>{{ item.type }}</h5>
+        <h4>{{ item.year }}</h4>
+        <img
+          width="75%"
+          alt="Comic Book for sale"
+          [src]="'https://back.swap2go.ca/public/' + item.image"
+          class="mt-2"
+        />
+        <div>
+          <div class="course-description">
+            <p class="short">{{ (item.short | slice : 0 : 64) + "..." }}</p>
           </div>
-    </div>
+          <h3 class="money">{{ item.value | currency }}</h3>
+          <h5>{{ item.type }}</h5>
+          <h4>{{ item.year }}</h4>
+          <button class="btn btn-primary ms-2 mb-2">Add 2 Cart!</button>
+          <button class="btn btn-primary ms-2 mb-2">Offer Swap</button>
 
-</div> -->
+          <p>
+            <button role="link" class="rounded btn-ebay mt-2 mb-2">
+              <a
+                href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{
+                  item.title
+                }}+{{ item.publisher }}+{{ item.issue }}&_sacat=63"
+                style="text-decoration: none"
+                class="ebay"
+                target="”_blank”"
+                >Compare on eBay</a
+              >
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>

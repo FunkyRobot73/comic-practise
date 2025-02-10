@@ -4,12 +4,14 @@ import { ComicComponent } from './comics/comic/comic.component';
 import { NgModule } from '@angular/core';
 import { RecordComponent } from './records/record/record.component';
 import { AddComicComponent } from './comics/add-comic/add-comic.component';
+import { AddCompanyComponent } from './comics/add-company/add-company.component';
 
 export const routes: Routes = [
     {path: '', redirectTo:'home', pathMatch: 'full'},
     {path: 'home', component: AngularComponent},
     {path: 'comic', component: ComicComponent},
     {path: 'addcomic', component: AddComicComponent},
+    {path: 'addcompany', component: AddCompanyComponent},
     {path: 'record', component: RecordComponent},
 ];
 
