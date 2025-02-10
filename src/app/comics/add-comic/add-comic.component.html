@@ -151,25 +151,17 @@
         <input class="form-control" type="file" name="image"/>
       </div> -->
 
-      <div class="col-md-2">
-        <label>Image Name:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="image"
-          name="image"
-          type="text"
-        />
-      </div>
+      
 
       <!-- NEW BUTTON -->
 
       <div class="container">
         <label class="form-label">Image Upload</label>
-      <input type="file" (change)="onFileSelected($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"/>
+      <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"/>
       <!-- <button (click)="onUpload()" [disabled]="!selectedFile">Upload Image</button> -->
-      <p *ngIf="uploadStatus">Is this on?{{ uploadStatus}}</p>
+      
       <p>{{addPublisher}}</p>
-      <p>{{image}}</p>
+      <!-- <p>{{image}}</p> -->
       </div>
 
       <!-- END BUTTON -->

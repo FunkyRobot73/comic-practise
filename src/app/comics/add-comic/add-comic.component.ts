@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 import { CreateCompanyService } from '../../services/create-company.service';
-import { ImageUploadService } from '../../services/image-upload.service';
+// import { ImageUploadService } from '../../services/image-upload.service';
 
 interface Company{
   id: number;
@@ -19,20 +19,16 @@ interface Company{
 })
 export class AddComicComponent {
   
-  addPublisher = "NEW"
-  image = "ACE-00001.jpg";
-
-  selectedFile: File | null = null;
-  uploadStatus: string | null = null;
-  selectedFile2: string = "";
-  
+  addPublisher: string = ""
+  imageFile:  File | null = null;
+  imageName: string ="";  
   
   comicbookService = inject(ComicbookService)
   companyService = inject(CreateCompanyService)
   
   companys:Company[] = [];
 
-  constructor(private imageUploadService: ImageUploadService) {
+  constructor(private createCompanyService: CreateCompanyService) {
     
     this.comicbookService.getCompanys().subscribe({
       next: (data) => {
@@ -44,54 +40,33 @@ export class AddComicComponent {
     });
   };
 
-  onFileSelected(event: Event): void {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFile = fileInput.files[0];
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
+      this.imageName = file.name;
     }
   }
-
-  onUpload(): void {
-    if (this.selectedFile) {
-      this.imageUploadService.uploadImage(this.selectedFile).subscribe({
-        next: (response) => (this.uploadStatus = 'Upload successful!'),
-        error: (err) => (this.uploadStatus = 'Upload failed. Please try again.'),
-      });
-    }
-  }
+  
 
     addCompany(){
      
       
-      if (this.selectedFile) {
-        this.companyService.createCompany({
-          name: this.addPublisher,
-          image: this.image 
-        }).subscribe({
-          next: (data) => {
-            console.log(data);
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        })
-        this.imageUploadService.uploadImage(this.selectedFile).subscribe({
-          next: (response) => (this.uploadStatus = 'Upload successful!'),
-          error: (err) => (this.uploadStatus = 'Upload failed. Please try again.'),
-        });
-      };
-      this.companyService.createCompany({
-        name: this.addPublisher,
-        image: this.image 
-      }).subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (err) => {
-          console.log(err);
+      if (this.imageFile) {
+        this.createCompanyService.createCompany(          
+          this.addPublisher,this.imageFile, this.imageName).subscribe(
+            response => {
+              console.log("Upload looks Good!!", response);
+            },
+            error => {
+              console.error('Upload failed', error);
+            }
+          );
+        
+        } else {
+          console.error('No file selected');
         }
-      })
-    };
+    }
 
     deleteCompany(){};
 
