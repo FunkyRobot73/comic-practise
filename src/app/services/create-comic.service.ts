@@ -38,7 +38,7 @@ export class CreateComicService {
   }
 
   createComic(
-    
+
     title: string, 
     issue: string, 
     type: string, 
@@ -46,7 +46,16 @@ export class CreateComicService {
     publisher: string, 
     condition: string, 
     key: string, 
-    description: string, 
+    description: string,
+    short: string,
+    characters: string,
+    writer: string,
+    artist: string,
+    value: number,
+    slabbed: string,
+    isbn: string,
+    qty: number,
+
     image: File, 
     imageName: string
   
@@ -55,6 +64,23 @@ export class CreateComicService {
       const formData = new FormData();
       formData.append('title', title);
       formData.append('issue', issue);
+      formData.append('type', type);
+      formData.append('publisher', publisher);
+      formData.append('condition', condition);
+      formData.append('key', key);
+      formData.append('description', description);
+      formData.append('short', short);
+      formData.append('characters', characters);
+      formData.append('writer', writer);
+      formData.append('artist', artist);
+      formData.append('year', year);
+      formData.append('slabbed', slabbed);
+      formData.append('isbn', isbn);
+      formData.append('value',value.toString());
+      formData.append('qty',qty.toString());
+
+      // imageFile:  File | null = null;
+
       formData.append('image', image, imageName);
       
       return this.http.post(this.apiUrl02, formData)

@@ -122,11 +122,12 @@ export class AddComicComponent {
             this.artist,
             this.value,
             this.slabbed,
-            this.createdAt,
+            // this.createdAt,
             this.isbn,
             this.qty,
             
         //  here!!!
+            this.imageFile,
             this.imageName,
           ).subscribe({
             next: (data) => {
