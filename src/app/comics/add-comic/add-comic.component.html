@@ -1,4 +1,4 @@
-<form (ngSubmit)="addCompany()">
+<form (ngSubmit)="addComic()">
 <div class="container">
   <div class="card mt-1 p-3 bg-card">
     <div class="horizontal">
@@ -16,7 +16,7 @@
           [(ngModel)]="title"
           placeholder="Title"
           type="text"
-          value="Justice League of America"
+          value="Justice League of America" name="title"
         />
       </div>
       <div class="col-md-2">
@@ -26,13 +26,13 @@
           [(ngModel)]="issue"
           placeholder="Issue #"
           type="text"
-          value="200"
+          value="200" name="issue"
         />
       </div>
 
       <div class="col-md-2">
         <label>Type:</label>
-        <select class="form-control" [(ngModel)]="type" placeholder="TPB">
+        <select class="form-control" [(ngModel)]="type" name="type">
           <option>Single Issue</option>
           <option>TPB</option>
           <option>book</option>
@@ -47,13 +47,13 @@
           [(ngModel)]="year"
           placeholder="1999"
           type="text"
-          value="1999"
+          value="1999"  name="year"
         />
       </div>
 
       <div class="col-md-2">
         <label>Publisher</label>
-        <select class="form-control" [(ngModel)]="publisher">
+        <select class="form-control" [(ngModel)]="publisher"  name="publisher">
           <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
             {{ item.name }}
           </option>
@@ -73,7 +73,7 @@
           [(ngModel)]="condition"
           placeholder="Condition"
           type="text"
-          value="5"
+          value="5" name="condition"
         />
       </div>
       <div class="col-md-2">
@@ -83,7 +83,7 @@
           [(ngModel)]="key"
           placeholder=""
           type="text"
-          value="1st Mister Miracle"
+          value="1st Mister Miracle" name="key"
         />
       </div>
 
@@ -94,7 +94,7 @@
           [(ngModel)]="characters"
           placeholder="Batman"
           type="text"
-          value="Batman"
+          value="Batman" name="characters"
         />
       </div>
       <div class="col-md-2">
@@ -104,7 +104,7 @@
           [(ngModel)]="writer"
           placeholder="Grant Morrison"
           type="text"
-          value="Grant Morrison"
+          value="Grant Morrison" name="writer"
         />
       </div>
       <div class="col-md-2">
@@ -114,7 +114,7 @@
           [(ngModel)]="artist"
           placeholder="George Perez"
           type="text"
-          value="George Perez"
+          value="George Perez" name="artist"
         />
       </div>
       <div class="col-md-2">
@@ -124,7 +124,7 @@
           [(ngModel)]="value"
           placeholder="100.00"
           type="number"
-          value="100"
+          value="100" name="value"
         />
       </div>
 
@@ -135,7 +135,7 @@
           [(ngModel)]="slabbed"
           placeholder="Slabbed?  Yes or No"
           type="text"
-          value="No"
+          value="No" name="slabbed"
         />
       </div>
       <div class="col-md-2">
@@ -145,7 +145,7 @@
           [(ngModel)]="isbn"
           placeholder="ISBN: 999-999-0001"
           type="text"
-          value="999-999-001"
+          value="999-999-001" name="isbn"
         />
       </div>
       <div class="col-md-2">
@@ -155,16 +155,17 @@
           [(ngModel)]="qty"
           placeholder="1"
           type="number"
-          value="1"
+          value="1" name="qty"
         />
       </div>
       <div class="col-md-4">
         <label>Image:</label>
         <input
           class="form-control"
-          [(ngModel)]="image"
+          (change)="onFileChange($event)"
           type="file"
-          name="avatar"
+          id="image"
+          
         />
       </div>
 
@@ -175,7 +176,7 @@
           [(ngModel)]="short"
           placeholder="Short Desc."
           type="text"
-          value="Great Story & Art"
+          value="Great Story & Art" name="short"
         />
       </div>
       <div class="col-md-12">
@@ -185,8 +186,12 @@
           [(ngModel)]="description"
           placeholder="Amazing"
           type="text"
-          value="Amazing"
+          value="Amazing" name="description"
         />
+      </div>
+
+      <div class="col-md-2 mt-4">
+        <button class="btn btn-primary" type="submit">ADD Comic</button>
       </div>
 
       <!-- <div class="col-md-2 mt-4">
@@ -238,19 +243,19 @@
         <th scope="col">Image</th>
       </tr>
     </thead>
-    <tbody *ngFor="let comp of companys">
+    <tbody *ngFor="let comp of comicbooks">
       <tr>
         <th>{{ comp.id }}</th>
-        <td>{{ comp.name }}</td>
-        <td>{{ comp.image }}</td>
-        <td>
+        <td>{{ comp.title }}</td>
+        <!-- <td>{{ comp.image }}</td> -->
+        <!-- <td>
           <img
             width="10%"
             alt="Comic Book for sale"
             [src]="'https://back.swap2go.ca/public/' + comp.image"
             class="mt-2"
           />
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
@@ -272,7 +277,7 @@
         <th scope="col">
           <div class="col-md-6">
             <label>Publisher</label>
-            <select class="form-control" [(ngModel)]="sortPublisher">
+            <select class="form-control" [(ngModel)]="sortPublisher" name="sortPublisher">
               <option
                 class="column col-lg-6 mb-2"
                 *ngFor="let item of companys"
@@ -333,12 +338,12 @@
         <h3>{{ item.artist }}</h3>
         <h5>{{ item.type }}</h5>
         <h4>{{ item.year }}</h4>
-        <img
+        <!-- <img
           width="75%"
           alt="Comic Book for sale"
           [src]="'https://back.swap2go.ca/public/' + item.image"
           class="mt-2"
-        />
+        /> -->
         <div>
           <div class="course-description">
             <p class="short">{{ (item.short | slice : 0 : 64) + "..." }}</p>

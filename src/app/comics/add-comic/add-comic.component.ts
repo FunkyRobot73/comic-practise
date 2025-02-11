@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 import { CreateComicService } from '../../services/create-comic.service';
+import { CreateCompanyService } from '../../services/create-company.service';
 
 interface Comicbook{
   id:number;
@@ -15,7 +16,7 @@ interface Comicbook{
   key: string;
   description:string;
   short:string;
-  characters:number;
+  characters:string;
   writer: string;
   artist: string;
   image: string;
@@ -26,6 +27,12 @@ interface Comicbook{
   qty: number;
 };
 
+interface Company{
+  id: number;
+  name: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-add-comic',
   imports: [CommonModule, FormsModule],
@@ -34,7 +41,7 @@ interface Comicbook{
 })
 export class AddComicComponent {
   
-  title = "Justice League of America";
+    title = "Justice League America";
     issue = "200";
     type = "TPB";
     year = "1990";
@@ -46,18 +53,25 @@ export class AddComicComponent {
     characters = "Batman";
     writer = "Grant Morrison";
     artist = "George Perez";
-    image = "dc.webp";
-    value = 50;
-    slabbed = "Yes";
+    image = "";
+    value = 59;
+    slabbed = "N";
     createdAt = "";
     isbn = "999-999-001";
     qty = 1;
-    addPublisher = "NEW"
-  
-    comicbooks:Comicbook[] = [];
-    comicbookService = inject(ComicbookService)
+    
+    // addPublisher = "DC"
+    sortPublisher = "IDW"
 
-  constructor(private createComicService: CreateComicService) {
+    imageFile:  File | null = null;
+    imageName: string ="";  
+  
+    createComicService = inject(CreateComicService)
+    comicbookService = inject(ComicbookService)
+    comicbooks:Comicbook[] = [];
+    companys:Company[] = [];
+
+  constructor() {
     
     this.comicbookService.getComics().subscribe({
       next: (data) => {
@@ -67,6 +81,16 @@ export class AddComicComponent {
         console.log(err);
       }
     });
+
+    this.comicbookService.getCompanys().subscribe({
+      next: (data) => {
+        this.companys = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
   };
 
   onFileChange(event: any): void {
@@ -78,18 +102,40 @@ export class AddComicComponent {
   }
   
 
-    addCompany(){
+    addComic(){
      
       
       if (this.imageFile) {
-        this.createCompanyService.createCompany(          
-          this.addPublisher,this.imageFile, this.imageName).subscribe(
-            response => {
-              console.log("Upload looks Good!!", response);
+        this.createComicService.createComic(  
+          
+            this.title,
+            this.issue,
+            this.type,
+            this.year,
+            this.publisher,
+            this.condition,
+            this.key,
+            this.description,
+            this.short,
+            this.characters,
+            this.writer,
+            this.artist,
+            this.value,
+            this.slabbed,
+            this.createdAt,
+            this.isbn,
+            this.qty,
+            
+        //  here!!!
+            this.imageName,
+          ).subscribe({
+            next: (data) => {
+              console.log(data);
             },
-            error => {
-              console.error('Upload failed', error);
+            error: (err) => {
+              console.log(err);
             }
+          }
           );
         
         } else {
