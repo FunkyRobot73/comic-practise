@@ -193,40 +193,14 @@
       <div class="col-md-2 mt-4">
         <button class="btn btn-primary" type="submit">ADD Comic</button>
       </div>
+      
+      <div class="col-md-2 mt-4">
+        <button class="btn btn-light">
+          <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{publisher}}+{{title}}+{{issue}}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09" style="text-decoration:none" target=”_blank”>
+            FIND IMAGE</a></button>
+      </div>
 
-      <!-- <div class="col-md-2 mt-4">
-        <button class="btn btn-primary" (click)="addComic()">ADD COMIC</button>
-      </div> -->
-
-      <!-- Add Publisher to DB -->
-
-      <!-- Add Publisher to DB -->
-
-      <!-- <div class="row mt-5">
-        <div class="col-md-2">
-          <label>NEW Publisher:</label>
-          <input
-            class="form-control"
-            [(ngModel)]="addPublisher"
-            placeholder="Indie"
-            type="text"
-          />
-        </div>
-        <div class="col-md-4">
-          <label>Image:</label>
-          <input
-            class="form-control"
-            [(ngModel)]="image"
-            type="file"
-            name="avatar"
-          />
-        </div>
-        <div class="col-md-2 mt-4">
-          <button class="btn btn-primary" (click)="addCompany()">
-            ADD Company
-          </button>
-        </div>
-      </div> -->
+     
     </div>
   </div>
 </div>
@@ -269,11 +243,11 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">ID:</th>
-        <th scope="col">Title:</th>
-        <th scope="col">Artist:</th>
-        <th scope="col">Type:</th>
-        <th scope="col">Year:</th>
         <th scope="col">Image:</th>
+        <th scope="col">Title:</th>
+        <th scope="col">Writer/Artist:</th>
+        <th scope="col">Year:</th>
+        <th scope="col">Type:</th>
         <th scope="col">
           <div class="col-md-6">
             <label>Publisher</label>
@@ -289,6 +263,7 @@
           </div>
         </th>
         <th scope="col">Value</th>
+        <th scope="col">Short</th>
       </tr>
     </thead>
 
@@ -297,20 +272,29 @@
        
 
         <th scope="row">{{ comic.id }}</th>
-        <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
-        <td class="col-md-2">{{ comic.artist }}</td>
-        <td class="col-md-2">{{ comic.type }}</td>
-        <td class="col-md-1">{{ comic.year }}</td>
-        <td  class="col-md-3">
+        <td  class="col-md-1">
           <img
-            width="50%"
+            width="75%"
             alt="Comic Book for sale"
             [src]="'https://back.swap2go.ca/public/' + comic.image"
             class="mt-1"
           />
         </td>
-        <td class="col-md-2">{{ comic.publisher }}</td>
+        <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
+        <td class="col-md-2">
+          <table class="table col-md-2">
+              <tr>{{ comic.writer }}</tr>
+            
+            
+              <tr>{{ comic.artist }}</tr>
+            </table>
+          </td>
+          <td class="col-md-1">{{ comic.year }}</td>
+        <td class="col-md-1">{{ comic.type }}</td>
+        
+        <td class="col-md-1">{{ comic.publisher }}</td>
         <td class="col-md-1">{{ comic.value }}</td>
+        <td class="col-md-2">{{ comic.short }}</td>
 
         
       </tr>

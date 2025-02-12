@@ -41,19 +41,19 @@ interface Company{
 })
 export class AddComicComponent {
   
-    title = "Justice League America";
-    issue = "200";
-    type = "TPB";
+    title = "Justice League Quarterly";
+    issue = "1";
+    type = "Single Issue";
     year = "1990";
     publisher = "DC";
-    condition = "5";
-    key = "1st Mister Miracle";
-    description = "Amazing Comic";
-    short = "Great Story & Art";
+    condition = "8";
+    key = "1st App. of";
     characters = "Batman";
     writer = "Grant Morrison";
     artist = "George Perez";
     image = "";
+    short = "Excellent Condition (" + this.condition + " out of 10) for it's age.  Bagged & Boarded";
+    description = "Amazing book by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + ". with an appearance of " + this.characters + ".";
     value = 59;
     slabbed = "N";
     createdAt = "";
