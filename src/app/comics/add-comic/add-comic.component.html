@@ -294,7 +294,7 @@
         
         <td class="col-md-1">{{ comic.publisher }}</td>
         <td class="col-md-1">{{ comic.value }}</td>
-        <td class="col-md-2">{{ comic.short }}</td>
+        <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
 
         
       </tr>
