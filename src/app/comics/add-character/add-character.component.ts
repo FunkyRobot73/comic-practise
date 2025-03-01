@@ -2,7 +2,7 @@ import { Component, Inject, inject, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
-import { CreateCompanyService } from '../../services/create-company.service';
+import { CreateCharacterService } from '../../services/create-character.service';
 
 interface Character{
   id: number;
@@ -20,20 +20,20 @@ export class AddCharacterComponent {
 
   
       
-      addPublisher: string = ""
+      addCharacter: string = ""
       imageFile:  File | null = null;
       imageName: string ="";  
       
       comicbookService = inject(ComicbookService)
-      companyService = inject(CreateCompanyService)
+      characterService = inject(CreateCharacterService)
       
-      companys:Company[] = [];
+      characters:Character[] = [];
     
-      constructor(private createCompanyService: CreateCompanyService) {
+      constructor(private createCharacterService: CreateCharacterService) {
         
-        this.comicbookService.getCompanys().subscribe({
+        this.comicbookService.getCharacters().subscribe({
           next: (data) => {
-            this.companys = data;
+            this.characters = data;
           },
           error: (err) => {
             console.log(err);
@@ -50,12 +50,12 @@ export class AddCharacterComponent {
       }
       
     
-        addCompany(){
+        addCharacters(){
          
           
           if (this.imageFile) {
-            this.createCompanyService.createCompany(          
-              this.addPublisher,this.imageFile, this.imageName).subscribe(
+            this.createCharacterService.createCharacter(          
+              this.addCharacter,this.imageFile, this.imageName).subscribe(
                 response => {
                   console.log("Upload looks Good!!", response);
                 },
@@ -69,6 +69,6 @@ export class AddCharacterComponent {
             }
         }
     
-        deleteCompany(){};
+        deleteCharacter(){};
 
 }

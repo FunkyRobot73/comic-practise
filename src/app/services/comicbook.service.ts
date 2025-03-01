@@ -35,6 +35,8 @@ export class ComicbookService {
   private apiUrl01 = "https://back.swap2go.ca/comics";
   private apiUrl02 = "https://back.swap2go.ca/addcomics";
   private apiUrl03 = "https://back.swap2go.ca/company";
+
+  private apiUrl05 = "https://back.swap2go.ca/character";
   
 
   http = inject(HttpClient);
@@ -57,6 +59,10 @@ export class ComicbookService {
 
     getCompanys() {
       return this.http.get<any>(this.apiUrl03).pipe(catchError(this.handleError2));
+    }
+
+    getCharacters() {
+      return this.http.get<any>(this.apiUrl05).pipe(catchError(this.handleError2));
     }
   
     private handleError2(error: any){
