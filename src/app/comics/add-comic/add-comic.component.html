@@ -1,218 +1,152 @@
 <form (ngSubmit)="addComic()">
-<div class="container">
-  <div class="card mt-1 p-3 bg-card">
-    <div class="horizontal">
-      <h2 class="text-center">
-        <img class="logo" src="images/comic-01.jpg" />Create New Comic Book
-        <img class="logo" src="images/comic-01.jpg" />
-      </h2>
-    </div>
-
-    <div class="row mt-3 bg-card">
-      <div class="col-md-4">
-        <label>Title:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="title"
-          placeholder="Title"
-          type="text"
-          value="Justice League of America" name="title"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Issue No.:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="issue"
-          placeholder="Issue #"
-          type="text"
-          value="200" name="issue"
-        />
+  <div class="container">
+    <div class="card mt-1 p-3 bg-card">
+      <div class="horizontal">
+        <h2 class="text-center">
+          <img class="logo" src="images/comic-01.jpg" />Create New Comic Book
+          <img class="logo" src="images/comic-01.jpg" />
+        </h2>
       </div>
 
-      <div class="col-md-2">
-        <label>Type:</label>
-        <select class="form-control" [(ngModel)]="type" name="type">
-          <option>Single Issue</option>
-          <option>TPB</option>
-          <option>book</option>
-          <option>set</option>
-          <option>hard cover</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <label>Year:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="year"
-          placeholder="1999"
-          type="text"
-          value="1999"  name="year"
-        />
-      </div>
+      <div class="row mt-3 bg-card">
+        <div class="col-md-4">
+          <label>Title:</label>
+          <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text"
+            value="Justice League of America" name="title" />
+        </div>
+        <div class="col-md-2">
+          <label>Issue No.:</label>
+          <input class="form-control" [(ngModel)]="issue" placeholder="Issue #" type="text" value="200" name="issue" />
+        </div>
 
-      <div class="col-md-2">
-        <label>Publisher</label>
-        <select class="form-control" [(ngModel)]="publisher"  name="publisher">
-          <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
-            {{ item.name }}
-          </option>
-          <!-- <option>No</option> -->
-          <!-- <option>Fancy</option> -->
-          <!-- <option>Kids</option> -->
-          <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
-        </select>
-      </div>
+        <div class="col-md-2">
+          <label>Type:</label>
+          <select class="form-control" [(ngModel)]="type" name="type">
+            <option>Single Issue</option>
+            <option>TPB</option>
+            <option>book</option>
+            <option>set</option>
+            <option>hard cover</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label>Year:</label>
+          <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999" name="year" />
+        </div>
 
-      <!-- Every 4 Forms -->
+        <div class="col-md-2">
+          <label>Publisher</label>
+          <select class="form-control" [(ngModel)]="publisher" name="publisher">
+            <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
+              {{ item.name }}
+            </option>
+            <!-- <option>No</option> -->
+            <!-- <option>Fancy</option> -->
+            <!-- <option>Kids</option> -->
+            <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
+          </select>
+        </div>
 
-      <div class="col-md-2">
-        <label>Condition:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="condition"
-          placeholder="Condition"
-          type="text"
-          value="5" name="condition"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Key:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="key"
-          placeholder=""
-          type="text"
-          value="1st Mister Miracle" name="key"
-        />
-      </div>
+        <!-- Every 4 Forms -->
 
-      <div class="col-md-2">
-        <label>Characters:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="characters"
-          placeholder="Batman"
-          type="text"
-          value="Batman" name="characters"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Writer:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="writer"
-          placeholder="Grant Morrison"
-          type="text"
-          value="Grant Morrison" name="writer"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Artist:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="artist"
-          placeholder="George Perez"
-          type="text"
-          value="George Perez" name="artist"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Value:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="value"
-          
-          type="number"
-          name="value"
-        />
-      </div>
+        <div class="col-md-2">
+          <label>Condition:</label>
+          <input class="form-control" [(ngModel)]="condition" placeholder="Condition" type="text" value="5"
+            name="condition" />
+        </div>
+        <div class="col-md-2">
+          <label>Key:</label>
+          <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="1st Mister Miracle"
+            name="key" />
+        </div>
 
-      <div class="col-md-2">
-        <label>Slabbed:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="slabbed"
-          placeholder="Slabbed?  Yes or No"
-          type="text"
-          value="No" name="slabbed"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>ISBN:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="isbn"
-          placeholder="ISBN: 999-999-0001"
-          type="text"
-          value="999-999-001" name="isbn"
-        />
-      </div>
-      <div class="col-md-2">
-        <label>Qty:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="qty"
-          placeholder="1"
-          type="number"
-          value="1" name="qty"
-        />
-      </div>
-      <div class="col-md-4">
-        <label>Image:</label>
-        <input
-          class="form-control"
-          (change)="onFileChange($event)"
-          type="file"
-          id="image"
-          
-        />
-      </div>
+        <div class="col-md-2">
+          <label>Characters:</label>
+          <input class="form-control" [(ngModel)]="characters" placeholder="Batman" type="text" value="Batman"
+            name="characters" />
+        </div>
+        <div class="col-md-2">
+          <label>Writer:</label>
+          <input class="form-control" [(ngModel)]="writer" placeholder="Grant Morrison" type="text"
+            value="Grant Morrison" name="writer" />
+        </div>
+        <div class="col-md-2">
+          <label>Artist:</label>
+          <input class="form-control" [(ngModel)]="artist" placeholder="George Perez" type="text" value="George Perez"
+            name="artist" />
+        </div>
+        <div class="col-md-2">
+          <label>Value:</label>
+          <input class="form-control" [(ngModel)]="value" type="number" name="value" />
+        </div>
 
-      <div class="col-md-12">
-        <label>Short:</label>
-        <input
-          class="form-control"
-          [(ngModel)]="short"
-          placeholder="Short Desc."
-          type="text"
-          value="Great Story & Art" name="short"
-        />
-      </div>
-      <div class="col-md-12">
-        <label>Description:</label>
-        <p>{{description}}</p>
-        <input
-          class="form-control"
-          [(ngModel)]="description"
-          placeholder="Amazing"
-          type="text"
-          value="Amazing" name="description"
-        />
-      </div>
+        <div class="col-md-2">
+          <label>Slabbed:</label>
+          <input class="form-control" [(ngModel)]="slabbed" placeholder="Slabbed?  Yes or No" type="text" value="No"
+            name="slabbed" />
+        </div>
+        <div class="col-md-2">
+          <label>ISBN:</label>
+          <input class="form-control" [(ngModel)]="isbn" placeholder="ISBN: 999-999-0001" type="text"
+            value="999-999-001" name="isbn" />
+        </div>
+        <div class="col-md-2">
+          <label>Qty:</label>
+          <input class="form-control" [(ngModel)]="qty" placeholder="1" type="number" value="1" name="qty" />
+        </div>
+        <div class="col-md-4">
+          <label>Image:</label>
+          <input class="form-control" (change)="onFileChange($event)" type="file" id="image" />
+        </div>
 
-      <div class="col-md-2 mt-4">
-        <button class="btn btn-primary" (click)="updateDesc()">Update Desc.</button>
-      </div>
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-light">
+            <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{publisher}}+{{title}}+{{issue}}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09"
+              style="text-decoration:none" target=”_blank”>
+              FIND IMAGE</a></button>
+        </div>
 
-      <div class="col-md-2 mt-4">
-        <button class="btn btn-primary" type="submit">ADD Comic</button>
-      </div>
-      
-      <div class="col-md-2 mt-4">
-        <button class="btn btn-light">
-          <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{publisher}}+{{title}}+{{issue}}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09" style="text-decoration:none" target=”_blank”>
-            FIND IMAGE</a></button>
-      </div>
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-light">
+            <a href="https://www.google.com/search?q=quick+description+of+{{publisher}}+{{title}}+{{issue}}&rlz=1C1YTUH_enCA1086CA1086"
+              style="text-decoration:none" target=”_blank”>
+              FIND DESC</a></button>
+        </div>
 
-     
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-light" type="button" (click)="updateDesc()">Update Desc.</button>
+        </div>
+
+
+
+        <div class="col-md-12">
+          <label>Short:</label>
+          <input class="form-control" [(ngModel)]="short" placeholder="Short Desc." type="text"
+            value="Great Story & Art" name="short" />
+        </div>
+        <div class="col-md-12">
+          <label>Description:</label>
+          <p>{{description}}</p>
+          <input class="form-control" [(ngModel)]="description" placeholder="Amazing" type="text" value="Amazing"
+            name="description" />
+        </div>
+
+
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-primary" type="submit">ADD Comic</button>
+        </div>
+
+        
+
+
+
+      </div>
     </div>
   </div>
-</div>
 
-<!-- list of Publishers -->
+  <!-- list of Publishers -->
 
-<!-- <div class="container card mt-2">
+  <!-- <div class="container card mt-2">
   <table class="table mt-2 mb-z table-striped">
     <thead class="thead-light">
       <tr>
@@ -240,76 +174,69 @@
   </table>
 </div> -->
 
-<!-- Display & quick list of Comic Books -->
+  <!-- Display & quick list of Comic Books -->
 
-<div class="container card mt-2">
-  <h3>Comics Added</h3>
-  <table class="table mt-2 mb-z table-striped">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">ID:</th>
-        <th scope="col">Image:</th>
-        <th scope="col">Title:</th>
-        <th scope="col">Writer/Artist:</th>
-        <th scope="col">Year:</th>
-        <th scope="col">Type:</th>
-        <th scope="col">
-          <div class="col-md-6">
-            <label>Publisher</label>
-            <select class="form-control" [(ngModel)]="sortPublisher" name="sortPublisher">
-              <option
-                class="column col-lg-6 mb-2"
-                *ngFor="let item of companys"
-              >
-                {{ item.name }}
-              </option>
-             
-            </select>
-          </div>
-        </th>
-        <th scope="col">Value</th>
-        <th scope="col">Short</th>
-      </tr>
-    </thead>
+  <div class="container card mt-2">
+    <h3>Comics Added</h3>
+    <table class="table mt-2 mb-z table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">ID:</th>
+          <th scope="col">Image:</th>
+          <th scope="col">Title:</th>
+          <th scope="col">Writer/Artist:</th>
+          <th scope="col">Year:</th>
+          <th scope="col">Type:</th>
+          <th scope="col">
+            <div class="col-md-6">
+              <label>Publisher</label>
+              <select class="form-control" [(ngModel)]="sortPublisher" name="sortPublisher">
+                <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
+                  {{ item.name }}
+                </option>
 
-    <tbody *ngFor="let comic of comicbooks">
-      <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher">
-       
+              </select>
+            </div>
+          </th>
+          <th scope="col">Value</th>
+          <th scope="col">Short</th>
+        </tr>
+      </thead>
 
-        <th scope="row">{{ comic.id }}</th>
-        <td  class="col-md-1">
-          <img
-            width="75%"
-            alt="Comic Book for sale"
-            [src]="'https://back.swap2go.ca/public/' + comic.image"
-            class="mt-1"
-          />
-        </td>
-        <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
-        <td class="col-md-2">
-          <table class="table col-md-2">
+      <tbody *ngFor="let comic of comicbooks">
+        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher">
+
+
+          <th scope="row">{{ comic.id }}</th>
+          <td class="col-md-1">
+            <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image"
+              class="mt-1" />
+          </td>
+          <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
+          <td class="col-md-2">
+            <table class="table col-md-2">
               <tr>{{ comic.writer }}</tr>
-            
-            
+
+
               <tr>{{ comic.artist }}</tr>
             </table>
           </td>
           <td class="col-md-1">{{ comic.year }}</td>
-        <td class="col-md-1">{{ comic.type }}</td>
-        
-        <td class="col-md-1">{{ comic.publisher }}</td>
-        <td class="col-md-1">{{ comic.value }}</td>
-        <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
+          <td class="col-md-1">{{ comic.type }}</td>
 
-        
-      </tr>
-    </tbody>
-  </table>
-</div>
+          <td class="col-md-1">{{ comic.publisher }}</td>
+          <td class="col-md-1">{{ comic.value }}</td>
+          <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
 
-<!-- DELETE?? -->
 
-<!-- <div class="container mt-2 bt-2 mb-2">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DELETE?? -->
+
+  <!-- <div class="container mt-2 bt-2 mb-2">
   <div class="row">
     <h1>Comic Books</h1>
     <div><button (click)="addComic()">Add Comic</button></div>
