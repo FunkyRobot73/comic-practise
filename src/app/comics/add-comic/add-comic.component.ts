@@ -49,8 +49,8 @@ export class AddComicComponent {
     condition = "8";
     key = "1st App. of";
     characters = "Batman";
-    writer = "Grant Morrison";
-    artist = "George Perez";
+    writer = "";
+    artist = "";
     image = "";
     short = "Excellent Condition (" + this.condition + " out of 10) for it's age.  Bagged & Boarded";
     description = "Amazing book by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + ". with an appearance of " + this.characters + ".";
@@ -146,5 +146,9 @@ export class AddComicComponent {
 
     deleteCompany(){};
 
+    updateDesc(){
+      this.short = this.title + " #" + this.issue + " (" + this.key + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
+      this.description = this.title + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".  Excellent Condition (" + this.condition + " out of 10) for it's age (" + this.year + ").  Bagged & Boarded.";
+    };
     
 };
