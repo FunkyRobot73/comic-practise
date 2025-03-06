@@ -10,6 +10,7 @@ const httpOptions = {
   "year" : "",
   "publisher" : "",
   "condition" : "",
+  "grade" : "",
   "key" : "",
   "description" : "",
   "short" : "",
@@ -45,6 +46,7 @@ export class CreateComicService {
     year: string, 
     publisher: string, 
     condition: string, 
+    grade: string,
     key: string, 
     description: string,
     short: string,
@@ -69,6 +71,7 @@ export class CreateComicService {
       formData.append('condition', condition);
       formData.append('key', key);
       formData.append('description', description);
+      formData.append('grade', grade);
       formData.append('short', short);
       formData.append('characters', characters);
       formData.append('writer', writer);

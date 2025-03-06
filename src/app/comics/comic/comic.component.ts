@@ -45,6 +45,7 @@ export class ComicComponent {
   year = "1990";
   publisher = "DC";
   condition = "5";
+  grade = "9";
   key = "1st Mister Miracle";
   description = "Amazing Comic";
   short = "Great Story & Art";
@@ -103,6 +104,7 @@ export class ComicComponent {
         condition: this.condition,
         key:  this.key,
         description: this.description,
+        grade: this.grade,
         short: this.short,
         characters: this.characters,
         writer:  this.writer,

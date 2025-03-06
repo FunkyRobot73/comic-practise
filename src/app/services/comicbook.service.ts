@@ -10,6 +10,7 @@ const httpOptions = {
   "year" : "1990",
   "publisher" : "",
   "condition" : "5",
+  "grade" : "9",
   "key" : "1st Mister Miracle",
   "description" : "Amazing Comic",
   "short" : "Great Story & Art",

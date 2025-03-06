@@ -13,6 +13,7 @@ interface Comicbook{
   year: string;
   publisher:string;
   condition:string;
+  grade: string;
   key: string;
   description:string;
   short:string;
@@ -46,7 +47,8 @@ export class AddComicComponent {
     type = "Single Issue";
     year = "1990";
     publisher = "DC";
-    condition = "8";
+    condition = "Excellent Condition Considering it's Age...  Bagged & Boarded.";
+    grade = "9";
     key = "1st App. of";
     characters = "Batman";
     writer = "";
@@ -119,6 +121,7 @@ export class AddComicComponent {
             this.year,
             this.publisher,
             this.condition,
+            this.grade,
             this.key,
             this.description,
             this.short,

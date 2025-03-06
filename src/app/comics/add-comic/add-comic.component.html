@@ -49,11 +49,7 @@
 
         <!-- Every 4 Forms -->
 
-        <div class="col-md-2">
-          <label>Condition:</label>
-          <input class="form-control" [(ngModel)]="condition" placeholder="Condition" type="text" value="5"
-            name="condition" />
-        </div>
+      
         <div class="col-md-2">
           <label>Key:</label>
           <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="1st Mister Miracle"
@@ -106,9 +102,23 @@
               FIND IMAGE</a></button>
         </div>
 
+       <div class="col-md-12">
+        <div class="col-md-2">
+          <label>Grade:</label>
+          <input class="form-control" [(ngModel)]="grade" placeholder="Number (1-10)" type="text"
+            name="grade" />
+        </div>
+
+        <div class="col-md-4">
+          <label>Condition:</label>
+          <input class="form-control" [(ngModel)]="condition" placeholder="Excellent Condition" type="text"
+            name="condition" />
+        </div>
+       </div>
+
         <div class="col-md-2 mt-4">
           <button class="btn btn-light">
-            <a href="https://www.google.com/search?q=quick+description+of+{{publisher}}+{{title}}+{{issue}}&rlz=1C1YTUH_enCA1086CA1086"
+            <a href="https://www.google.com/search?q=quick+description+of+{{publisher}}+{{title}}+{{issue}}+{{writer}}+comic+{{year}}&rlz=1C1YTUH_enCA1086CA1086"
               style="text-decoration:none" target=”_blank”>
               FIND DESC</a></button>
         </div>
