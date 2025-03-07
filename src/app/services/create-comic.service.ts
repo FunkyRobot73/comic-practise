@@ -69,9 +69,9 @@ export class CreateComicService {
       formData.append('type', type);
       formData.append('publisher', publisher);
       formData.append('condition', condition);
+      formData.append('grade', grade);
       formData.append('key', key);
       formData.append('description', description);
-      formData.append('grade', grade);
       formData.append('short', short);
       formData.append('characters', characters);
       formData.append('writer', writer);

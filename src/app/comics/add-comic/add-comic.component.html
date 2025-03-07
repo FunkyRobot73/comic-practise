@@ -51,7 +51,7 @@
 
       
         <div class="col-md-2">
-          <label>Key:</label>
+          <label>Key/Trade Name:</label>
           <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="1st Mister Miracle"
             name="key" />
         </div>
@@ -90,17 +90,19 @@
           <label>Qty:</label>
           <input class="form-control" [(ngModel)]="qty" placeholder="1" type="number" value="1" name="qty" />
         </div>
-        <div class="col-md-4">
-          <label>Image:</label>
-          <input class="form-control" (change)="onFileChange($event)" type="file" id="image" />
-        </div>
-
         <div class="col-md-2 mt-4">
           <button class="btn btn-light">
             <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{publisher}}+{{title}}+{{issue}}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09"
               style="text-decoration:none" target=”_blank”>
               FIND IMAGE</a></button>
         </div>
+
+        <div class="col-md-4">
+          <label>Image:</label>
+          <input class="form-control" (change)="onFileChange($event)" type="file" id="image" />
+        </div>
+
+       
 
        <div class="col-md-12">
         <div class="col-md-2">
@@ -153,36 +155,6 @@
       </div>
     </div>
   </div>
-
-  <!-- list of Publishers -->
-
-  <!-- <div class="container card mt-2">
-  <table class="table mt-2 mb-z table-striped">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Company</th>
-        <th scope="col">Image</th>
-        <th scope="col">Image</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let comp of comicbooks">
-      <tr>
-        <th>{{ comp.id }}</th>
-        <td>{{ comp.title }}</td>
-        <td>{{ comp.image }}</td>
-        <td>
-          <img
-            width="10%"
-            alt="Comic Book for sale"
-            [src]="'https://back.swap2go.ca/public/' + comp.image"
-            class="mt-2"
-          />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
 
   <!-- Display & quick list of Comic Books -->
 
@@ -243,58 +215,5 @@
       </tbody>
     </table>
   </div>
-
-  <!-- DELETE?? -->
-
-  <!-- <div class="container mt-2 bt-2 mb-2">
-  <div class="row">
-    <h1>Comic Books</h1>
-    <div><button (click)="addComic()">Add Comic</button></div>
-    <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">
-     
-
-      <div class="container course-card rounder h-100">
-        <div class="course-title rounder height-div">
-          <h2 class="form-background mt-2 pt-2 pb-2 rounder">
-            {{ item.title }} # {{ item.issue }}
-          </h2>
-        </div>
-        <h3>{{ item.artist }}</h3>
-        <h5>{{ item.type }}</h5>
-        <h4>{{ item.year }}</h4>
-        <img
-          width="75%"
-          alt="Comic Book for sale"
-          [src]="'https://back.swap2go.ca/public/' + item.image"
-          class="mt-2"
-        />
-        <div>
-          <div class="course-description">
-            <p class="short">{{ (item.short | slice : 0 : 64) + "..." }}</p>
-          </div>
-          <h3 class="money">{{ item.value | currency }}</h3>
-          <h5>{{ item.type }}</h5>
-          <h4>{{ item.year }}</h4>
-          <button class="btn btn-primary ms-2 mb-2">Add 2 Cart!</button>
-          <button class="btn btn-primary ms-2 mb-2">Offer Swap</button>
-
-          <p>
-            <button role="link" class="rounded btn-ebay mt-2 mb-2">
-              <a
-                href="https://www.ebay.ca/sch/i.html?_from=R40&_trksid=p4432023.m570.l2632&_nkw={{
-                  item.title
-                }}+{{ item.publisher }}+{{ item.issue }}&_sacat=63"
-                style="text-decoration: none"
-                class="ebay"
-                target="”_blank”"
-                >Compare on eBay</a
-              >
-            </button>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 </form>

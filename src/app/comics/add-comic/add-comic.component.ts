@@ -56,10 +56,10 @@ export class AddComicComponent {
     image = "";
     short:string = "";
     description:string = "";
-    value = 59;
+    value = 20;
     slabbed = "N";
     createdAt = "";
-    isbn = "999-999-001";
+    isbn = "";
     qty = 1;
     
     // addPublisher = "DC"
@@ -104,8 +104,8 @@ export class AddComicComponent {
   }
 
   updateDesc(){
-    this.short = this.title + " #" + this.issue + " (" + this.key + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
-    this.description = this.title + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".  Excellent Condition (" + this.condition + " out of 10) for it's age (" + this.year + ").  Bagged & Boarded.";
+    this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
+    this.description = this.title + " (" + this.key + ") " +  " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".  Excellent Condition (" + this.condition + " out of 10) for it's age (" + this.year + ").  Bagged & Boarded.";
   };
   
 
