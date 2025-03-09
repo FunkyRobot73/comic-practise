@@ -1,4 +1,4 @@
-import { Component, Inject, inject, Input, NgModule } from '@angular/core';
+import { Component, inject, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';

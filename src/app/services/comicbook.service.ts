@@ -41,15 +41,17 @@ export class ComicbookService {
   
 
   http = inject(HttpClient);
+
+  private handleError(error: any){
+    console.log(error);
+    return throwError(()=> new Error(`Something went poop!`));
+  }
   
   getComics() {
       return this.http.get<any>(this.apiUrl01).pipe(catchError(this.handleError));
     }
   
-    private handleError(error: any){
-      console.log(error);
-      return throwError(()=> new Error(`Something went poop!`));
-    }
+    
 
     createComic(post: any) {
       return this.http.post(this.apiUrl02, post, httpOptions);

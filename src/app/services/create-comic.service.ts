@@ -34,9 +34,9 @@ export class CreateComicService {
 
   constructor(private http: HttpClient) { }
 
-  createComic2(post: any) {
-    return this.http.post(this.apiUrl02, post, httpOptions);
-  }
+  // createComic2(post: any) {
+  //   return this.http.post(this.apiUrl02, post, httpOptions);
+  // }
 
   createComic(
 
