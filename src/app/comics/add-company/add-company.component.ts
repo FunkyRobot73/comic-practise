@@ -54,7 +54,10 @@ export class AddCompanyComponent {
         
         if (this.imageFile) {
           this.createCompanyService.createCompany(          
-            this.addPublisher,this.imageFile, this.imageName).subscribe(
+            this.addPublisher,
+            this.imageFile, 
+            this.imageName
+          ).subscribe(
               response => {
                 console.log("Upload looks Good!!", response);
               },

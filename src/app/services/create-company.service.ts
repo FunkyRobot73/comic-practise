@@ -12,8 +12,16 @@ export class CreateCompanyService {
   constructor(private http: HttpClient) { }
 
 
-  createCompany(name: string, image: File, imageName: string): Observable<any> {
+  createCompany(
+    
+    name: string, 
+    image: File, 
+    imageName: string
+  
+  ): Observable<any> {
+
     const formData = new FormData();
+    
     formData.append('name', name);
     formData.append('image', image, imageName);
     

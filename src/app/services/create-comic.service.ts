@@ -64,6 +64,7 @@ export class CreateComicService {
   ): Observable<any> {
 
       const formData = new FormData();
+      
       formData.append('title', title);
       formData.append('issue', issue);
       formData.append('type', type);
