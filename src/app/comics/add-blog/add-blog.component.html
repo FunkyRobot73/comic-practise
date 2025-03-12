@@ -1,20 +1,11 @@
-<form (submit)="addBlog2()">
+<form (submit)="addBlog()">
     <div class="container mt-5">
         <h2>Create Blog</h2>
-        <h5>
-            <p>idPB, 
-                catBlog, 
-                titleBlog,
-                bodyBlog,
-                imageBlo,
-                imageThumbBlog,
-            </p>
-        </h5>
-    
         <div class="mb-3">
             <label for="titleBlog" class="form-label">Title:</label>
             <input type="text" class="form-control" id="titleBlog" name="titleBlog" [(ngModel)]="titleBlog" required>
-        </div>
+        </div> 
+    
         <div class="mb-3">
             <label for="catBlog" class="form-label">Category:</label>
             <select type="text" class="form-control" id="catBlog" name="catBlog" [(ngModel)]="catBlog" required>
@@ -29,8 +20,8 @@
             <small id="wordCount" class="form-text text-muted">Word count: 0</small>
         </div>
         <div class="mb-3">
-            <label for="imageBlog" class="form-label">Image:</label>
-            <input type="file" class="form-control" id="imageBlog" name="imageBlog" (change)="onFileChange($event)" accept="image/*" value="dc.jpg" required>
+            <label for="image" class="form-label">Image:</label>
+            <input type="file" class="form-control" id="image" (change)="onFileChange($event)" accept="image/*" required>
         </div>
     
     
@@ -51,7 +42,7 @@
                 <tr *ngFor="let item of blogs">
                     <td>{{item.titleBlog}}</td>
                     <td>{{item.bodyBlog}}</td>
-                    <td><img [src]="'https://back.funkyrobot.ca/public/' + item.imageBlog" alt="{{item.titleBlog}}" class="img-thumbnails" width="100"></td>
+                    <td><img [src]="'https://back.funkyrobot.ca/public/' + item.image" alt="{{item.titleBlog}}" class="img-thumbnails" width="100"></td>
                     <td>{{item.catBlog}}</td>
                 </tr>
             </tbody>

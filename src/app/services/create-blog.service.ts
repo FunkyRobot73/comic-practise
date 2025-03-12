@@ -39,15 +39,15 @@ export class CreateBlogService {
   ): Observable<any> {
 
     const formData = new FormData();
-
+    
     formData.append('catBlog', catBlog);
     formData.append('titleBlog', titleBlog);
     formData.append('bodyBlog', bodyBlog);
     
-    formData.append('imageBlog', image, imageName);
+    formData.append('image', image, imageName);
     // formData.append('imageThumbBlog', imageThumbBlog);
 
-    return this.http.post(this.apiUrl02, formData, httpOptions);
+    return this.http.post(this.apiUrl02, formData);
     
   }
 

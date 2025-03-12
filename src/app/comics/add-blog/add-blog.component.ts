@@ -19,7 +19,7 @@ export class AddBlogComponent implements OnInit {
   titleBlog = "Just Read";
   catBlog : string = "Music";
   bodyBlog : string = "1st App. of Batman";
-  imageBlog : string = "dc.jpg";
+  image : string = "";
   imageThumbBlog : string = "";
 
   imageFile:  File | null = null;
@@ -106,7 +106,6 @@ export class AddBlogComponent implements OnInit {
       ).subscribe({
         next: (data) => {
           console.log(data);
-          this.ngOnInit();
         },
         error: (err) => {
           console.log(err);
@@ -115,9 +114,11 @@ export class AddBlogComponent implements OnInit {
     
 
   } else {
-    console.log("No image selected");
+    console.error("No image selected");
   }
-  this.loadData();
+  this.viewBlogService.viewBlog().subscribe(() => {
+    this.loadData();
+  });
 }
 
 }
