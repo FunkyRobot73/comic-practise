@@ -4,5 +4,6 @@ export interface Blog {
     titleBlog: string,
     bodyBlog: string,
     imageBlog: string,
+    image: string,
     imageThumbBlog: string,
 }

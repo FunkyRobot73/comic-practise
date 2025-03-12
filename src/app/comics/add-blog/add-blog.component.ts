@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ViewBlogService } from '../../services/view-blog.service';
 import { Blog } from '../../models/blog';
 import { CommonModule, NgFor } from '@angular/common';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-blog',
@@ -11,8 +12,11 @@ import { CommonModule, NgFor } from '@angular/common';
   templateUrl: './add-blog.component.html',
   styleUrl: './add-blog.component.css'
 })
-export class AddBlogComponent {
-  titleBlog : string = "Just Read";
+
+export class AddBlogComponent implements OnInit {
+  
+  
+  titleBlog = "Just Read";
   catBlog : string = "Music";
   bodyBlog : string = "1st App. of Batman";
   imageBlog : string = "";
@@ -39,6 +43,16 @@ export class AddBlogComponent {
 
   };
 
+  ngOnInit(): void {
+  this.loadData();
+  }
+
+  loadData(): void {
+    this.viewBlogService.viewBlog().subscribe((response) => {
+      this.blogs = response;
+    });
+  }
+
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -53,11 +67,15 @@ export class AddBlogComponent {
         catBlog: this.catBlog,
         titleBlog: this.titleBlog,
         bodyBlog: this.bodyBlog,
-        imageBlog: this.imageName,
         image: this.imageFile!,
-        imageName: this.imageName, 
-        imageThumbBlog: this.imageThumbBlog,
-        
+        imageName: this.imageName,
+        imageBlog: this.imageName,
+        imageThumbBlog: this.imageName,
+
+        // image: this.imageFile!,
+        // imageName: this.imageName, 
+        // imageThumbBlog: this.imageThumbBlog,
+
 
     }).subscribe({
       next: (data) => {
@@ -67,22 +85,28 @@ export class AddBlogComponent {
         console.log(err);
       }
     })
+    this.viewBlogService.viewBlog().subscribe(() => {
+      this.loadData();
+    });
   };
 
   addBlog() {
 
-    
+    if (this.imageFile) {
+      console.log("imageFile: ", this.imageFile);
       this.addBlogService.createBlog(
 
         this.catBlog,
         this.titleBlog,
-        this.bodyBlog,
-        this.imageFile!,  
-        this.imageName,
+        this.bodyBlog,  
+        // this.imageBlog,
+        this.imageFile,  
+        this.imageName, 
 
       ).subscribe({
         next: (data) => {
           console.log(data);
+          this.ngOnInit();
         },
         error: (err) => {
           console.log(err);
@@ -90,8 +114,10 @@ export class AddBlogComponent {
       })
     
 
-  };
-
-  
+  } else {
+    console.log("No image selected");
+  }
+  this.loadData();
+}
 
 }

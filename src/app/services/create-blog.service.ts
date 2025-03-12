@@ -5,11 +5,16 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers:new HttpHeaders({
     
-    "catBlog": "",
-    "titleBlog": "",
-    "bodyBlog": "",
-    "imageBlog": "",
+    "catBlog": "bbb",
+    "titleBlog": "cccc",
+    "bodyBlog": "dddd",
+    "image": "",
+    "imageName": "",
+    // "imageBlog": "",
     "imageThumbBlog": "",
+    // "createdAt": "",
+    // "updatedAt": "",
+
   })
 };
 
@@ -27,8 +32,8 @@ export class CreateBlogService {
     catBlog: string,
     titleBlog: string,
     bodyBlog: string,
-    imageBlog: File,
-    imageName: string,
+    image: File,
+    imageName: string
     // imageThumbBlog: string
 
   ): Observable<any> {
@@ -39,10 +44,10 @@ export class CreateBlogService {
     formData.append('titleBlog', titleBlog);
     formData.append('bodyBlog', bodyBlog);
     
-    formData.append('imageBlog', imageBlog, imageName);
+    formData.append('imageBlog', image, imageName);
     // formData.append('imageThumbBlog', imageThumbBlog);
 
-    return this.http.post(this.apiUrl02, formData);
+    return this.http.post(this.apiUrl02, formData, httpOptions);
     
   }
 
