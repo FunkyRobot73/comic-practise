@@ -19,7 +19,7 @@ export class AddBlogComponent implements OnInit {
   titleBlog = "Just Read";
   catBlog : string = "Music";
   bodyBlog : string = "1st App. of Batman";
-  imageBlog : string = "";
+  imageBlog : string = "dc.jpg";
   imageThumbBlog : string = "";
 
   imageFile:  File | null = null;

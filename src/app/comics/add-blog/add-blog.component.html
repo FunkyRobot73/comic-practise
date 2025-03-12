@@ -18,9 +18,9 @@
         <div class="mb-3">
             <label for="catBlog" class="form-label">Category:</label>
             <select type="text" class="form-control" id="catBlog" name="catBlog" [(ngModel)]="catBlog" required>
-                <option value="1">Comics</option>
-                <option value="2">Music</option>
-                <option value="3">Tech </option>
+                <option>Comics</option>
+                <option>Music</option>
+                <option>Tech </option>
             </select>
         </div>
         <div class="mb-3">
@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
             <label for="imageBlog" class="form-label">Image:</label>
-            <input type="file" class="form-control" id="imageBlog" name="imageBlog" (change)="onFileChange($event)" accept="image/*" required>
+            <input type="file" class="form-control" id="imageBlog" name="imageBlog" (change)="onFileChange($event)" accept="image/*" value="dc.jpg" required>
         </div>
     
     
