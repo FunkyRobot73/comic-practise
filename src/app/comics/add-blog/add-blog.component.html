@@ -11,7 +11,9 @@
             <select type="text" class="form-control" id="catBlog" name="catBlog" [(ngModel)]="catBlog" required>
                 <option>Comics</option>
                 <option>Music</option>
-                <option>Tech </option>
+                <option>Tech</option>
+                <option>Rants</option>
+                <option>Parties</option>
             </select>
         </div>
         <div class="mb-3">
@@ -19,6 +21,8 @@
             <textarea class="form-control" id="bodyBlog" name="bodyBlog" rows="5" [(ngModel)]="bodyBlog" required></textarea>
             <small id="wordCount" class="form-text text-muted">Word count: 0</small>
         </div>
+        
+        
         <div class="mb-3">
             <label for="image" class="form-label">Image:</label>
             <input type="file" class="form-control" id="image" (change)="onFileChange($event)" accept="image/*" required>

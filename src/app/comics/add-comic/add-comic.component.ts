@@ -104,8 +104,8 @@ export class AddComicComponent {
   }
 
   updateDesc(){
-    this.short = this.title + " #" + this.issue + " (" + this.key + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
-    this.description = this.title + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".  Excellent Condition (" + this.condition + " out of 10) for it's age (" + this.year + ").  Bagged & Boarded.";
+    this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
+    this.description = this.title + " #" + this.issue + " (" + this.year + ")" + " is an Awesome " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ". " + this.condition;
   };
   
 
