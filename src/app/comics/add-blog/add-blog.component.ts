@@ -30,6 +30,17 @@ export class AddBlogComponent implements OnInit {
   viewBlogService = inject(ViewBlogService);
   blogs: Blog[] = [];
 
+  characterCount: number = 0;
+  characterCountTitle: number = 0;
+
+  updateCharacterCount(): void {
+    this.characterCount = this.bodyBlog.length;
+  }
+
+  updateCharacterCountTitle(): void {  
+    this.characterCountTitle = this.titleBlog.length;
+  }
+
   constructor() {
 
     this.viewBlogService.viewBlog().subscribe({
