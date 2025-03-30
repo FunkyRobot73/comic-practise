@@ -1,0 +1,64 @@
+<div class="todo-container">
+    <!-- Daily Tasks Section -->
+    <div class="daily-tasks">
+      <h2>Daily To-Do</h2>
+      <div class="days-header">
+        <span *ngFor="let day of ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S']">{{day}}</span>
+      </div>
+      <div class="task-list">
+        <div *ngFor="let task of dailyTasks" class="task-item">
+          <input type="checkbox" [(ngModel)]="task.completed" id="task-{{task.name}}">
+          <label for="task-{{task.name}}" [class.completed]="task.completed">{{task.name}}</label>
+        </div>
+      </div>
+      <button class="reset-btn" (click)="resetDailyTasks()">Reset Daily Tasks</button>
+    </div>
+  
+    <!-- Categorized Tasks Section -->
+    <div class="categorized-tasks">
+      <div class="category">
+        <h3>Indoor</h3>
+        <div class="add-task">
+          <input type="text" [(ngModel)]="newTask.indoor" placeholder="Add indoor task" 
+                 (keyup.enter)="addTask('indoor')">
+          <button (click)="addTask('indoor')">+</button>
+        </div>
+        <ul>
+          <li *ngFor="let task of categorizedTasks.indoor; let i = index">
+            {{task}}
+            <button (click)="removeTask('indoor', i)">×</button>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="category">
+        <h3>Outdoor</h3>
+        <div class="add-task">
+          <input type="text" [(ngModel)]="newTask.outdoor" placeholder="Add outdoor task" 
+                 (keyup.enter)="addTask('outdoor')">
+          <button (click)="addTask('outdoor')">+</button>
+        </div>
+        <ul>
+          <li *ngFor="let task of categorizedTasks.outdoor; let i = index">
+            {{task}}
+            <button (click)="removeTask('outdoor', i)">×</button>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="category">
+        <h3>Long Term</h3>
+        <div class="add-task">
+          <input type="text" [(ngModel)]="newTask.longTerm" placeholder="Add long term task" 
+                 (keyup.enter)="addTask('longTerm')">
+          <button (click)="addTask('longTerm')">+</button>
+        </div>
+        <ul>
+          <li *ngFor="let task of categorizedTasks.longTerm; let i = index">
+            {{task}}
+            <button (click)="removeTask('longTerm', i)">×</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

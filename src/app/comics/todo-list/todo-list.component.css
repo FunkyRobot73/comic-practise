@@ -1,0 +1,166 @@
+/* Base styles */
+.todo-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Daily tasks section */
+  .daily-tasks {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .daily-tasks h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .days-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .days-header span {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 4px;
+  }
+  
+  .task-item input[type="checkbox"] {
+    cursor: pointer;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .reset-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .reset-btn:hover {
+    background-color: #c1121f;
+  }
+  
+  /* Categorized tasks section */
+  .categorized-tasks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .category {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .category h3 {
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .add-task {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .add-task input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-task button {
+    padding: 8px 12px;
+    background-color: #457b9d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-task button:hover {
+    background-color: #1d3557;
+  }
+  
+  .category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .category li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: white;
+    border-radius: 4px;
+  }
+  
+  .category li button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .category li button:hover {
+    background-color: #c1121f;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .categorized-tasks {
+      grid-template-columns: 1fr;
+    }
+    
+    .task-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .task-list {
+      grid-template-columns: 1fr;
+    }
+  }

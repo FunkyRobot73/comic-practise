@@ -6,16 +6,22 @@
           <input class="form-control" [(ngModel)]="addPublisher" name="addPublisher" type="text"
           />
         </div>
+
+        <div class="col-md-2 mt-4">
+          <button class="btn btn-light" type="button">
+            <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{addPublisher}}+comics+logo&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09"
+              style="text-decoration:none" target=”_blank”>
+              FIND IMAGE</a></button>
+        </div>
   
-        <div class="container">
-          <label class="form-label">Image Upload</label>
+        <div class="col-md-4 mt-4">
+          
           <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"
           />
-          <p>{{ addPublisher }}</p>
         </div>
   
         <div class="col-md-2 mt-4">
-          <button class="btn btn-primary" type="submit">ADD Company</button>
+          <button class="btn btn-primary" type="submit">ADD {{addPublisher}} Comics</button>
         </div>
       </div>
     </div>
