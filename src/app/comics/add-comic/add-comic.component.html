@@ -3,8 +3,8 @@
     <div class="card mt-1 p-3 bg-card">
       <div class="horizontal">
         <h2 class="text-center">
-          <img class="logo" src="images/comic-01.jpg" />Create New Comic Book
-          <img class="logo" src="images/comic-01.jpg" />
+         Create New Comic Book
+         
         </h2>
       </div>
 
@@ -72,7 +72,7 @@
             name="artist" />
         </div>
         <div class="col-md-2 mt-4">
-          <button class="btn btn-light">
+          <button class="btn btn-light" type="button">
             <a href="https://www.ebay.ca/sch/i.html?_nkw={{title}}+{{issue}}+{{publisher}}&_sacat=0&_from=R40&_trksid=p4432023.m570.l1313"
               style="text-decoration:none" target=”_blank”>
               FIND Value</a></button>
@@ -90,7 +90,7 @@
         </div>
         <div class="col-md-2">
           <label>ISBN:</label>
-          <input class="form-control" type="button" [(ngModel)]="isbn" placeholder="ISBN: 999-999-0001" type="text"
+          <input class="form-control" [(ngModel)]="isbn" placeholder="ISBN: 999-999-0001" type="text"
             value="999-999-001" name="isbn" />
         </div>
         <div class="col-md-2">
@@ -151,10 +151,15 @@
         </div>
 
 
-        <div class="col-md-2 mt-4">
+        <div class="col-md-6 mt-4">
           <button class="btn btn-primary" type="submit">ADD Comic</button>
         </div>
-
+        <div class="col-md-6 mt-4">
+          <button class="btn btn-primary" type="button" (click)="refreshPage()">Refresh Below</button>
+        </div>
+        <div class="col-md-6 mt-4">
+          <a>Check out more at www.isellcomics.ca</a>
+        </div>
         
 
 
@@ -179,12 +184,7 @@
           <th scope="col">
             <div class="col-md-6">
               <label>Publisher</label>
-              <select class="form-control" [(ngModel)]="sortPublisher" name="sortPublisher">
-                <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
-                  {{ item.name }}
-                </option>
-
-              </select>
+              
             </div>
           </th>
           <th scope="col">Value</th>
@@ -192,32 +192,25 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let comic of comicbooks">
-        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher">
-
-
+      <tbody *ngFor="let comic of comicbooks.slice().reverse().slice(0, 10)">
+        <tr class="align-items-center">
           <th scope="row">{{ comic.id }}</th>
           <td class="col-md-1">
-            <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image"
-              class="mt-1" />
+        <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image"
+          class="mt-1" />
           </td>
           <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
           <td class="col-md-2">
-            <table class="table col-md-2">
-              <tr>{{ comic.writer }}</tr>
-
-
-              <tr>{{ comic.artist }}</tr>
-            </table>
+        <table class="table col-md-2">
+          <tr>{{ comic.writer }}</tr>
+          <tr>{{ comic.artist }}</tr>
+        </table>
           </td>
           <td class="col-md-1">{{ comic.year }}</td>
           <td class="col-md-1">{{ comic.type }}</td>
-
           <td class="col-md-1">{{ comic.publisher }}</td>
           <td class="col-md-1">{{ comic.value }}</td>
           <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
-
-
         </tr>
       </tbody>
     </table>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
 import { CreateComicService } from '../../services/create-comic.service';
 import { CreateCompanyService } from '../../services/create-company.service';
+import { Router } from '@angular/router';
 
 interface Comicbook{
   id:number;
@@ -73,7 +74,11 @@ export class AddComicComponent {
     comicbooks:Comicbook[] = [];
     companys:Company[] = [];
 
+  private router = inject(Router);
+
   constructor() {
+
+    
     
     this.comicbookService.getComics().subscribe({
       next: (data) => {
@@ -102,10 +107,18 @@ export class AddComicComponent {
       this.imageName = file.name;
     }
   }
+  
+  refreshPage() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/addcomic']);
+    });
+  }
+
+
 
   updateDesc(){
-    this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " is an Amazing " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".";
-    this.description = this.title + " #" + this.issue + " (" + this.year + ")" + " is an Awesome " + this.type + " by " + this.publisher + " Comics.  Written by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ". " + this.condition;
+    this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " A Great " + this.type + " by " + this.publisher + " Comics.  Story by " + this.writer + " & Art by " + this.artist + ".";
+    this.description = this.title + " #" + this.issue + " (" + this.year + ") " + this.key + "  A cool " + this.type + " by " + this.publisher + " Comics.  Story by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ".  " + this.condition;
   };
   
 
