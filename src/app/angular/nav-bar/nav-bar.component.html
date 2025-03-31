@@ -2,7 +2,7 @@
     <div class="pill-group social-links">
         @for (item of [
             { title: 'Add Record', link: 'record' },
-            { title: 'View Comic', link: 'comic' },
+            { title: 'Update Comic', link: 'comic' },
             { title: 'Add Comic', link: 'addcomic' },
             { title: 'Add Company', link: 'addcompany' },
             { title: 'Add Character', link: 'addcharacter' },
@@ -12,7 +12,7 @@
             <a
                 class="pill"
                 [href]="item.link"
-                target="_blank"
+                target="_self"
                 rel="noopener"
                 style="display: flex; align-items: center; gap: 5px;"
             >
