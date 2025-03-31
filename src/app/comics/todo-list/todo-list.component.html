@@ -1,18 +1,21 @@
 <div class="todo-container">
     <!-- Daily Tasks Section -->
     <div class="daily-tasks">
-      <h2>Daily To-Do</h2>
-      <div class="days-header">
-        <span *ngFor="let day of ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S']">{{day}}</span>
-      </div>
-      <div class="task-list">
-        <div *ngFor="let task of dailyTasks" class="task-item">
-          <input type="checkbox" [(ngModel)]="task.completed" id="task-{{task.name}}">
-          <label for="task-{{task.name}}" [class.completed]="task.completed">{{task.name}}</label>
+        <h2>Daily To-Do</h2>
+        <div class="days-header">
+          <span *ngFor="let day of daysOfWeek; let i = index" 
+                [class.current-day]="i === currentDayIndex">
+            {{day}}
+          </span>
         </div>
+        <div class="task-list">
+          <div *ngFor="let task of dailyTasks" class="task-item">
+            <input type="checkbox" [(ngModel)]="task.completed" id="task-{{task.name}}">
+            <label for="task-{{task.name}}" [class.completed]="task.completed">{{task.name}}</label>
+          </div>
+        </div>
+        <button class="reset-btn" (click)="resetDailyTasks()">Reset Daily Tasks</button>
       </div>
-      <button class="reset-btn" (click)="resetDailyTasks()">Reset Daily Tasks</button>
-    </div>
   
     <!-- Categorized Tasks Section -->
     <div class="categorized-tasks">

@@ -28,7 +28,7 @@
   
   .days-header span {
     display: inline-block;
-    width: 30px;
+    width: 90px;
     text-align: center;
     font-weight: bold;
   }
@@ -164,3 +164,41 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Add this to your existing CSS */
+.days-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .days-header span {
+    display: inline-block;
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    min-width: 100px;
+    background-color: #f0f0f0;
+  }
+  
+  .days-header .current-day {
+    background-color: #e63946;
+    color: white;
+    position: relative;
+  }
+  
+  .days-header .current-day::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #e63946;
+    border-radius: 50%;
+  }
+  
+  /* Rest of your existing CSS remains the same */

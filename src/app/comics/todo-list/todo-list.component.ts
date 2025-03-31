@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent {
+
+  daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  currentDayIndex = new Date().getDay(); // 0-6 where 0 is Sunday
 // Daily tasks with completion tracking
 dailyTasks = [
   { name: 'Daily House', completed: false },
@@ -24,40 +27,35 @@ dailyTasks = [
   { name: 'Udemy!', completed: false }
 ];
 
+// Today's Date
+today: string = new Date().toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
 // Categorized tasks
 categorizedTasks = {
   indoor: [
-    'To Do List',
-    'BJ Hat',
+    'Blue Jays Hat',
     'Adele Decals',
     'Adele 2021 Video',
     'MAC/Virtual DJ',
     'Adele 2023 Video',
+    'Tania\'s power Bar',
     'Scan Blue Binder',
-    'Put Essentials in Box'
   ],
   outdoor: [
     'Gate (Neighbour)',
-    'Tania\'s power Bar',
     'Garage Insulation'
   ],
   longTerm: [
-    'Facebook',
+    'Marketplace 100',
     'Google',
     'ThePhotoBooth.ca',
-    '260',
-    '26',
     'HamiltonPartyIdeas',
-    '83',
-    '33',
-    'Posts',
-    'F\'ers',
-    '+ F\'ing',
-    'MARKETPLACE',
-    '100',
-    '@6ixbooth',
-    '@hamiltonpartyideas',
-    '@geek2go'
+    
   ]
 };
 
