@@ -53,12 +53,23 @@ export class TodoListComponent implements OnInit {
         task_name: this.newTask.name,
         note: this.newTask.note,
         category: this.newTask.category
-      }).subscribe(newTask => {
-        this.tasks[newTask.category].push({
-          ...newTask,
-          timeSince: 'Never completed'
-        });
-        this.newTask = { name: '', note: '', category: 'daily' };
+      }).subscribe({
+        next: (newTask) => {
+          // Add to the correct category array
+          this.tasks[newTask.category].push({
+            ...newTask,
+            timeSince: 'Never completed'
+          });
+          
+          // Reset form
+          this.newTask = { name: '', note: '', category: 'daily' };
+          
+          console.log('Task added successfully:', newTask);
+        },
+        error: (err) => {
+          console.error('Error adding task:', err);
+          alert('Failed to add task. Check console for details.');
+        }
       });
     }
   }

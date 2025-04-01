@@ -1,17 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface Task {
   id: number;
   task_name: string;
   note: string;
-  category: 'daily' | 'indoor' | 'outdoor' | 'longterm' | 'bucketlist' | 'coding';
+  category: string;
   is_completed: boolean;
   times_completed: number;
   last_completed: string | null;
-  createdAt: string;
-  updatedAt: string;
+  // createdAt: string;
+  // updatedAt: string;
 }
 
 @Injectable({
@@ -20,16 +20,28 @@ interface Task {
 
 export class TodoService {
   private apiUrl = 'https://back.funkyrobot.ca';
-  private http = inject(HttpClient);
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  });
+
+constructor(private http: HttpClient) {}
+
 
   getTasksByCategory(category: string): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.apiUrl}/todos?category=${category}&user_id=1`);
   }
 
   addTask(task: { task_name: string; note: string; category: string }): Observable<Task> {
-    return this.http.post<Task>(`${this.apiUrl}/todos`, {
+    const body = {
       ...task,
-      user_id: 1
+      user_id: 1, // Your default user
+      is_completed: false,
+      times_completed: 0
+    };
+
+    return this.http.post<Task>(`${this.apiUrl}/todos`, body, {
+      headers: this.headers
     });
   }
 
