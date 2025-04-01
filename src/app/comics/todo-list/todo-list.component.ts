@@ -21,7 +21,10 @@ export class TodoListComponent implements OnInit {
     outdoor: [],
     longterm: [],
     bucketlist: [],
-    coding: []
+    coding: [],
+    garagesale: [],
+    media: [],
+    purchase: [],
   };
 
   newTask = {
