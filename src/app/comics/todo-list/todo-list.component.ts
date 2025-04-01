@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,9 +11,12 @@ import { TodoService } from '../../services/todo.service';
   styleUrl: './todo-list.component.css'
 })
 
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   currentDayIndex = new Date().getDay();
+  private refreshInterval$ = interval(60000); // Update every minute
+  private subscription: Subscription = new Subscription();
+
   
   // Tasks organized by category
   tasks: Record<string, any[]> = {
@@ -37,6 +41,14 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllTasks();
+    this.loadAllTasks();
+    this.subscription = this.refreshInterval$.subscribe(() => {
+      this.updateElapsedTimes();
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   loadAllTasks() {
@@ -44,7 +56,8 @@ export class TodoListComponent implements OnInit {
       this.todoService.getTasksByCategory(category).subscribe(tasks => {
         this.tasks[category] = tasks.map(task => ({
           ...task,
-          timeSince: this.todoService.getTimeSinceLastCompleted(task.last_completed)
+          createdAgo: this.todoService.getElapsedTime(task.createdAt),
+          completedAgo: this.todoService.getElapsedTime(task.last_completed)
         }));
       });
     });
@@ -89,5 +102,15 @@ export class TodoListComponent implements OnInit {
 
   getCompletedTodayCount() {
     return this.tasks['daily'].filter(t => t.is_completed).length;
+  }
+
+  updateElapsedTimes() {
+    Object.keys(this.tasks).forEach(category => {
+      this.tasks[category] = this.tasks[category].map(task => ({
+        ...task,
+        createdAgo: this.todoService.getElapsedTime(task.createdAt),
+        completedAgo: this.todoService.getElapsedTime(task.last_completed)
+      }));
+    });
   }
 }

@@ -10,7 +10,7 @@ interface Task {
   is_completed: boolean;
   times_completed: number;
   last_completed: string | null;
-  // createdAt: string;
+  createdAt: string;
   // updatedAt: string;
 }
 
@@ -65,4 +65,19 @@ constructor(private http: HttpClient) {}
     
     return `${days}d ${hours}h`;
   }
+
+  getElapsedTime(startDate: string | null): { days: number, hours: number, minutes: number } {
+    if (!startDate) return { days: 0, hours: 0, minutes: 0 };
+    
+    const start = new Date(startDate);
+    const now = new Date();
+    const diff = now.getTime() - start.getTime();
+  
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    };
+  }
+  
 }

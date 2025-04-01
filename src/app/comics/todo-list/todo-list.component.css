@@ -273,3 +273,51 @@
   position: relative;
   padding-right: 40px; /* Space for count */
 }
+
+.time-trackers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.time-tracker {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.time-tracker:first-child {
+  color: #457b9d; /* Different color for creation time */
+}
+
+.time-trackers {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.time-tracker {
+  font-size: 0.7rem;
+  line-height: 1.3;
+}
+
+.time-tracker.created {
+  color: #457b9d; /* Blue for creation time */
+}
+
+.time-tracker.completed {
+  color: #666; /* Gray for completion time */
+}
+
+.count {
+  color: #e63946;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.task-item {
+  position: relative;
+  padding-right: 40px;
+}
+
+/* Your existing styles below... */
