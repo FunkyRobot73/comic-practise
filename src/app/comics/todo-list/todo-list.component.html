@@ -1,7 +1,7 @@
 <div class="todo-container">
   <!-- Daily Tasks Section -->
   <div class="daily-tasks">
-    <h2>Daily To-Do</h2>
+    <h2>Daily To-Do (Completed today: {{getCompletedTodayCount()}})</h2>
     <div class="days-header">
       <span *ngFor="let day of daysOfWeek; let i = index" 
             [class.current-day]="i === currentDayIndex">
@@ -9,67 +9,52 @@
       </span>
     </div>
     <div class="task-list">
-      <div *ngFor="let task of dailyTasks" class="task-item">
-        <input type="checkbox" [(ngModel)]="task.completed" id="task-{{task.name}}">
-        <label for="task-{{task.name}}" [class.completed]="task.completed">{{task.task_name}}</label>
+      <div *ngFor="let task of tasks['daily']" class="task-item">
+        <input type="checkbox" 
+               [checked]="task.is_completed" 
+               (change)="toggleTaskCompletion(task)">
+        <label [class.completed]="task.is_completed">
+          {{task.task_name}}
+          <small *ngIf="task.note">({{task.note}})</small>
+          <small class="time-ago">{{task.timeSince}}</small>
+          <span class="count">(x{{task.times_completed}})</span>
+        </label>
       </div>
     </div>
-    <button class="reset-btn" (click)="resetDailyTasks()">Reset Daily Tasks</button>
-    <div class="category">
-      <div class="h6 add-task col-lg-4">
-        <input type="text"  placeholder="Add New Daily task">
-        <button (click)="addDailyTask('indoor')">+</button>
+
+    <div class="add-task-form">
+      <h3>Add New Task</h3>
+      <input type="text" [(ngModel)]="newTask.name" placeholder="Task name">
+      <input type="text" [(ngModel)]="newTask.note" placeholder="Note">
+      <select [(ngModel)]="newTask.category">
+        <option value="daily">Daily</option>
+        <option value="indoor">Indoor</option>
+        <option value="outdoor">Outdoor</option>
+        <option value="longterm">Long Term</option>
+        <option value="bucketlist">Bucket List</option>
+        <option value="coding">Coding</option>
+      </select>
+      <button (click)="addTask()">Add Task</button>
+    </div>
+  </div>
+
+  <!-- Categorized Tasks Sections -->
+  <div class="categorized-tasks">
+    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding']">
+      <h3>{{category | titlecase}}</h3>
+      <div class="task-list">
+        <div *ngFor="let task of tasks[category]" class="task-item">
+          <input type="checkbox" 
+                 [checked]="task.is_completed" 
+                 (change)="toggleTaskCompletion(task)">
+          <label [class.completed]="task.is_completed">
+            {{task.task_name}}
+            <small *ngIf="task.note">({{task.note}})</small>
+            <small class="time-ago">{{task.timeSince}}</small>
+            <span class="count">(x{{task.times_completed}})</span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
-  
-  
-  
-    <!-- Categorized Tasks Section -->
-    <div class="categorized-tasks">
-      <div class="category">
-        <h3>Indoor</h3>
-        <div class="add-task">
-          <input type="text" [(ngModel)]="newTask.indoor" placeholder="Add indoor task" 
-                 (keyup.enter)="addTask('indoor')">
-          <button (click)="addTask('indoor')">+</button>
-        </div>
-        <ul>
-          <li *ngFor="let task of categorizedTasks.indoor; let i = index">
-            {{task}}
-            <button (click)="removeTask('indoor', i)">×</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="category">
-        <h3>Outdoor</h3>
-        <div class="add-task">
-          <input type="text" [(ngModel)]="newTask.outdoor" placeholder="Add outdoor task" 
-                 (keyup.enter)="addTask('outdoor')">
-          <button (click)="addTask('outdoor')">+</button>
-        </div>
-        <ul>
-          <li *ngFor="let task of categorizedTasks.outdoor; let i = index">
-            {{task}}
-            <button (click)="removeTask('outdoor', i)">×</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="category">
-        <h3>Long Term</h3>
-        <div class="add-task">
-          <input type="text" [(ngModel)]="newTask.longTerm" placeholder="Add long term task" 
-                 (keyup.enter)="addTask('longTerm')">
-          <button (click)="addTask('longTerm')">+</button>
-        </div>
-        <ul>
-          <li *ngFor="let task of categorizedTasks.longTerm; let i = index">
-            {{task}}
-            <button (click)="removeTask('longTerm', i)">×</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>

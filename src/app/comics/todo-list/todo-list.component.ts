@@ -9,74 +9,71 @@ import { TodoService } from '../../services/todo.service';
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
 })
+
 export class TodoListComponent implements OnInit {
-
   daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  currentDayIndex = new Date().getDay(); // 0-6 where 0 is Sunday
+  currentDayIndex = new Date().getDay();
+  
+  // Tasks organized by category
+  tasks: Record<string, any[]> = {
+    daily: [],
+    indoor: [],
+    outdoor: [],
+    longterm: [],
+    bucketlist: [],
+    coding: []
+  };
 
-  // Daily tasks with completion tracking
-dailyTasks: any[] = [];
-categorizedTasks: { [key in 'indoor' | 'outdoor' | 'longTerm']: string[] } = {
-  indoor: [],
-  outdoor: [],
-  longTerm: []
-};
+  newTask = {
+    name: '',
+    note: '',
+    category: 'daily'
+  };
 
-// Today's Date
-today: string = new Date().toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
-
-
-// Track new task input
-newTask = {
-  indoor: '',
-  outdoor: '',
-  longTerm: ''
-};
-
-constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.loadTasks();
+    this.loadAllTasks();
   }
 
-  loadTasks() {
-    this.todoService.getDailyTasks().subscribe(tasks => {
-      this.dailyTasks = tasks;
-    });
-    
-    // Load categorized tasks similarly
-  }
-
-  addDailyTask(taskName: string) {
-    this.todoService.addDailyTask(taskName).subscribe(newTask => {
-      this.dailyTasks.push(newTask);
+  loadAllTasks() {
+    Object.keys(this.tasks).forEach(category => {
+      this.todoService.getTasksByCategory(category).subscribe(tasks => {
+        this.tasks[category] = tasks.map(task => ({
+          ...task,
+          timeSince: this.todoService.getTimeSinceLastCompleted(task.last_completed)
+        }));
+      });
     });
   }
 
-  updateTaskCompletion(task: any) {
-    // Call API to update completion status
+  addTask() {
+    if (this.newTask.name.trim()) {
+      this.todoService.addTask({
+        task_name: this.newTask.name,
+        note: this.newTask.note,
+        category: this.newTask.category
+      }).subscribe(newTask => {
+        this.tasks[newTask.category].push({
+          ...newTask,
+          timeSince: 'Never completed'
+        });
+        this.newTask = { name: '', note: '', category: 'daily' };
+      });
+    }
   }
 
-// Add a new task to a category
-addTask(category: 'indoor' | 'outdoor' | 'longTerm') {
-  if (this.newTask[category].trim()) {
-    this.categorizedTasks[category].push(this.newTask[category].trim());
-    this.newTask[category] = '';
+  toggleTaskCompletion(task: any) {
+    const newStatus = !task.is_completed;
+    this.todoService.updateTaskCompletion(task.id, newStatus).subscribe(updatedTask => {
+      task.is_completed = newStatus;
+      task.times_completed = updatedTask.times_completed;
+      task.last_completed = updatedTask.last_completed;
+      task.timeSince = this.todoService.getTimeSinceLastCompleted(updatedTask.last_completed);
+    });
   }
-}
 
-// Remove a task from a category
-removeTask(category: 'indoor' | 'outdoor' | 'longTerm', index: number) {
-  this.categorizedTasks[category].splice(index, 1);
-}
-
-// Reset daily tasks (could be called at start of new day)
-resetDailyTasks() {
-  this.dailyTasks.forEach(task => task.completed = false);
-}
+  getCompletedTodayCount() {
+    return this.tasks['daily'].filter(t => t.is_completed).length;
+  }
 }
