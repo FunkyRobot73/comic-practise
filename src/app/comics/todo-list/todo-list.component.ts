@@ -29,6 +29,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     garagesale: [],
     media: [],
     purchase: [],
+    
   };
 
   newTask = {

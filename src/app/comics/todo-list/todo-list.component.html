@@ -20,7 +20,7 @@
             <small class="time-tracker created">
               Created: 
               <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
-              {{task.createdAgo?.hours}}h {{task.createdAgo?.minutes}}m ago
+              {{task.createdAgo?.hours}}h ago
             </small>
             <small *ngIf="task.last_completed" class="time-tracker completed">
               Last done: 
@@ -65,12 +65,12 @@
               <small class="time-tracker created">
                 Created: 
                 <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
-                {{task.createdAgo?.hours}}h {{task.createdAgo?.minutes}}m ago
+                {{task.createdAgo?.hours}}h ago
               </small>
               <small *ngIf="task.last_completed" class="time-tracker completed">
                 Last done: 
                 <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
-                {{task.completedAgo?.hours}}h {{task.completedAgo?.minutes}}m ago
+                {{task.completedAgo?.hours}}h ago
               </small>
             </div>
             <span class="count">(x{{task.times_completed}})</span>
