@@ -23,6 +23,7 @@ const httpOptions = {
   "createdAt" : "",
   "isbn" : "",
   "qty" : 1,
+  "volume" : ""
   })
 }
 
@@ -57,6 +58,7 @@ export class CreateComicService {
     slabbed: string,
     isbn: string,
     qty: number,
+    volume: string,
 
     image: File, 
     imageName: string
@@ -82,6 +84,7 @@ export class CreateComicService {
       formData.append('isbn', isbn);
       formData.append('value',value.toString());
       formData.append('qty',qty.toString());
+      formData.append('volume',volume);
 
       // imageFile:  File | null = null;
 

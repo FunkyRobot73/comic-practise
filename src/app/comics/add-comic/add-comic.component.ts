@@ -27,6 +27,7 @@ interface Comicbook{
   createdAt: string;
   isbn: string;
   qty: number;
+  volume: string;
 };
 
 interface Company{
@@ -62,6 +63,7 @@ export class AddComicComponent {
     createdAt = "";
     isbn = "";
     qty = 1;
+    volume = "Vol. 1"
     
     // addPublisher = "DC"
     sortPublisher = "IDW"
@@ -143,9 +145,9 @@ export class AddComicComponent {
             this.artist,
             this.value,
             this.slabbed,
-            // this.createdAt,
             this.isbn,
             this.qty,
+            this.volume,
             
         //  here!!!
             this.imageFile,

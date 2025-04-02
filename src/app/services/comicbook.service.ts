@@ -23,6 +23,7 @@ const httpOptions = {
   "createdAt" : "",
   "isbn" : "999-999-001",
   "qty" : 1,
+  "volume" : "Vol. 1"
   })
 }
 
