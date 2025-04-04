@@ -5,6 +5,7 @@ import { ViewBlogService } from '../../services/view-blog.service';
 import { Blog } from '../../models/blog';
 import { CommonModule, NgFor } from '@angular/common';
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-blog',
@@ -12,24 +13,20 @@ import { OnInit } from '@angular/core';
   templateUrl: './add-blog.component.html',
   styleUrl: './add-blog.component.css'
 })
-
 export class AddBlogComponent implements OnInit {
+  titleBlog = "";
+  subtitleBlog = "";
+  catBlog: string = "Comics";
+  bodyBlog = "";
   
-  
-  titleBlog = "Just Read";
-  catBlog : string = "Music";
-  bodyBlog : string = "1st App. of Batman";
-  image : string = "";
-  imageThumbBlog : string = "";
-
-  imageFile:  File | null = null;
-  imageName: string ="";  
-    
+  imageFile: File | null = null;
+  thumbnailFile: File | null = null;
   
   addBlogService = inject(CreateBlogService);
   viewBlogService = inject(ViewBlogService);
+  router = inject(Router);
+  
   blogs: Blog[] = [];
-
   characterCount: number = 0;
   characterCountTitle: number = 0;
 
@@ -42,20 +39,11 @@ export class AddBlogComponent implements OnInit {
   }
 
   constructor() {
-
-    this.viewBlogService.viewBlog().subscribe({
-      next: (data) => {
-        this.blogs = data;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-
-  };
+    this.loadData();
+  }
 
   ngOnInit(): void {
-  this.loadData();
+    this.loadData();
   }
 
   loadData(): void {
@@ -64,72 +52,50 @@ export class AddBlogComponent implements OnInit {
     });
   }
 
-  onFileChange(event: any): void {
+  onFileChange(event: any, type: 'image' | 'thumbnail'): void {
     const file = event.target.files[0];
     if (file) {
-      this.imageFile = file;
-      this.imageName = file.name;
+      if (type === 'image') {
+        this.imageFile = file;
+      } else {
+        this.thumbnailFile = file;
+      }
     }
   }
 
-  addBlog2() {
-    this.addBlogService.createBlog2({
-      
-        catBlog: this.catBlog,
-        titleBlog: this.titleBlog,
-        bodyBlog: this.bodyBlog,
-        image: this.imageFile!,
-        imageName: this.imageName,
-        imageBlog: this.imageName,
-        imageThumbBlog: this.imageName,
-
-        // image: this.imageFile!,
-        // imageName: this.imageName, 
-        // imageThumbBlog: this.imageThumbBlog,
-
-
-    }).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-    this.viewBlogService.viewBlog().subscribe(() => {
-      this.loadData();
-    });
-  };
-
   addBlog() {
-
-    if (this.imageFile) {
-      console.log("imageFile: ", this.imageFile);
-      this.addBlogService.createBlog(
-
-        this.catBlog,
-        this.titleBlog,
-        this.bodyBlog,  
-        // this.imageBlog,
-        this.imageFile,  
-        this.imageName, 
-
-      ).subscribe({
+    if (this.imageFile && this.thumbnailFile) {
+      const formData = new FormData();
+      
+      // Append all fields
+      formData.append('titleBlog', this.titleBlog);
+      formData.append('subtitleBlog', this.subtitleBlog);
+      formData.append('catBlog', this.catBlog);
+      formData.append('bodyBlog', this.bodyBlog);
+      formData.append('image', this.imageFile);
+      formData.append('thumbnail', this.thumbnailFile);
+  
+      this.addBlogService.createBlog(formData).subscribe({
         next: (data) => {
-          console.log(data);
+          console.log('Blog created successfully', data);
+          this.loadData();
+          this.resetForm();
         },
         error: (err) => {
-          console.log(err);
+          console.error('Error creating blog', err);
         }
-      })
-    
-
-  } else {
-    console.error("No image selected");
+      });
+    } else {
+      console.error("Both main image and thumbnail are required");
+    }
   }
-  this.viewBlogService.viewBlog().subscribe(() => {
-    this.loadData();
-  });
-}
 
+  resetForm(): void {
+    this.titleBlog = "";
+    this.subtitleBlog = "";
+    this.catBlog = "Comics";
+    this.bodyBlog = "";
+    this.imageFile = null;
+    this.thumbnailFile = null;
+  }
 }

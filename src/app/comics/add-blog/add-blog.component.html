@@ -1,15 +1,26 @@
-<form (submit)="addBlog()">
+<form (submit)="addBlog()" enctype="multipart/form-data">
     <div class="container mt-5">
         <h2>Create Blog</h2>
+        
+        <!-- Title -->
         <div class="mb-3">
             <label for="titleBlog" class="form-label">Title:</label>
-            <input type="text" class="form-control" id="titleBlog" name="titleBlog" [(ngModel)]="titleBlog" (ngModelChange)="updateCharacterCountTitle()" required>
-            <small id="wordCount" class="form-text text-muted">Title count: {{characterCountTitle}} ... (50+ is good)</small>
+            <input type="text" class="form-control" id="titleBlog" name="titleBlog" 
+                   [(ngModel)]="titleBlog" (ngModelChange)="updateCharacterCountTitle()" required>
+            <small class="form-text text-muted">Title count: {{characterCountTitle}} ... (50+ is good)</small>
         </div> 
-    
+        
+        <!-- Subtitle -->
+        <div class="mb-3">
+            <label for="subtitleBlog" class="form-label">Subtitle:</label>
+            <input type="text" class="form-control" id="subtitleBlog" name="subtitleBlog" 
+                   [(ngModel)]="subtitleBlog">
+        </div>
+        
+        <!-- Category -->
         <div class="mb-3">
             <label for="catBlog" class="form-label">Category:</label>
-            <select type="text" class="form-control" id="catBlog" name="catBlog" [(ngModel)]="catBlog" required>
+            <select class="form-control" id="catBlog" name="catBlog" [(ngModel)]="catBlog" required>
                 <option>Comics</option>
                 <option>Music</option>
                 <option>Tech</option>
@@ -17,44 +28,55 @@
                 <option>Parties</option>
             </select>
         </div>
-
-
         
+        <!-- Body -->
         <div class="mb-3">
             <label for="bodyBlog" class="form-label">Body:</label>
-            <textarea class="form-control" id="bodyBlog" name="bodyBlog" rows="5" [(ngModel)]="bodyBlog" (ngModelChange)="updateCharacterCount()" required></textarea>
-            <small id="wordCount" class="form-text text-muted">Word count: {{characterCount}}</small>
+            <textarea class="form-control" id="bodyBlog" name="bodyBlog" rows="10" 
+                      [(ngModel)]="bodyBlog" (ngModelChange)="updateCharacterCount()" required></textarea>
+            <small class="form-text text-muted">Character count: {{characterCount}}</small>
         </div>
         
-        
+        <!-- Main Image -->
         <div class="mb-3">
-            <label for="image" class="form-label">Image:</label>
-            <input type="file" class="form-control" id="image" (change)="onFileChange($event)" accept="image/*" required>
+            <label for="image" class="form-label">Main Image:</label>
+            <input type="file" class="form-control" id="image" 
+                   (change)="onFileChange($event, 'image')" accept="image/*" required>
+            <small class="form-text text-muted">This will be the featured image in the blog post</small>
         </div>
-    
-    
+        
+        <!-- Thumbnail Image -->
+        <div class="mb-3">
+            <label for="thumbnail" class="form-label">Thumbnail Image:</label>
+            <input type="file" class="form-control" id="thumbnail" 
+                   (change)="onFileChange($event, 'thumbnail')" accept="image/*" required>
+            <small class="form-text text-muted">This will be used in lists and previews (square ratio recommended)</small>
+        </div>
+        
         <button type="submit" class="btn btn-primary">Submit</button>
-    
-    
+        
         <h2 class="mt-5">Recent Blogs</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody id="blogList">
-                <tr *ngFor="let item of blogs">
-                    <td>{{item.titleBlog}}</td>
-                    <td>{{item.bodyBlog}}</td>
-                    <td><img [src]="'https://back.funkyrobot.ca/public/' + item.image" alt="{{item.titleBlog}}" class="img-thumbnails" width="100"></td>
-                    <td>{{item.catBlog}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Thumbnail</th>
+                        <th>Main Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of blogs">
+                        <td>{{item.titleBlog}}</td>
+                        <td>{{item.catBlog}}</td>
+                        <td><img [src]="'https://back.funkyrobot.ca/public/' + item.thumbnail" 
+                                alt="{{item.titleBlog}}" class="img-thumbnail" width="100"></td>
+                        <td><img [src]="'https://back.funkyrobot.ca/public/' + item.image" 
+                                alt="{{item.titleBlog}}" class="img-thumbnail" width="100"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </form>
-

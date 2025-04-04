@@ -1,9 +1,13 @@
 export interface Blog {
-    idPB: string,
-    catBlog: string,
-    titleBlog: string,
-    bodyBlog: string,
-    imageBlog: string,
-    image: string,
-    imageThumbBlog: string,
-}
+    idBlog?: number;
+    titleBlog: string;
+    subtitleBlog?: string;
+    catBlog: string;
+    bodyBlog: string;
+    image: string;
+    thumbnail?: string;  // Add this line
+    slug?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    // Add any other properties you use
+  }
