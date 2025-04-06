@@ -32,6 +32,7 @@ const httpOptions = {
 })
 export class CreateComicService {
   private apiUrl02 = "https://back.swap2go.ca/addcomics";
+  private baseUrl = "https://back.swap2go.ca"; // Add the base URL for comics
 
   constructor(private http: HttpClient) { }
 
@@ -93,5 +94,23 @@ export class CreateComicService {
       return this.http.post(this.apiUrl02, formData)
       };
 
+      // Add these methods to your CreateComicService
+updateComic(comicId: number, comicData: any): Observable<any> {
+  return this.http.patch(`${this.baseUrl}/comics/${comicId}`, comicData);
+}
+
+updateComicWithImage(comicId: number, comicData: any, imageFile: File, imageName: string): Observable<any> {
+  const formData = new FormData();
+  
+  // Append all comic data
+  Object.keys(comicData).forEach(key => {
+    formData.append(key, comicData[key]);
+  });
+  
+  // Append the image file
+  formData.append('image', imageFile, imageName);
+  
+  return this.http.patch(`${this.baseUrl}/comics/${comicId}/image`, formData);
+}
 
 }

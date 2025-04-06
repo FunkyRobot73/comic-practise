@@ -3,9 +3,18 @@
     <div class="card mt-1 p-3 bg-card">
       <div class="horizontal">
         <h2 class="text-center">
-         Create New Comic Book
-         
+          {{editingComicId ? 'Edit Comic Book #' + editingComicId : 'Create New Comic Book'}}
         </h2>
+        <div class="col-md-6 mt-4">
+          <button class="btn btn-primary" type="submit">
+            {{editingComicId ? 'UPDATE Comic' : 'ADD Comic'}}
+          </button>
+        </div>
+        <div class="col-md-6 mt-4" *ngIf="editingComicId">
+          <button class="btn btn-secondary" type="button" (click)="cancelEdit()">
+            Cancel Edit
+          </button>
+        </div>
       </div>
 
       <div class="row mt-3 bg-card">
@@ -199,7 +208,7 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let comic of comicbooks.slice().reverse().slice(0, 10)">
+      <tbody *ngFor="let comic of comicbooks.slice().reverse().slice(0, 5)">
         <tr class="align-items-center">
           <th scope="row">{{ comic.id }}</th>
           <td class="col-md-1">
@@ -218,6 +227,27 @@
           <td class="col-md-1">{{ comic.publisher }}</td>
           <td class="col-md-1">{{ comic.value }}</td>
           <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
+        </tr>
+        <tr class="align-items-center">
+          <th scope="row">{{ comic.id }}</th>
+          <td class="col-md-1">
+            <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image" class="mt-1" />
+          </td>
+          <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
+          <td class="col-md-2">
+            <table class="table col-md-2">
+              <tr>{{ comic.writer }}</tr>
+              <tr>{{ comic.artist }}</tr>
+            </table>
+          </td>
+          <td class="col-md-1">{{ comic.year }}</td>
+          <td class="col-md-1">{{ comic.type }}</td>
+          <td class="col-md-1">{{ comic.publisher }}</td>
+          <td class="col-md-1">{{ comic.value }}</td>
+          <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
+          <td class="col-md-1">
+            <button class="btn btn-sm btn-warning" (click)="loadComicForEdit(comic)">Edit</button>
+          </td>
         </tr>
       </tbody>
     </table>
