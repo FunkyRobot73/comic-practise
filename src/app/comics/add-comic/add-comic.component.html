@@ -157,6 +157,11 @@
           </button>
         </div>
         <div class="col-md-3 mt-4" *ngIf="editingComicId">
+          <button class="btn btn-secondary" type="button" (click)="updateComic()">
+            Update
+          </button>
+        </div>
+        <div class="col-md-3 mt-4" *ngIf="editingComicId">
           <button class="btn btn-secondary" type="button" (click)="cancelEdit()">
             Cancel Edit
           </button>
@@ -178,7 +183,7 @@
   <!-- Display & quick list of Comic Books -->
 
   <!-- Comics List Table -->
-   
+
   <div class="container card mt-2">
     <h3>Recent Comics</h3>
     <table class="table mt-2 mb-2 table-striped">
