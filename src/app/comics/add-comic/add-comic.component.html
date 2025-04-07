@@ -1,31 +1,21 @@
-<form (ngSubmit)="addComic()">
+<form (ngSubmit)="!editingComicId && createNewComic()">
   <div class="container">
     <div class="card mt-1 p-3 bg-card">
       <div class="horizontal">
         <h2 class="text-center">
-          {{editingComicId ? 'Edit Comic Book #' + editingComicId : 'Create New Comic Book'}}
+          {{editingComicId ? 'Editing Comic #' + editingComicId : 'Create New Comic Book'}}
         </h2>
-        <div class="col-md-6 mt-4">
-          <button class="btn btn-primary" type="submit">
-            {{editingComicId ? 'UPDATE Comic' : 'ADD Comic'}}
-          </button>
-        </div>
-        <div class="col-md-6 mt-4" *ngIf="editingComicId">
-          <button class="btn btn-secondary" type="button" (click)="cancelEdit()">
-            Cancel Edit
-          </button>
-        </div>
       </div>
 
       <div class="row mt-3 bg-card">
+        <!-- Form Fields (unchanged from your original) -->
         <div class="col-md-4">
           <label>Title:</label>
-          <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text"
-            value="Justice League of America" name="title" />
+          <input class="form-control" [(ngModel)]="title" placeholder="Title" type="text" name="title" />
         </div>
         <div class="col-md-2">
           <label>Issue No.:</label>
-          <input class="form-control" [(ngModel)]="issue" placeholder="Issue #" type="text" value="200" name="issue" />
+          <input class="form-control" [(ngModel)]="issue" placeholder="Issue #" type="text" name="issue" />
         </div>
 
         <div class="col-md-2">
@@ -40,19 +30,13 @@
         </div>
         <div class="col-md-2">
           <label>Year:</label>
-          <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" value="1999" name="year" />
+          <input class="form-control" [(ngModel)]="year" placeholder="1999" type="text" name="year" />
         </div>
 
         <div class="col-md-2">
           <label>Publisher</label>
           <select class="form-control" [(ngModel)]="publisher" name="publisher">
-            <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
-              {{ item.name }}
-            </option>
-            <!-- <option>No</option> -->
-            <!-- <option>Fancy</option> -->
-            <!-- <option>Kids</option> -->
-            <!-- <div class="column col-lg-6 mb-2" *ngFor="let item of comicbooks">   -->
+            <option *ngFor="let item of companys">{{ item.name }}</option>
           </select>
         </div>
 
@@ -167,10 +151,17 @@
         </div>
 
 
-        <div class="col-md-6 mt-4">
-          <button class="btn btn-primary" type="submit">ADD Comic</button>
+        <div class="col-md-3 mt-4">
+          <button class="btn btn-primary" type="submit">
+            {{editingComicId ? 'UPDATE Comic' : 'ADD Comic'}}
+          </button>
         </div>
-        <div class="col-md-6 mt-4">
+        <div class="col-md-3 mt-4" *ngIf="editingComicId">
+          <button class="btn btn-secondary" type="button" (click)="cancelEdit()">
+            Cancel Edit
+          </button>
+        </div>
+        <div class="col-md-3 mt-4">
           <button class="btn btn-primary" type="button" (click)="refreshPage()">Refresh Below</button>
         </div>
         <div class="col-md-6 mt-4">
@@ -186,71 +177,46 @@
 
   <!-- Display & quick list of Comic Books -->
 
+  <!-- Comics List Table -->
+   
   <div class="container card mt-2">
-    <h3>Comics Added</h3>
-    <table class="table mt-2 mb-z table-striped">
+    <h3>Recent Comics</h3>
+    <table class="table mt-2 mb-2 table-striped">
       <thead class="thead-light">
         <tr>
-          <th scope="col">ID:</th>
-          <th scope="col">Image:</th>
-          <th scope="col">Title:</th>
-          <th scope="col">Writer/Artist:</th>
-          <th scope="col">Year:</th>
-          <th scope="col">Type:</th>
-          <th scope="col">
-            <div class="col-md-6">
-              <label>Publisher</label>
-              
-            </div>
-          </th>
-          <th scope="col">Value</th>
-          <th scope="col">Short</th>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Writer/Artist</th>
+          <th>Year</th>
+          <th>Type</th>
+          <th>Publisher</th>
+          <th>Value</th>
+          <th>Actions</th>
         </tr>
       </thead>
-
-      <tbody *ngFor="let comic of comicbooks.slice().reverse().slice(0, 5)">
-        <tr class="align-items-center">
-          <th scope="row">{{ comic.id }}</th>
-          <td class="col-md-1">
-        <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image"
-          class="mt-1" />
+      <tbody>
+        <tr *ngFor="let comic of comicbooks.slice().reverse().slice(0, 5)">
+          <td>{{ comic.id }}</td>
+          <td>
+            <img width="50" [src]="'https://back.swap2go.ca/public/' + comic.image" alt="Cover" *ngIf="comic.image">
           </td>
-          <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
-          <td class="col-md-2">
-        <table class="table col-md-2">
-          <tr>{{ comic.writer }}</tr>
-          <tr>{{ comic.artist }}</tr>
-        </table>
+          <td>{{ comic.title }} #{{ comic.issue }}</td>
+          <td>
+            <div>{{ comic.writer }}</div>
+            <div>{{ comic.artist }}</div>
           </td>
-          <td class="col-md-1">{{ comic.year }}</td>
-          <td class="col-md-1">{{ comic.type }}</td>
-          <td class="col-md-1">{{ comic.publisher }}</td>
-          <td class="col-md-1">{{ comic.value }}</td>
-          <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
-        </tr>
-        <tr class="align-items-center">
-          <th scope="row">{{ comic.id }}</th>
-          <td class="col-md-1">
-            <img width="75%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/' + comic.image" class="mt-1" />
-          </td>
-          <td class="col-md-2">{{ comic.title }} ({{ comic.issue }})</td>
-          <td class="col-md-2">
-            <table class="table col-md-2">
-              <tr>{{ comic.writer }}</tr>
-              <tr>{{ comic.artist }}</tr>
-            </table>
-          </td>
-          <td class="col-md-1">{{ comic.year }}</td>
-          <td class="col-md-1">{{ comic.type }}</td>
-          <td class="col-md-1">{{ comic.publisher }}</td>
-          <td class="col-md-1">{{ comic.value }}</td>
-          <td class="col-md-2">{{ (comic.short | slice:0:34)}}...</td>
-          <td class="col-md-1">
-            <button class="btn btn-sm btn-warning" (click)="loadComicForEdit(comic)">Edit</button>
+          <td>{{ comic.year }}</td>
+          <td>{{ comic.type }}</td>
+          <td>{{ comic.publisher }}</td>
+          <td>${{ comic.value }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="loadComicForEdit(comic)">
+              Edit
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </form>
