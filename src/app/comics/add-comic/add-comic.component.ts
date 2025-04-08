@@ -63,7 +63,7 @@ export class AddComicComponent {
   volume = "Vol. 1";
 
   // addPublisher = "NEW"
-  sortPublisher2 = ""
+  sortPublisher2 = "Marvel"
   
   // Image Handling
   imageFile: File | null = null;
@@ -180,7 +180,7 @@ export class AddComicComponent {
 
     update$.subscribe({
       next: () => {
-        this.resetForm();
+        // this.resetForm();
         this.refreshPage();
       },
       error: (err) => console.error('Update error:', err)
@@ -225,4 +225,6 @@ export class AddComicComponent {
       this.router.navigate(['/addcomic']);
     });
   }
+
+  
 }
