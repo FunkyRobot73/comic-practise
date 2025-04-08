@@ -60,7 +60,7 @@ export class ComicComponent {
   qty = 1;
   addPublisher = "NEW"
 
-  sortPublisher = "IDW"
+  sortPublisher = ""
   
   
   comicbookService = inject(ComicbookService)

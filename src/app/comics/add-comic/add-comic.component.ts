@@ -47,7 +47,7 @@ export class AddComicComponent {
   issue = "";
   type = "Single Issue";
   year = "";
-  publisher = "";
+  publisher = "Marvel";
   condition = "";
   grade = "";
   key = "";
@@ -61,6 +61,9 @@ export class AddComicComponent {
   isbn = "";
   qty = 1;
   volume = "Vol. 1";
+
+  // addPublisher = "NEW"
+  sortPublisher2 = ""
   
   // Image Handling
   imageFile: File | null = null;
