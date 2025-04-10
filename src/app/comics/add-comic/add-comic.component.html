@@ -1,5 +1,5 @@
 <form (ngSubmit)="!editingComicId && createNewComic()">
-  
+
   <div class="container">
     <div class="card mt-1 p-3 bg-card">
       <div class="horizontal">
@@ -47,7 +47,7 @@
 
         <!-- Every 4 Forms -->
 
-      
+
         <div class="col-md-2">
           <label>Key/Trade Name:</label>
           <input class="form-control" [(ngModel)]="key" placeholder="" type="text" value="1st Mister Miracle"
@@ -95,6 +95,18 @@
           <label>Qty:</label>
           <input class="form-control" [(ngModel)]="qty" placeholder="1" type="number" value="1" name="qty" />
         </div>
+
+        <div class="col-md-2">
+          <label>Grade:</label>
+          <input class="form-control" [(ngModel)]="grade" placeholder="Number (1-10)" type="text" name="grade" />
+        </div>
+
+
+        <div class="col-md-2">
+          <label>Volume:</label>
+          <input class="form-control" [(ngModel)]="volume" placeholder="Vol. 1" type="text" name="volume" />
+        </div>
+
         <div class="col-md-2 mt-4">
           <button class="btn btn-light">
             <a href="https://www.google.com/search?sca_esv=e04e555e27c90511&sxsrf=AHTn8zp5DMFDN-FiafWvzJ6kEJwRikQD7A:1739282919599&q={{title}}+{{issue}}+comic+book+{{publisher}}+{{key}}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiot9jk5buLAxUMtokEHSedHkgQtKgLegQIEBAB&biw=1573&bih=741&dpr=1.09"
@@ -107,39 +119,28 @@
           <input class="form-control" (change)="onFileChange($event)" type="file" id="image" />
         </div>
 
-       
-
-       <div class="col-md-12">
-        <div class="col-md-2">
-          <label>Grade:</label>
-          <input class="form-control" [(ngModel)]="grade" placeholder="Number (1-10)" type="text"
-            name="grade" />
-        </div>
-
-        
-          <div class="col-md-2">
-            <label>Volume:</label>
-            <input class="form-control" [(ngModel)]="volume" placeholder="Vol. 1" type="text"
-              name="volume" />
-          </div>
-
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label>Condition:</label>
           <input class="form-control" [(ngModel)]="condition" placeholder="Excellent Condition" type="text"
             name="condition" />
         </div>
-       </div>
 
-        <div class="col-md-2 mt-4">
-          <button type="button" class="btn btn-light">
-            <a href="https://www.google.com/search?q=quick+description+of+{{publisher}}+{{title}}+{{issue}}+{{writer}}+comic+{{year}}+{{key}}&rlz=1C1YTUH_enCA1086CA1086"
-              style="text-decoration:none" target=”_blank”>
-              FIND DESC</a></button>
-        </div>
+        
+          <div class="col-md-2 mt-4">
+            <button type="button" class="btn btn-light">
+              <a href="https://www.google.com/search?q=quick+description+of+{{publisher}}+{{title}}+{{issue}}+{{writer}}+comic+{{year}}+{{key}}&rlz=1C1YTUH_enCA1086CA1086"
+                style="text-decoration:none" target=”_blank”>
+                FIND DESC</a></button>
+                
+              </div>
+          <div class="col-md-2 mt-4">
+            <button class="btn btn-light" type="button" (click)="updateDesc()">Update Desc.</button>
+          </div>
 
-        <div class="col-md-2 mt-4">
-          <button class="btn btn-light" type="button" (click)="updateDesc()">Update Desc.</button>
-        </div>
+          
+        
+
+
 
 
 
@@ -177,7 +178,7 @@
         <div class="col-md-6 mt-4">
           <a>Check out more at www.isellcomics.ca</a>
         </div>
-        
+
 
 
 
@@ -190,8 +191,8 @@
   <!-- Comics List Table -->
 
   <div class="container card mt-2">
-    <h3>Recent Comics</h3>
-    <table class="table mt-2 mb-z table-striped">
+   
+    <table class="table mb-z table-striped">
       <thead class="thead-light">
         <tr>
           <th scope="col">ID:</th>
@@ -202,13 +203,9 @@
           <th scope="col">Year:</th>
           <!-- <th scope="col">Set</th> -->
           <th scope="col">
-            <div class="col-md-6">
-              <label>Publisher</label>
-              <select class="form-control" [(ngModel)]="sortPublisher2" name="sortPublisher2">
-                <option
-                  class="column col-lg-6 mb-2"
-                  *ngFor="let item of companys"
-                >
+            <div class="col-md-12">
+              <select class="form-control col-lg-6" [(ngModel)]="sortPublisher2" name="sortPublisher2">
+                <option class="column col-lg-6 mb-2" *ngFor="let item of companys">
                   {{ item.name }}
                 </option>
                 <!-- <option>No</option> -->
@@ -221,13 +218,13 @@
           <th scope="col">Value</th>
         </tr>
       </thead>
-  
+
       <tbody *ngFor="let comic of comicbooks.slice().reverse()">
         <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher2 && comic.image === 'dc.jpg'">
           <!-- <ul class="list-group mt-3"> -->
           <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
           <!-- <td>{{customer.fName}}</td>  -->
-  
+
           <th scope="row">{{ comic.id }}</th>
           <td>
             <img width="50" [src]="'https://back.swap2go.ca/public/' + comic.image" alt="{{comic.title}}">
@@ -239,7 +236,7 @@
           <!-- <td>{{cust.pbSet}}</td> -->
           <td>{{ comic.publisher }}</td>
           <td>{{ comic.value }}</td>
-  
+
           <td>
             <button class="btn btn-sm btn-warning" (click)="loadComicForEdit(comic)">
               Edit
@@ -252,4 +249,3 @@
 </form>
 
 <!-- .slice().reverse().slice(0, 25) -->
-
