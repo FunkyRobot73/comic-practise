@@ -133,11 +133,11 @@
                 FIND DESC</a></button>
                 
               </div>
+              <div class="col-md-2 mt-4">
+                <button class="btn btn-light" type="button" (click)="updateShort()">Update Short.</button>
+              </div>
           <div class="col-md-2 mt-4">
             <button class="btn btn-light" type="button" (click)="updateDesc()">Update Short & Desc.</button>
-          </div>
-          <div class="col-md-2 mt-4">
-            <button class="btn btn-light" type="button" (click)="updateShort()">Update Desc.</button>
           </div>
 
           
@@ -223,7 +223,7 @@
       </thead>
 
       <tbody *ngFor="let comic of comicbooks.slice().reverse()">
-        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher2 && comic.image === 'dc.jpg'">
+        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher2 && comic.image === 'marvel.jpg'">
           <!-- <ul class="list-group mt-3"> -->
           <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
           <!-- <td>{{customer.fName}}</td>  -->

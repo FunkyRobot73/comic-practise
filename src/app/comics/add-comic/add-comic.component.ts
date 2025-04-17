@@ -222,7 +222,7 @@ export class AddComicComponent {
 
     updateShort() {
       this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " A Great " + this.type + " by " + this.publisher + " Comics. Story by " + this.writer + " & Art by " + this.artist + ".";
-      this.description = this.title + " #" + this.issue + " (" + this.year + ") " + this.key + " A cool " + this.type + " by " + this.publisher + " Comics. Story by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ". " + this.condition;
+     
       }
 
   refreshPage() {
