@@ -8,7 +8,7 @@ const httpOptions = {
   "issue" : "200",
   "type" : "TPB",
   "year" : "1990",
-  "publisher" : "",
+  "publisher" : "Marvel",
   "condition" : "5",
   "grade" : "9",
   "key" : "1st Mister Miracle",
