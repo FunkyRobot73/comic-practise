@@ -21,6 +21,7 @@ export class AddCharacterComponent {
   
       
       addCharacter: string = ""
+      editCharacter: Character | null = null;
       imageFile:  File | null = null;
       imageName: string ="";  
       
@@ -30,7 +31,10 @@ export class AddCharacterComponent {
       characters:Character[] = [];
     
       constructor(private createCharacterService: CreateCharacterService) {
-        
+        this.loadCharacters();
+      };
+
+      loadCharacters(): void {
         this.comicbookService.getCharacters().subscribe({
           next: (data) => {
             this.characters = data;
@@ -39,7 +43,7 @@ export class AddCharacterComponent {
             console.log(err);
           }
         });
-      };
+      }
     
       onFileChange(event: any): void {
         const file = event.target.files[0];
@@ -50,25 +54,65 @@ export class AddCharacterComponent {
       }
       
     
-        addCharacters(){
-         
-          
-          if (this.imageFile) {
-            this.createCharacterService.createCharacter(          
-              this.addCharacter,this.imageFile, this.imageName).subscribe(
-                response => {
-                  console.log("Upload looks Good!!", response);
-                },
-                error => {
-                  console.error('Upload failed', error);
-                }
-              );
-            
-            } else {
-              console.error('No file selected');
-            }
-        }
+      addCharacters() {
+        if (!this.addCharacter) return;
     
-        deleteCharacter(){};
+        if (this.editCharacter) {
+          // Update existing character
+          this.createCharacterService.updateCharacter(
+            this.editCharacter.id,
+            this.addCharacter,
+            this.imageFile || undefined,
+            this.imageName || undefined
+          ).subscribe({
+            next: (response) => {
+              console.log("Update successful", response);
+              this.resetForm();
+              this.loadCharacters();
+            },
+            error: (error) => {
+              console.error('Update failed', error);
+            }
+          });
+        } else {
+          // Create new character
+          if (this.imageFile) {
+            this.createCharacterService.createCharacter(
+              this.addCharacter, this.imageFile, this.imageName
+            ).subscribe({
+              next: (response) => {
+                console.log("Upload successful", response);
+                this.resetForm();
+                this.loadCharacters();
+              },
+              error: (error) => {
+                console.error('Upload failed', error);
+              }
+            });
+          } else {
+            console.error('No file selected for new character');
+          }
+        }
+      }
+    
+      editExistingCharacter(character: Character): void {
+        this.editCharacter = character;
+        this.addCharacter = character.name;
+        // Reset file input
+        this.imageFile = null;
+        this.imageName = "";
+      }
+    
+      resetForm(): void {
+        this.addCharacter = "";
+        this.editCharacter = null;
+        this.imageFile = null;
+        this.imageName = "";
+        // You might need to reset the file input element here as well
+      }
+    
+      deleteCharacter(character: Character): void {
+        // Implement delete functionality if needed
+      }
 
 }
