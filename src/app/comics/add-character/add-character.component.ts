@@ -1,4 +1,4 @@
-import { Component, Inject, inject, Input, NgModule } from '@angular/core';
+import { Component, Inject, inject, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComicbookService } from '../../services/comicbook.service';
@@ -27,23 +27,50 @@ export class AddCharacterComponent {
       
       comicbookService = inject(ComicbookService)
       characterService = inject(CreateCharacterService)
-      
       characters:Character[] = [];
+      filteredCharacters: Character[] = [];
+
+      scrollToTop(): void {
+        const formElement = document.getElementById('characterForm');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
     
-      constructor(private createCharacterService: CreateCharacterService) {
+      constructor(private createCharacterService: CreateCharacterService, private ngZone: NgZone) {
         this.loadCharacters();
       };
 
+      
+
       loadCharacters(): void {
+        
+        // this.comicbookService.getCharacters().subscribe({
+        //   next: (data) => {
+        //     this.characters = data;
+        //   },
+        //   error: (err) => {
+        //     console.log(err);
+        //   }
+        // });
+
+        // Above is no filter...  below is filter without imageName
+
+
         this.comicbookService.getCharacters().subscribe({
           next: (data) => {
             this.characters = data;
+            this.filteredCharacters = data.filter((characters: Character) => !characters.imageName);
           },
           error: (err) => {
             console.log(err);
           }
         });
       }
+
+      
     
       onFileChange(event: any): void {
         const file = event.target.files[0];
@@ -101,6 +128,16 @@ export class AddCharacterComponent {
         // Reset file input
         this.imageFile = null;
         this.imageName = "";
+
+        this.ngZone.run(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+      viewCharacter(character: Character): void {
+        // Implement view functionality if needed 
       }
     
       resetForm(): void {
@@ -108,11 +145,14 @@ export class AddCharacterComponent {
         this.editCharacter = null;
         this.imageFile = null;
         this.imageName = "";
+        this.scrollToTop();
         // You might need to reset the file input element here as well
       }
     
       deleteCharacter(character: Character): void {
         // Implement delete functionality if needed
       }
+
+      
 
 }

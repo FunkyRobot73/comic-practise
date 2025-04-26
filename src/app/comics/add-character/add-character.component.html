@@ -1,61 +1,60 @@
-<form (ngSubmit)="addCharacters()">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-md-2">
-          <label>NEW Character:</label>
-          <input class="form-control" [(ngModel)]="addCharacter" name="addCharacter" type="text"
-          />
-        </div>
+<!-- add-character.component.html -->
+<form (ngSubmit)="addCharacters()" id="characterForm">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-2">
+        <label>{{ editCharacter ? 'EDIT Character' : 'NEW Character' }}:</label>
+        <input class="form-control" [(ngModel)]="addCharacter" name="addCharacter" type="text" />
+      </div>
 
-        <div class="col-md-2 mt-4">
-          <button class="btn btn-light">
-            <a href="https://www.google.com/search?as_st=y&as_q={{addCharacter}}+head+shot+square+small&as_epq=&as_oq=&as_eq=&imgsz=m&imgar=s&imgcolor=&imgtype=animated&cr=&as_sitesearch=&as_filetype=jpg&tbs=&udm=2"
-              style="text-decoration:none" target=”_blank”>
-              FIND IMAGE</a></button>
-        </div>
-      
-          
-          
+      <div class="col-md-2 mt-4">
+        <button class="btn btn-light" type="button">
+          <a href="https://www.google.com/search?as_st=y&as_q={{addCharacter}}+classic+comic+book+character+80s&as_epq=&as_oq=&as_eq=&imgsz=m&imgar=s&imgcolor=&as_sitesearch=&tbs=&udm=2"
+            style="text-decoration:none" target="_blank">
+            FIND IMAGE</a>
+        </button>
+      </div>
 
+      <div class="col-md-4 mt-4">
+        <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg, image/webp" />
+        <p>{{ addCharacter }}</p>
+      </div>
 
-  
-        <div class="col-md-4 mt-4">
-          
-          <input type="file" id="image" (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg, image/jpg"
-          />
-          <p>{{ addCharacter }}</p>
-        </div>
-  
-        <div class="col-md-2 mt-4">
-          <button class="btn btn-primary" type="submit">ADD Character</button>
-        </div>
+      <div class="col-md-2 mt-4">
+        <button class="btn btn-primary" type="submit">
+          {{ editCharacter ? 'UPDATE' : 'ADD' }} Character
+        </button>
+        <button *ngIf="editCharacter" class="btn btn-secondary ms-2" type="button" (click)="resetForm()">
+          CANCEL
+        </button>
       </div>
     </div>
-  </form>
-  
-  <div class="container card mt-2">
-    <table class="table mt-2 mb-z table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Character</th>
-          <th scope="col">Image</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let hero of characters">
-        <tr>
-          <th>{{ hero.id }}</th>
-          <td>{{ hero.name }}</td>
-  
-          <td>
-            <img width="15%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/characters/' + hero.imageName" class="mt-2"
-            />
-          </td>
-          <td>
-            <button class="btn btn-primary" (click)="deleteCharacter(hero)" name="addCharacter">DELETE</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
+</form>
+
+<div class="container card mt-2">
+  <table class="table mt-2 mb-z table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Character</th>
+        <th scope="col">Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let hero of filteredCharacters">
+      <tr>
+        <th>{{ hero.id }}</th>
+        <td>{{ hero.name }}</td>
+        <td>
+          <img width="15%" alt="Comic Book for sale" [src]="'https://back.swap2go.ca/public/characters/' + hero.imageName" class="mt-2" />
+        </td>
+        <td>
+          <button class="btn btn-info me-2" (click)="viewCharacter(hero)">VIEW</button>
+          <button class="btn btn-warning me-2" (click)="editExistingCharacter(hero)">EDIT</button>
+          <button class="btn btn-danger" (click)="deleteCharacter(hero)">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
