@@ -24,3 +24,21 @@
   margin-bottom: 1rem;
   font-weight: bold;
 }
+
+.container {
+  padding: 20px;
+}
+.card {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card-header {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.table {
+  margin-top: 15px;
+}
