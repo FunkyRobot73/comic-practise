@@ -12,7 +12,7 @@ import { StockService } from '../../services/stock.service';
 })
 export class StocksComponent implements OnInit {
   
-  usdToCadRate: number = 1;
+  usdToCadRate: number = 1.40;
   totalValueInCAD: number = 0;
   totalValueInUSD: number = 0;
   totalProfitLossCAD: number = 0;
@@ -88,18 +88,6 @@ calculateTotalProfitLoss(): void {
   this.totalProfitLossCAD = Math.round(this.totalProfitLossCAD * 100) / 100;
 }
 
-calculateTotalProfitLossUS(): void {
-  this.totalProfitLossUSD = 0;
-  
-  for (const stock of this.stocks) {
-    if (stock.price_sold_US && stock.price_bought_US && stock.amount) {
-      // CAD stocks
-      this.totalProfitLossUSD += (stock.price_sold_US - stock.price_bought_US) * stock.amount;
-    }
-  }
-  
-  this.totalProfitLossUSD = Math.round(this.totalProfitLossUSD * 100) / 100;
-}
 
   resetForm(): void {
     this.newStock = {
