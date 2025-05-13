@@ -1,139 +1,154 @@
-<div class="tracker">
-  <h2>My Stock Holdings</h2>
-  <div class="rate">Current USD to CAD: {{ usdToCadRate | number:'1.2-2' }}</div>
+<!-- <div class="tracker">
+    <h2>My Stock Holdings</h2>
+    <div class="tracker-header">
+        <input (change)="updateExchangeRates()" type="text" placeholder="Enter USD to CAD Rate"
+            [(ngModel)]="usdToCadRate" />
+    </div>
+    <div class="rate">Current USD to CAD: {{ usdToCadRate | number:'1.2-2' }}</div>
 
- 
+
+
 </div>
 
-<div></div>
+<div></div> -->
 
 <!-- LATEST FIELDS to DATABASE -->
 
 <div class="container">
-  <h2>Stock Portfolio</h2>
-  
-  <!-- Add Stock Form -->
-  <div class="card mb-4">
-    <div class="card-header">
-      <h3>Add New Stock</h3>
+
+
+    <!-- Add Stock Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Add New Stock</h3>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="addStock()">
+                <!-- Row 1: Basic Info -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Symbol*</label>
+                            <input type="text" class="form-control" [(ngModel)]="newStock.symbol" name="symbol"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Company Name*</label>
+                            <input type="text" class="form-control" [(ngModel)]="newStock.name" name="name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Purchase Date*</label>
+                            <input type="date" class="form-control" [(ngModel)]="newStock.date_purchased"
+                                name="date_purchased" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Purchase Details -->
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Buy Price (CAD)</label>
+                            <input type="number" step="0.01" class="form-control"
+                                [(ngModel)]="newStock.price_bought_CAD" name="price_bought_CAD">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Buy Price (USD)</label>
+                            <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_bought_US"
+                                name="price_bought_US">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>CAN→USD Rate</label>
+                            <input type="number" step="0.0001" class="form-control"
+                                [(ngModel)]="newStock.CAN_US_Rate_bought" name="CAN_US_Rate_bought">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>USD→CAN Rate</label>
+                            <input type="number" step="0.0001" class="form-control"
+                                [(ngModel)]="newStock.US_CAN_Rate_bought" name="US_CAN_Rate_bought">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Sale Details -->
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Sell Price (CAD)</label>
+                            <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_sold_CAD"
+                                name="price_sold_CAD">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Sell Price (USD)</label>
+                            <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_sold_US"
+                                name="price_sold_US">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Sale Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="newStock.date_sold" name="date_sold">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Notes</label>
+                            <input type="text" class="form-control" [(ngModel)]="newStock.notes" name="notes">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 4: Sale Exchange Rates -->
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>CAN→USD Rate (Sale)</label>
+                            <input type="number" step="0.0001" class="form-control"
+                                [(ngModel)]="newStock.CAN_US_Rate_sold" name="CAN_US_Rate_sold">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>USD→CAN Rate (Sale)</label>
+                            <input type="number" step="0.0001" class="form-control"
+                                [(ngModel)]="newStock.US_CAN_Rate_sold" name="US_CAN_Rate_sold">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Shares</label>
+                            <input type="number" step="1" class="form-control" [(ngModel)]="newStock.amount"
+                                name="amount">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Add Stock</button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-      <form (ngSubmit)="addStock()">
-        <!-- Row 1: Basic Info -->
-        <div class="row">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Symbol*</label>
-              <input type="text" class="form-control" [(ngModel)]="newStock.symbol" name="symbol" required>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="form-group">
-              <label>Company Name*</label>
-              <input type="text" class="form-control" [(ngModel)]="newStock.name" name="name" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Purchase Date*</label>
-              <input type="date" class="form-control" [(ngModel)]="newStock.date_purchased" name="date_purchased" required>
-            </div>
-          </div>
-        </div>
 
-        <!-- Row 2: Purchase Details -->
-        <div class="row mt-3">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Buy Price (CAD)</label>
-              <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_bought_CAD" name="price_bought_CAD">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Buy Price (USD)</label>
-              <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_bought_US" name="price_bought_US">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>CAN→USD Rate</label>
-              <input type="number" step="0.0001" class="form-control" [(ngModel)]="newStock.CAN_US_Rate_bought" name="CAN_US_Rate_bought">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>USD→CAN Rate</label>
-              <input type="number" step="0.0001" class="form-control" [(ngModel)]="newStock.US_CAN_Rate_bought" name="US_CAN_Rate_bought">
-            </div>
-          </div>
-        </div>
+    <!-- Add Stock Form End -->
 
-        <!-- Row 3: Sale Details -->
-        <div class="row mt-3">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Sell Price (CAD)</label>
-              <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_sold_CAD" name="price_sold_CAD">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Sell Price (USD)</label>
-              <input type="number" step="0.01" class="form-control" [(ngModel)]="newStock.price_sold_US" name="price_sold_US">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Sale Date</label>
-              <input type="date" class="form-control" [(ngModel)]="newStock.date_sold" name="date_sold">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Notes</label>
-              <input type="text" class="form-control" [(ngModel)]="newStock.notes" name="notes">
-            </div>
-          </div>
-        </div>
 
-        <!-- Row 4: Sale Exchange Rates -->
-        <div class="row mt-3">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>CAN→USD Rate (Sale)</label>
-              <input type="number" step="0.0001" class="form-control" [(ngModel)]="newStock.CAN_US_Rate_sold" name="CAN_US_Rate_sold">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>USD→CAN Rate (Sale)</label>
-              <input type="number" step="0.0001" class="form-control" [(ngModel)]="newStock.US_CAN_Rate_sold" name="US_CAN_Rate_sold">
-            </div>
-          </div>
-           <div class="col-md-3">
-            <div class="form-group">
-              <label>Shares</label>
-              <input type="number" step="1" class="form-control" [(ngModel)]="newStock.amount" name="amount">
-            </div>
-          </div>
-        </div>
+    <!-- Stock Tracker Header -->
 
-        <button type="submit" class="btn btn-primary mt-3">Add Stock</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Stocks List -->
-  <div class="">
-    <div class="card card-header">
-      <h3>Your Stocks</h3>
-    </div>
-    <div class="">
-      <div class="card table-responsive">
+    <div class="card table-responsive">
         <!-- Table 1: Stocks with price_bought_US -->
         <div class="card-header">
-            <h4>Stocks Bought in USD</h4>
+            <h4>Stocks Held (US & CAN) </h4>
         </div>
         <table class="table table-striped">
             <thead>
@@ -142,62 +157,212 @@
                     <th>Name</th>
                     <th>Date</th>
                     <th>Buy (US)</th>
-                    <th>Buy Rate</th>
+                  
                     <th>Amount</th>
-                    <th>Total Value USD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <ng-container *ngFor="let stock of stocks">
-                    <tr *ngIf="stock.price_bought_US">
-                        
-                        <td>{{ stock.symbol }}</td>
-                        <td>{{ stock.name }}</td>
-                        <td>{{ stock.date_purchased | date:'shortDate' }}</td>
-                        <td>{{ stock.price_bought_US | currency:'USD' }}</td>
-                        <td>{{ stock.CAN_US_Rate_bought }}</td>
-                        <td>{{ stock.amount }}</td>
-                        <td>{{ stock.price_bought_US * stock.amount | currency:'USD' }}</td>
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-        </div>
-
-        
-        <div class="card table-responsive">
-
-        <!-- Table 2: Stocks with price_bought_CAD -->
-       <div class="card-header">
-            <h4>Stocks Bought in CAD</h4>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Buy (CAD)</th>
-                    <th>Buy Rate</th>
-                    <th>Amount</th>
-                    <th>Total Value CAD</th>
+                    <th>Value (TOP)</th>
+                    <th>Today (Share)</th>
+                    <th>Today (Total)</th>
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor="let stock of stocks">
-                    <tr *ngIf="stock.price_bought_CAD">
-                    <td>{{ stock.symbol }}</td>
-                    <td>{{ stock.name }}</td>
-                    <td>{{ stock.date_purchased | date:'shortDate' }}</td>
-                    <td>{{ stock.price_bought_CAD | currency:'CAD' }}</td>
-                    <td>{{ stock.CAN_US_Rate_bought }}</td>
-                    <td>{{ stock.amount }}</td>
-                    <td>{{ stock.price_bought_CAD * stock.amount | currency:'CAD' }}</td>
+                <ng-container *ngFor="let st of stocks">
+                    <tr *ngIf="st.active === 'active'">
+
+                        <td>{{ st.symbol }}</td>
+                        <td>{{ st.name }}</td>
+                        <td>{{ st.date_purchased | date:'shortDate' }}</td>
+                        <td>{{ st.price_bought_US ? (st.price_bought_US | currency:'USD') : (st.price_bought_CAD | currency:'CAD') }}</td>
+                      
+                        <td>{{ st.amount }}</td>
+                        <td>{{ (st.price_bought_US || st.price_bought_CAD) * st.amount | currency: st.price_bought_US ? 'USD' : 'CAD' }}</td>
+                        <td> <input type="text" placeholder="Symbol" [(ngModel)]="st.today" /></td>
+                        <td>{{(st.today * st.amount) - ((st.price_bought_US || st.price_bought_CAD) * st.amount) | currency:'USD'}}
+                        </td>
                     </tr>
                 </ng-container>
             </tbody>
         </table>
-      </div>
     </div>
-  </div>
+
+
+
+    <!-- Stocks List -->
+    <div class="">
+
+        <div class="">
+            <div class="card table-responsive">
+                <!-- Table 1: Stocks with price_bought_US -->
+                <div class="card-header">
+                    <h4>Stocks Bought in USD </h4>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Buy (US)</th>
+                            <th>Buy Rate</th>
+                            <th>Amount</th>
+                            <th>Value (TOP)</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let stock of stocks">
+                            <tr *ngIf="stock.price_bought_US">
+
+                                <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.name }}</td>
+                                <td>{{ stock.date_purchased | date:'shortDate' }}</td>
+                                <td>{{ stock.price_bought_US | currency:'USD' }}</td>
+                                <td>{{ stock.CAN_US_Rate_bought }}</td>
+                                <td>{{ stock.amount }}</td>
+                                <td>{{ stock.price_bought_US * stock.amount | currency:'USD' }}</td>
+                              
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card table-responsive">
+
+                <!-- Table 2: Stocks with price_bought_USD -->
+                <div class="card-header">
+                    <h4>Stocks SOLD in USD</h4>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Date Sold</th>
+                            <th>Buy (US)</th>
+                            <th>Sold (US)</th>
+                            <th>Amount</th>
+                            <th>Total Sold</th>
+                            <th>Profit/Loss</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let stock of stocks">
+                            <tr *ngIf="stock.price_sold_US">
+                                <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.name }}</td>
+                                <td>{{ stock.date_sold | date:'shortDate' }}</td>
+                                <td>{{ stock.price_bought_US | currency:'USD' }}</td>
+                                <td>{{ stock.price_sold_US }}</td>
+                                <td>{{ stock.amount }}</td>
+                                <td>{{ stock.price_sold_US * stock.amount | currency:'USD' }}</td>
+                                <td>
+                                    {{ ((stock.price_sold_US * stock.amount) - (stock.price_bought_US * stock.amount))
+                                    | currency:'USD' }}</td>
+
+                            </tr>
+
+                        </ng-container>
+                        <tr class="card-footer text-end fw-bold">
+                            <td colspan="7">Total Profit/Loss (USD):</td>
+                            <td>{{ totalProfitLossUSD | currency:'USD' }}</td>
+                        </tr>
+
+
+
+                    </tbody>
+
+
+
+
+                </table>
+            </div>
+
+
+            <div class="card table-responsive">
+
+                <!-- Table 2: Stocks with price_bought_CAD -->
+                <div class="card-header">
+                    <h4>Stocks Bought in CAD</h4>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Buy (CAD)</th>
+                            <th>Buy Rate</th>
+                            <th>Amount</th>
+                            <th>Total Value CAD</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let stock of stocks">
+                            <tr *ngIf="stock.price_bought_CAD">
+                                <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.name }}</td>
+                                <td>{{ stock.date_purchased | date:'shortDate' }}</td>
+                                <td>{{ stock.price_bought_CAD | currency:'CAD' }}</td>
+                                <td>{{ stock.CAN_US_Rate_bought }}</td>
+                                <td>{{ stock.amount }}</td>
+                                <td>{{ stock.price_bought_CAD * stock.amount | currency:'CAD' }}</td>
+                              
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card table-responsive">
+
+                <!-- Table 2: Stocks with price_bought_CAD -->
+                <div class="card-header">
+                    <h4>Stocks SOLD in CAD</h4>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Date Sold</th>
+                            <th>Buy (CAD)</th>
+                            <th>Sold (CAD)</th>
+                            <th>Amount</th>
+                            <th>Total Sold</th>
+                            <th>Profit/Loss</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let stock of stocks">
+                            <tr *ngIf="stock.price_sold_CAD">
+                                <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.name }}</td>
+                                <td>{{ stock.date_sold | date:'shortDate' }}</td>
+                                <td>{{ stock.price_bought_CAD | currency:'CAD' }}</td>
+                                <td>{{ stock.price_sold_CAD }}</td>
+                                <td>{{ stock.amount }}</td>
+                                <td>{{ stock.price_sold_CAD * stock.amount | currency:'CAD' }}</td>
+                                <td>
+                                    {{ ((stock.price_sold_CAD * stock.amount) - (stock.price_bought_CAD * stock.amount))
+                                    | currency:'CAD' }} </td>
+                            </tr>
+
+                        </ng-container>
+                        <tr class="card-footer text-end fw-bold">
+                            <td colspan="7">Total Profit/Loss (CAD):</td>
+                            <td>{{ totalProfitLossCAD | currency:'CAD' }}</td>
+                        </tr>
+
+
+
+                    </tbody>
+
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
