@@ -8,6 +8,7 @@ import { AddCompanyComponent } from './comics/add-company/add-company.component'
 import { AddCharacterComponent } from './comics/add-character/add-character.component';
 import { AddBlogComponent } from './comics/add-blog/add-blog.component';
 import { TodoListComponent } from './comics/todo-list/todo-list.component';
+import { StocksComponent } from './stocks/stocks/stocks.component';
 
 export const routes: Routes = [
     {path: '', redirectTo:'home', pathMatch: 'full'},
@@ -18,7 +19,8 @@ export const routes: Routes = [
     {path: 'addcharacter', component: AddCharacterComponent},
     {path: 'record', component: RecordComponent},
     {path: 'addblog', component: AddBlogComponent},
-    {path: 'todo', component: TodoListComponent}
+    {path: 'todo', component: TodoListComponent},
+     {path: 'stocks', component: StocksComponent}
 ];
 
 @NgModule({

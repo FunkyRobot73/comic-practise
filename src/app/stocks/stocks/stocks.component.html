@@ -1,0 +1,27 @@
+<div class="tracker">
+  <h2>My Stock Holdings</h2>
+  <div class="rate">Current USD to CAD: {{ usdToCadRate | number:'1.2-2' }}</div>
+
+  <form (ngSubmit)="addHolding()">
+    <input [(ngModel)]="newHolding.symbol" name="symbol" placeholder="Symbol" required />
+    <input [(ngModel)]="newHolding.shares" name="shares" type="number" placeholder="Shares" required />
+    <select [(ngModel)]="newHolding.currency" name="currency">
+      <option value="USD">USD</option>
+      <option value="CAD">CAD</option>
+    </select>
+    <input [(ngModel)]="newHolding.purchaseDate" name="date" type="date" required />
+    <select [(ngModel)]="newHolding.status" name="status">
+      <option value="current">Current</option>
+      <option value="past">Past</option>
+    </select>
+    <button type="submit">Add Holding</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let holding of holdings">
+      {{ holding.symbol }} - {{ holding.shares }} shares ({{ holding.currency }})
+      | Value in CAD: {{ getHoldingValueInCAD(holding) | currency:'CAD' }}
+      | {{ holding.status }}
+    </li>
+  </ul>
+</div>
