@@ -161,6 +161,7 @@
                     <th>Amount</th>
                     <th>Value (TOP)</th>
                     <th>Today (Share)</th>
+                    <th>PATCH $</th>
                     <th>Today (Total)</th>
                 </tr>
             </thead>
@@ -176,8 +177,8 @@
                         <td>{{ st.amount }}</td>
                         <td>{{ (st.price_bought_US || st.price_bought_CAD) * st.amount | currency: st.price_bought_US ? 'USD' : 'CAD' }}</td>
                         <td> <input type="text" placeholder="Symbol" [(ngModel)]="st.today" /></td>
-                        <td>{{(st.today * st.amount) - ((st.price_bought_US || st.price_bought_CAD) * st.amount) | currency:'USD'}}
-                        </td>
+                       <th><button class="btn btn-primary" (click)="updateTodayPrice(st)">PATCH</button></th>
+                        <td>{{(st.today * st.amount) - ((st.price_bought_US || st.price_bought_CAD) * st.amount) | currency: st.price_bought_US ? 'USD' : 'CAD'}}</td>
                     </tr>
                 </ng-container>
             </tbody>

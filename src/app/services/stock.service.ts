@@ -18,4 +18,9 @@ export class StockService {
   addStock(stock: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/addstock`, stock);
   }
+
+  // stock.service.ts
+updateStockTodayPrice(id: number, todayPrice: number): Observable<any> {
+  return this.http.patch(`${this.apiUrl}/stock/${id}`, { today: todayPrice });
+}
 }

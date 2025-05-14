@@ -58,6 +58,36 @@ loadStocks(): void {
   );
 }
 
+// stocks.component.ts
+updateTodayPrice(stock: any): void {
+  if (stock.today === null || stock.today === undefined || isNaN(stock.today)) {
+    alert('Please enter a valid current price');
+    return;
+  }
+
+  // Convert to number in case it's a string
+  stock.today = Number(stock.today);
+
+  this.stockService.updateStockTodayPrice(stock.id, stock.today).subscribe(
+    (response) => {
+      console.log('Price updated successfully', response);
+      // Calculate and update the total immediately
+      this.calculateAndUpdateStockTotal(stock);
+    },
+    (error) => console.error('Error updating price', error)
+  );
+}
+
+// New method to calculate and update the total for a single stock
+calculateAndUpdateStockTotal(stock: any): void {
+  if (stock.today && stock.amount) {
+    // No need to assign to anything - the binding will update automatically
+    // The template will recalculate using [(today * amount) - (original price * amount)]
+  } else {
+    console.warn('Missing today price or amount for stock', stock);
+  }
+}
+
 addStock(): void {
   this.stockService.addStock(this.newStock).subscribe(
     (response) => {
@@ -140,5 +170,7 @@ calculateTotalProfitLoss(): void {
   }
 }
   
+// stocks.component.ts
+
 
 }
