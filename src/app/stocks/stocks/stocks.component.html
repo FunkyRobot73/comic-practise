@@ -195,6 +195,7 @@
                         </td>
                     </tr>
                 </ng-container>
+                
             </tbody>
         </table>
     </div>
@@ -355,7 +356,7 @@
                                 <td>{{ stock.price_sold_CAD }}</td>
                                 <td>{{ stock.amount }}</td>
                                 <td>{{ stock.price_sold_CAD * stock.amount | currency:'CAD' }}</td>
-                                <td [ngStyle]="{'color': (stock.today * stock.amount) - ((stock.price_bought_US || stock.price_bought_CAD) * stock.amount) < 0 ? 'red' : 'inherit'}">
+                                <td [ngStyle]="{'color': ((stock.price_sold_CAD * stock.amount) - (stock.price_bought_CAD * stock.amount)) < 0 ? 'red' : 'inherit'}">
                                     {{ ((stock.price_sold_CAD * stock.amount) - (stock.price_bought_CAD * stock.amount))
                                     | currency:'CAD' }} </td>
                             </tr>

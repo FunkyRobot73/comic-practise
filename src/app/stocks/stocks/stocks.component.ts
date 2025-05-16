@@ -20,6 +20,7 @@ export class StocksComponent implements OnInit {
   stocks: any[] = [];
   DLO: number = 0;
 
+  currentStockTotals: number = 0;
 
   newStock: any = {
     symbol: '',
@@ -87,6 +88,9 @@ calculateAndUpdateStockTotal(stock: any): void {
     console.warn('Missing today price or amount for stock', stock);
   }
 }
+
+
+
 
 addStock(): void {
   this.stockService.addStock(this.newStock).subscribe(

@@ -62,7 +62,8 @@ export class AddCharacterComponent {
         this.comicbookService.getCharacters().subscribe({
           next: (data) => {
             this.characters = data;
-            this.filteredCharacters = data.filter((characters: Character) => !characters.imageName);
+            this.filteredCharacters = data.filter((characters: Character) => characters.imageName);
+            this.filteredCharacters.sort((a, b) => b.id - a.id);
           },
           error: (err) => {
             console.log(err);
