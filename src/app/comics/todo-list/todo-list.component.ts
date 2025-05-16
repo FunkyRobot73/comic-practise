@@ -119,24 +119,30 @@ export class TodoListComponent implements OnInit, OnDestroy {
   // Add these methods to your TodoListComponent class
 
 completeTask(task: any) {
-  if (!task.is_completed) {
-    this.todoService.updateTaskCompletion(task.id, true).subscribe(updatedTask => {
+  this.todoService.updateTaskCompletion(task.id, true).subscribe({
+    next: (updatedTask) => {
       task.is_completed = true;
       task.times_completed = updatedTask.times_completed;
       task.last_completed = updatedTask.last_completed;
       task.completedAgo = this.todoService.getElapsedTime(updatedTask.last_completed);
-    });
-  }
+    },
+    error: (err) => {
+      console.error('Error completing task:', err);
+    }
+  });
 }
 
 incrementTask(task: any) {
-  this.todoService.incrementTaskCompletion(task.id).subscribe(updatedTask => {
-    task.times_completed = updatedTask.times_completed;
-    task.last_completed = updatedTask.last_completed;
-    task.completedAgo = this.todoService.getElapsedTime(updatedTask.last_completed);
-    // Also mark as completed if it wasn't already
-    if (!task.is_completed) {
+  this.todoService.incrementTaskCompletion(task.id).subscribe({
+    next: (updatedTask) => {
+      task.times_completed = updatedTask.times_completed;
+      task.last_completed = updatedTask.last_completed;
       task.is_completed = true;
+      task.completedAgo = this.todoService.getElapsedTime(updatedTask.last_completed);
+    },
+    error: (err) => {
+      console.error('Error incrementing task:', err);
+      // Optional: Show error to user
     }
   });
 }

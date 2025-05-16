@@ -15,8 +15,7 @@
       <label [class.completed]="task.is_completed">
         {{task.task_name}}
         <small *ngIf="task.note">({{task.note}})</small>
-        <small>({{task.times_completed}})</small>
-        <small>({{task.last_completed}})</small>
+       
         <div class="time-trackers">
           <small class="time-tracker created">
             Created: 
@@ -47,6 +46,10 @@
         <option value="longterm">Long Term</option>
         <option value="bucketlist">Bucket List</option>
         <option value="coding">Coding</option>
+        <option value="purchase">Purchase</option>
+        <option value="garagesale">Garage Sale</option>
+        <option value="media">Media</option>
+        <option value="done">Done</option>
       </select>
       <button (click)="addTask()">Add Task</button>
     </div>
@@ -54,7 +57,7 @@
 
   <!-- Categorized Tasks Sections -->
   <div class="categorized-tasks">
-    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding', 'garagesale']">
+    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding', 'garagesale','purchase','media','done']">
       <h3>{{category | titlecase}}</h3>
       <div class="task-list">
         <div *ngFor="let task of tasks[category]" class="task-item">

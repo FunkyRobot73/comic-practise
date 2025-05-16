@@ -45,14 +45,7 @@ constructor(private http: HttpClient) {}
     });
   }
 
-  updateTaskCompletion(id: number, is_completed: boolean): Observable<Task> {
-    return this.http.patch<Task>(`${this.apiUrl}/todos/${id}`, {
-      is_completed,
-      times_completed: is_completed ? 'increment' : 'decrement',
-      last_completed: is_completed ? new Date().toISOString() : null
-    });
-  }
-
+  
   getTimeSinceLastCompleted(lastCompleted: string | null): string {
     if (!lastCompleted) return 'Never completed';
     
@@ -82,10 +75,22 @@ constructor(private http: HttpClient) {}
   
 // Add this to your TodoService
 
-incrementTaskCompletion(taskId: number) {
+incrementTaskCompletion(taskId: number): Observable<any> {
+  return this.http.patch<any>(
+    `${this.apiUrl}/todos/${taskId}`,
+    { times_completed: 'increment' },
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+  );
+}
+
+updateTaskCompletion(taskId: number, isCompleted: boolean) {
   return this.http.patch<any>(`${this.apiUrl}/todos/${taskId}`, {
-    times_completed: 'increment',
-    last_completed: new Date().toISOString()
+    is_completed: isCompleted
+    // Server will handle timestamp and potential increment
   });
 }
 
