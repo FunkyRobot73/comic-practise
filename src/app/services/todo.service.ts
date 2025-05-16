@@ -94,4 +94,13 @@ updateTaskCompletion(taskId: number, isCompleted: boolean) {
   });
 }
 
+markTaskDone(taskId: number): Observable<any> {
+  return this.http.patch<any>(`${this.apiUrl}/todos/${taskId}`, {
+    is_completed: true,
+    last_completed: new Date().toISOString(),
+    times_completed: 'increment',
+    category: 'done' // This will move the task to done category
+  });
+}
+
 }

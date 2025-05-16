@@ -55,34 +55,66 @@
     </div>
   </div>
 
-  <!-- Categorized Tasks Sections -->
-  <div class="categorized-tasks">
-    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding', 'garagesale','purchase','media','done']">
-      <h3>{{category | titlecase}}</h3>
-      <div class="task-list">
-        <div *ngFor="let task of tasks[category]" class="task-item">
-          <input type="checkbox" 
-                 [checked]="task.is_completed" 
-                 (change)="toggleTaskCompletion(task)">
-          <label [class.completed]="task.is_completed">
-            {{task.task_name}}
-            <small *ngIf="task.note">({{task.note}})</small>
-            <div class="time-trackers">
-              <small class="time-tracker created">
-                Created: 
-                <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
-                {{task.createdAgo?.hours}}h ago
-              </small>
-              <small *ngIf="task.last_completed" class="time-tracker completed">
-                Last done: 
-                <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
-                {{task.completedAgo?.hours}}h ago
-              </small>
-            </div>
-            <!-- <span class="count">(x{{task.times_completed}})</span> -->
-          </label>
+  
+
+  <!-- In your categorized-tasks div -->
+<div class="categorized-tasks">
+  <!-- Add this after your categorized-tasks div -->
+
+  <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding', 'purchase', 'garagesale', 'media']">
+    <h3>{{category | titlecase}}</h3>
+    <div class="task-list">
+      <div *ngFor="let task of tasks[category]" class="task-item">
+        <div class="task-buttons">
+          <button class="complete-btn" (click)="markTaskDone(task, category)">✓</button>
         </div>
+        <label [class.completed]="task.is_completed">
+          {{task.task_name}}
+          <small *ngIf="task.note">({{task.note}})</small>
+          <div class="time-trackers">
+            <small class="time-tracker created">
+              Created: 
+              <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
+              {{task.createdAgo?.hours}}h ago
+            </small>
+            <small *ngIf="task.last_completed" class="time-tracker completed">
+              Last done: 
+              <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
+              {{task.completedAgo?.hours}}h ago
+            </small>
+          </div>
+          <span class="count" *ngIf="task.times_completed > 0">(x{{task.times_completed}})</span>
+        </label>
       </div>
     </div>
   </div>
+</div>
+
+<div class="category" *ngFor="let category of ['done']">
+  <h3>{{category | titlecase}}</h3>
+  <div class="task-list">
+    <div *ngFor="let task of tasks[category]" class="task-item">
+      <div class="task-buttons">
+        <button class="complete-btn" (click)="markTaskUndone(task, category)">✓</button>
+      </div>
+      <label [class.completed]="task.is_completed">
+        {{task.task_name}}
+        <small *ngIf="task.note">({{task.note}})</small>
+        <div class="time-trackers">
+          <small class="time-tracker created">
+            Created: 
+            <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
+            {{task.createdAgo?.hours}}h ago
+          </small>
+          <small *ngIf="task.last_completed" class="time-tracker completed">
+            Last done: 
+            <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
+            {{task.completedAgo?.hours}}h
+          </small>
+        </div>
+        <span class="count" *ngIf="task.times_completed > 0">(x{{task.times_completed}})</span>
+      </label>
+    </div>
+  </div>
+
 </div>

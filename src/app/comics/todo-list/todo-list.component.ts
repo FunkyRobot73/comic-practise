@@ -146,4 +146,43 @@ incrementTask(task: any) {
     }
   });
 }
+markTaskDone(task: any, currentCategory: string) {
+  this.todoService.markTaskDone(task.id).subscribe({
+    next: (updatedTask) => {
+      // Remove from current category
+      this.tasks[currentCategory] = this.tasks[currentCategory].filter(t => t.id !== task.id);
+      
+      // Add to done category if it exists
+      if (this.tasks['done']) {
+        updatedTask.completedAgo = this.todoService.getElapsedTime(updatedTask.last_completed);
+        this.tasks['done'].push(updatedTask);
+      }
+      
+      console.log('Task marked as done:', updatedTask);
+    },
+    error: (err) => {
+      console.error('Error marking task as done:', err);
+    }
+  });
+}
+
+markTaskUndone(task: any, currentCategory: string) {
+  this.todoService.updateTaskCompletion(task.id, false).subscribe({
+    next: (updatedTask) => {
+      // Remove from done category
+      this.tasks['done'] = this.tasks['done'].filter(t => t.id !== task.id);
+      
+      // Add back to the original category
+      if (this.tasks[currentCategory]) {
+        updatedTask.completedAgo = null; // Reset completed time
+        this.tasks[currentCategory].push(updatedTask);
+      }
+      
+      console.log('Task marked as undone:', updatedTask);
+    },
+    error: (err) => {
+      console.error('Error marking task as undone:', err);
+    }
+  });
+}
 }
