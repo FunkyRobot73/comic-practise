@@ -41,6 +41,7 @@
         <div class="col-md-2">
           <label>Publisher</label>
           <select class="form-control" [(ngModel)]="publisher" name="publisher">
+            <option value="All">All</option>
             <option *ngFor="let item of companys">{{ item.name }}</option>
           </select>
         </div>
@@ -223,7 +224,7 @@
       </thead>
 
       <tbody *ngFor="let comic of comicbooks.slice().reverse()">
-        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher2 && comic.image === 'marvel.jpg'">
+        <tr class="align-items-center" *ngIf="comic.publisher == sortPublisher2 && comic.image === 'dc.jpg'">
           <!-- <ul class="list-group mt-3"> -->
           <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
           <!-- <td>{{customer.fName}}</td>  -->

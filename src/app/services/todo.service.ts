@@ -80,4 +80,13 @@ constructor(private http: HttpClient) {}
     };
   }
   
+// Add this to your TodoService
+
+incrementTaskCompletion(taskId: number) {
+  return this.http.patch<any>(`${this.apiUrl}/todos/${taskId}`, {
+    times_completed: 'increment',
+    last_completed: new Date().toISOString()
+  });
+}
+
 }

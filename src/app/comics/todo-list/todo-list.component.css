@@ -321,3 +321,41 @@
 }
 
 /* Your existing styles below... */
+.task-buttons {
+  display: flex;
+  gap: 5px;
+  margin-right: 10px;
+}
+
+.complete-btn, .increment-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.complete-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.increment-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.complete-btn:hover {
+  background-color: #45a049;
+}
+
+.increment-btn:hover {
+  background-color: #0b7dda;
+}
+
+.count {
+  margin-left: 5px;
+  color: #666;
+  font-size: 0.9em;
+}

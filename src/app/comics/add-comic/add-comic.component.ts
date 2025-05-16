@@ -84,6 +84,8 @@ export class AddComicComponent {
     this.loadCompanies();
   }
 
+  
+
   // Data Loading
   loadComics() {
     this.comicbookService.getComics().subscribe({
@@ -94,7 +96,23 @@ export class AddComicComponent {
 
   loadCompanies() {
     this.comicbookService.getCompanys().subscribe({
-      next: (data) => this.companys = data,
+      next: (data) => {
+        this.companys = data.sort((a: Company, b: Company): number => {
+          const order: string[] = ['All','DC', 'Marvel', 'Image'];
+          const indexA: number = order.indexOf(a.name);
+          const indexB: number = order.indexOf(b.name);
+
+          if (indexA !== -1 && indexB !== -1) {
+            return indexA - indexB;
+          } else if (indexA !== -1) {
+            return -1;
+          } else if (indexB !== -1) {
+            return 1;
+          } else {
+            return a.name.localeCompare(b.name);
+          }
+        });
+      },
       error: (err) => console.error('Error loading companies:', err)
     });
   }

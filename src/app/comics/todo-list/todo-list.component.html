@@ -1,43 +1,46 @@
-<div class="todo-container">
-  <!-- Daily Tasks Section -->
-  <div class="daily-tasks">
-    <h2>Daily To-Do (Completed today: {{getCompletedTodayCount()}})</h2>
-    <div class="days-header">
-      <span *ngFor="let day of daysOfWeek; let i = index" 
-            [class.current-day]="i === currentDayIndex">
-        {{day}}
-      </span>
-    </div>
-    <div class="task-list">
-      <div *ngFor="let task of tasks['daily']" class="task-item">
-        <input type="checkbox" 
-               [checked]="task.is_completed" 
-               (change)="toggleTaskCompletion(task)">
-        <label [class.completed]="task.is_completed">
-          {{task.task_name}}
-          <small *ngIf="task.note">({{task.note}})</small>
-          <div class="time-trackers">
-            <small class="time-tracker created">
-              Created: 
-              <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
-              {{task.createdAgo?.hours}}h ago
-            </small>
-            <small *ngIf="task.last_completed" class="time-tracker completed">
-              Last done: 
-              <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
-              {{task.completedAgo?.hours}}h {{task.completedAgo?.minutes}}m ago
-            </small>
-          </div>
-          <!-- <span class="count">(x{{task.times_completed}})</span> -->
-        </label>
+<div class="daily-tasks container">
+  <h2>Daily To-Do (Completed today: {{getCompletedTodayCount()}})</h2>
+  <div class="days-header">
+    <span *ngFor="let day of daysOfWeek; let i = index" 
+          [class.current-day]="i === currentDayIndex">
+      {{day}}
+    </span>
+  </div>
+  <div class="task-list">
+    <div *ngFor="let task of tasks['daily']" class="task-item">
+      <div class="task-buttons" style="display: flex; flex-direction: column;">
+        <button class="complete-btn" (click)="completeTask(task)">✓</button>
+        <button class="increment-btn" (click)="incrementTask(task)">{{task.times_completed}}</button>
       </div>
+      <label [class.completed]="task.is_completed">
+        {{task.task_name}}
+        <small *ngIf="task.note">({{task.note}})</small>
+        <small>({{task.times_completed}})</small>
+        <small>({{task.last_completed}})</small>
+        <div class="time-trackers">
+          <small class="time-tracker created">
+            Created: 
+            <span *ngIf="task.createdAgo?.days > 0">{{task.createdAgo.days}}d</span>
+            {{task.createdAgo?.hours}}h ago
+          </small>
+          <small *ngIf="task.last_completed" class="time-tracker completed">
+            Last done: 
+            <span *ngIf="task.completedAgo?.days > 0">{{task.completedAgo.days}}d</span>
+            {{task.completedAgo?.hours}}h {{task.completedAgo?.minutes}}m ago
+          </small>
+        </div>
+        <span class="count" *ngIf="task.times_completed > 0">(x{{task.times_completed}})</span>
+      </label>
     </div>
+  </div>
+  <div class="task-buttons">
+  
 
-    <div class="add-task-form">
+    <div class="add-task-form col-md-12">
       <h3>Add New Task</h3>
-      <input type="text" [(ngModel)]="newTask.name" placeholder="Task name">
-      <input type="text" [(ngModel)]="newTask.note" placeholder="Note">
-      <select [(ngModel)]="newTask.category">
+      <input type="text" [(ngModel)]="newTask.name" placeholder="Task name" class="col-md-4">
+      <input type="text" [(ngModel)]="newTask.note" placeholder="Note" class="col-md-3">
+      <select [(ngModel)]="newTask.category" class="col-md-2">
         <option value="daily">Daily</option>
         <option value="indoor">Indoor</option>
         <option value="outdoor">Outdoor</option>
@@ -51,7 +54,7 @@
 
   <!-- Categorized Tasks Sections -->
   <div class="categorized-tasks">
-    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding']">
+    <div class="category" *ngFor="let category of ['indoor', 'outdoor', 'longterm', 'bucketlist', 'coding', 'garagesale']">
       <h3>{{category | titlecase}}</h3>
       <div class="task-list">
         <div *ngFor="let task of tasks[category]" class="task-item">
