@@ -257,25 +257,21 @@
     </thead>
 
     <tbody *ngFor="let comic of comicbooks">
-      <tr class="align-items-center" *ngIf="comic.publisher === sortPublisher">
-        <!-- <ul class="list-group mt-3"> -->
-        <!-- <li class="list-group-item d-flex justify-content-between align-items-center" > -->
-        <!-- <td>{{customer.fName}}</td>  -->
-
+      <tr
+        class="align-items-center"
+        *ngIf="
+          (sortPublisher === 'DC' && comic.image === 'dc.jpg') ||
+          (sortPublisher === 'marvel' && comic.image === 'marvel.jpg') ||
+          (sortPublisher !== 'DC' && sortPublisher !== 'marvel' && comic.publisher === sortPublisher)
+        "
+      >
         <th scope="row">{{ comic.id }}</th>
         <td>{{ comic.title }} ({{ comic.issue }})</td>
         <td>{{ comic.artist }}</td>
         <td>{{ comic.type }}</td>
         <td>{{ comic.year }}</td>
-        <!-- <td>{{cust.pbSet}}</td> -->
         <td>{{ comic.publisher }}</td>
         <td>{{ comic.value }}</td>
-
-        <!-- <td><button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button></td> -->
-        <!-- <td><button class="btn btn-danger" (click)="deleteCustomer(i)">DELETE</button></td> -->
-        <!-- <button class="btn btn-primary" (click)="generatePDF2($event.target,i)">PDF</button> -->
-        <!-- </li> -->
-        <!-- </ul> -->
       </tr>
     </tbody>
   </table>
