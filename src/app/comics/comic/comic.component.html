@@ -233,6 +233,7 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">ID:</th>
+         <th scope="col">Image:</th>
         <th scope="col">Title:</th>
         <th scope="col">Artist:</th>
         <th scope="col">Type:</th>
@@ -266,6 +267,9 @@
         "
       >
         <th scope="row">{{ comic.id }}</th>
+        <td>
+           <img width="50" [src]="'https://back.swap2go.ca/public/' + comic.image" alt="{{comic.title}}">
+        </td>
         <td>{{ comic.title }} ({{ comic.issue }})</td>
         <td>{{ comic.artist }}</td>
         <td>{{ comic.type }}</td>
