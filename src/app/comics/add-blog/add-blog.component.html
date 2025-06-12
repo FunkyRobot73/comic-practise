@@ -14,7 +14,7 @@
         <div class="mb-3">
             <label for="subtitleBlog" class="form-label">Subtitle:</label>
             <input type="text" class="form-control" id="subtitleBlog" name="subtitleBlog" 
-                   [(ngModel)]="subtitleBlog">
+                   [(ngModel)]="subtitleBlog" (ngModelChange)="updateCharacterCountSubTitle()" required>
             <small class="form-text text-muted">Title count: {{characterCountSubTitle}} ... (50+ is good)</small>
         </div>
         
