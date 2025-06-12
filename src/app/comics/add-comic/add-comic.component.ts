@@ -234,14 +234,33 @@ export class AddComicComponent {
   }
 
   updateDesc() {
-    this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " A Great " + this.type + " by " + this.publisher + " Comics. Story by " + this.writer + " & Art by " + this.artist + ".";
-    this.description = this.title + " #" + this.issue + " (" + this.year + ") " + this.key + " A cool " + this.type + " by " + this.publisher + " Comics. Story by " + this.writer + " & Art by " + this.artist + "... with an appearance of " + this.characters + ". " + this.condition;
-    }
+    // Handle publisher: Use this.key if publisher is "Other"
+    const publisherText = (this.publisher === "Other") ? this.key : this.publisher + " Comics";
+
+    // Handle writer/artist: Combine if they're the same
+    const creatorText = (this.writer === this.artist) 
+        ? `Story & Art by ${this.writer}`
+        : `Story by ${this.writer} & Art by ${this.artist}`;
+
+    // Short description (e.g., for previews)
+    this.short = `${this.title} #${this.issue} (${this.year}) A Great ${this.type} by ${publisherText}. ${creatorText}.`;
+
+    // Full description (e.g., for detailed view)
+    this.description = `${this.title} #${this.issue} (${this.year}) ${this.key ? this.key + " " : ""}A cool ${this.type} by ${publisherText}. ${creatorText}${this.characters ? "... with an appearance of " + this.characters : ""}. ${this.condition}`;
+}
 
     updateShort() {
-      this.short = this.title + " #" + this.issue + " (" + this.year + ") " + " A Great " + this.type + " by " + this.publisher + " Comics. Story by " + this.writer + " & Art by " + this.artist + ".";
-     
-      }
+    // Handle publisher: Use this.key if publisher is "Other"
+    const publisherText = (this.publisher === "Other") ? this.key : this.publisher + " Comics";
+
+    // Handle writer/artist: Combine if they're the same
+    const creatorText = (this.writer === this.artist) 
+        ? `Story & Art by ${this.writer}`
+        : `Story by ${this.writer} & Art by ${this.artist}`;
+
+    // Build the short description
+    this.short = `${this.title} #${this.issue} (${this.year}) A Great ${this.type} by ${publisherText}. ${creatorText}.`;
+}
 
   refreshPage() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
