@@ -199,7 +199,7 @@ export class AddComicComponent {
     update$.subscribe({
       next: () => {
         // this.resetForm();
-        this.refreshPage();
+        // this.refreshPage();
       },
       error: (err) => console.error('Update error:', err)
     });
