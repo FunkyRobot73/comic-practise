@@ -16,8 +16,16 @@ import { Router } from '@angular/router';
 export class AddBlogComponent implements OnInit {
   titleBlog = "";
   subtitleBlog = "";
+  subtitleBlog02 = "";
+  subtitleBlog03 = "";
+  subtitleBlog04 = ""; 
+  subtitleBlog05 = "";
   catBlog: string = "Comics";
   bodyBlog = "";
+  bodyBlog02 = "";
+  bodyBlog03 = "";
+  bodyBlog04 = "";
+  bodyBlog05 = "";
   
   imageFile: File | null = null;
   thumbnailFile: File | null = null;
@@ -75,8 +83,17 @@ export class AddBlogComponent implements OnInit {
       // Append all fields
       formData.append('titleBlog', this.titleBlog);
       formData.append('subtitleBlog', this.subtitleBlog);
+      formData.append('subtitleBlog02', this.subtitleBlog02);
+      formData.append('subtitleBlog03', this.subtitleBlog03);
+      formData.append('subtitleBlog04', this.subtitleBlog04);
+      formData.append('subtitleBlog05', this.subtitleBlog05);
+
       formData.append('catBlog', this.catBlog);
       formData.append('bodyBlog', this.bodyBlog);
+      formData.append('bodyBlog02', this.bodyBlog02);
+      formData.append('bodyBlog03', this.bodyBlog03);
+      formData.append('bodyBlog04', this.bodyBlog04);
+      formData.append('bodyBlog05', this.bodyBlog05);
       formData.append('image', this.imageFile);
       formData.append('thumbnail', this.thumbnailFile);
   
