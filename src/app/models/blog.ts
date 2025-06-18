@@ -5,6 +5,7 @@ export interface Blog {
     catBlog: string;
     bodyBlog: string;
     image: string;
+    imageBlog: string;
     thumbnail?: string;  // Add this line
     slug?: string;
     createdAt?: Date;
