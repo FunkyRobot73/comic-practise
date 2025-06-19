@@ -48,7 +48,7 @@ export class AddComicComponent {
   type = "Single Issue";
   year = "";
   publisher = "Marvel";
-  condition = "";
+  condition = "Excellent Condition Considering it's Age...  Bagged & Boarded.";
   grade = "";
   key = "";
   description = "";
