@@ -175,6 +175,7 @@
                     <th>Today (Share)</th>
                     <th>PATCH $</th>
                     <th>Today (Total)</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -192,6 +193,9 @@
                        <th><button class="btn btn-primary" (click)="updateTodayPrice(st)">PATCH</button></th>
                         <td [ngStyle]="{'color': (st.today * st.amount) - ((st.price_bought_US || st.price_bought_CAD) * st.amount) < 0 ? 'red' : 'inherit'}">
                             {{(st.today * st.amount) - ((st.price_bought_US || st.price_bought_CAD) * st.amount) | currency: st.price_bought_US ? 'USD' : 'CAD'}}
+                        </td>
+                        <td>
+                            {{ getTotalValue() }}
                         </td>
                     </tr>
                 </ng-container>

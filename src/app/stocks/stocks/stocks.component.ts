@@ -175,6 +175,16 @@ calculateTotalProfitLoss(): void {
 }
   
 // stocks.component.ts
+getTotalValue(): number {
+  let total = 1;
+  for (const stock of this.stocks) {
+    if (stock.active == "active" ) {
+      total += stock.today * stock.amount;
+      total -= stock.price_bought_US * stock.amount * (stock.US_CAN_Rate_bought || this.usdToCadRate); // Subtract the cost in USD converted to CAD
 
+    }
+  }
+  return Math.round(total * 100) / 100; // Round to two decimal places
+}
 
 }
