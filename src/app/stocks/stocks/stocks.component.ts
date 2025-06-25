@@ -21,6 +21,7 @@ export class StocksComponent implements OnInit {
   DLO: number = 0;
 
   currentStockTotals: number = 0;
+  currentStockValue: number = 0;
 
   newStock: any = {
     symbol: '',
@@ -175,16 +176,15 @@ calculateTotalProfitLoss(): void {
 }
   
 // stocks.component.ts
-getTotalValue(): number {
-  let total = 1;
+calculateTotalCurrent(): void {
+  
+  
   for (const stock of this.stocks) {
-    if (stock.active == "active" ) {
-      total += stock.today * stock.amount;
-      total -= stock.price_bought_US * stock.amount * (stock.US_CAN_Rate_bought || this.usdToCadRate); // Subtract the cost in USD converted to CAD
-
+    // Consider "active" stocks as those not sold yet (no price_sold_CAD and no price_sold_US)
+    if (!stock.price_sold_CAD && !stock.price_sold_US && stock.today && stock.amount) {
+      this.currentStockTotals += stock.today * stock.amount;
     }
   }
-  return Math.round(total * 100) / 100; // Round to two decimal places
+  this.currentStockTotals = Math.round(this.currentStockTotals * 100) / 100;
 }
-
 }
