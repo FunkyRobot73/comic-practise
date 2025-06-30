@@ -27,6 +27,7 @@ export class RecordComponent {
     title = "Thriller";
     year = "1982";
     type = "LP-7";
+    image = "";
     
     recordService = inject(RecordService)
     records:Record[] = [];
