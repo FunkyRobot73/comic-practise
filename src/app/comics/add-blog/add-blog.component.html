@@ -1,3 +1,5 @@
+<!-- Looks Great -->
+
 <form (submit)="addBlog()" enctype="multipart/form-data">
     <div class="container mt-5">
         <h2>Create Blog</h2>
@@ -25,19 +27,19 @@
         
         <!-- Subtitle -->
         <div class="mb-3">
-            <label for="subtitleBlog" class="form-label">Subtitle:</label>
-            <input type="text" class="form-control" id="subtitleBlog" name="subtitleBlog" 
-                   [(ngModel)]="subtitleBlog" (ngModelChange)="updateCharacterCountSubTitle()" required>
-            <small class="form-text text-muted">Title count: {{characterCountSubTitle}} ... (50+ is good)</small>
+            <label for="subtitleBlog01" class="form-label">Subtitle:</label>
+            <input type="text" class="form-control" id="subtitleBlog01" name="subtitleBlog01" 
+                   [(ngModel)]="subtitleBlog01" (ngModelChange)="updateCharacterCountSubTitle01()" required>
+            <small class="form-text text-muted">Title count: {{characterCountSubTitle01}} ... (50+ is good)</small>
         </div>
         
        
         
         <!-- Body -->
         <div class="mb-3">
-            <label for="bodyBlog" class="form-label">Body:</label>
-            <textarea class="form-control" id="bodyBlog" name="bodyBlog" rows="5" 
-                      [(ngModel)]="bodyBlog" (ngModelChange)="updateCharacterCount()" required></textarea>
+            <label for="bodyBlog01" class="form-label">Body:</label>
+            <textarea class="form-control" id="bodyBlog01" name="bodyBlog01" rows="5" 
+                      [(ngModel)]="bodyBlog01" (ngModelChange)="updateCharacterCount()" required></textarea>
             <small class="form-text text-muted">Character count: {{characterCount}}</small>
         </div>
 
@@ -91,8 +93,8 @@
          <div class="mb-3">
             <label for="subtitleBlog05" class="form-label">Subtitle 05:</label>
             <input type="text" class="form-control" id="subtitleBlog05" name="subtitleBlog05" 
-                   [(ngModel)]="subtitleBlog05" (ngModelChange)="updateCharacterCountSubTitle()" required>
-            <small class="form-text text-muted">Title count: {{characterCountSubTitle}} ... (50+ is good)</small>
+                   [(ngModel)]="subtitleBlog05" (ngModelChange)="updateCharacterCountSubTitle05()" required>
+            <small class="form-text text-muted">Title count: {{characterCountSubTitle05}} ... (50+ is good)</small>
         </div>
         <!-- Body 5 -->
         <div class="mb-3">

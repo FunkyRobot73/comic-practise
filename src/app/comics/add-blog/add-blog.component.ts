@@ -15,13 +15,13 @@ import { Router } from '@angular/router';
 })
 export class AddBlogComponent implements OnInit {
   titleBlog = "";
-  subtitleBlog = "";
+  subtitleBlog01 = "";
   subtitleBlog02 = "";
   subtitleBlog03 = "";
   subtitleBlog04 = ""; 
   subtitleBlog05 = "";
   catBlog: string = "Comics";
-  bodyBlog = "";
+  bodyBlog01 = "";
   bodyBlog02 = "";
   bodyBlog03 = "";
   bodyBlog04 = "";
@@ -38,13 +38,14 @@ export class AddBlogComponent implements OnInit {
   characterCount: number = 0;
   characterCount02: number = 0;
   characterCountTitle: number = 0;
-  characterCountSubTitle: number = 0;
+  characterCountSubTitle01: number = 0;
   characterCountSubTitle02: number = 0;
   characterCountSubTitle03: number = 0;
   characterCountSubTitle04: number = 0;
+  characterCountSubTitle05: number = 0;
 
   updateCharacterCount(): void {
-    this.characterCount = this.bodyBlog.length;
+    this.characterCount = this.bodyBlog01.length;
   }
 
   updateCharacterCount02(): void {
@@ -57,8 +58,8 @@ export class AddBlogComponent implements OnInit {
 
   
 
-  updateCharacterCountSubTitle(): void {  
-    this.characterCountSubTitle = this.subtitleBlog.length;
+  updateCharacterCountSubTitle01(): void {  
+    this.characterCountSubTitle01 = this.subtitleBlog01.length;
   }
 
   updateCharacterCountSubTitle02(): void {  
@@ -71,6 +72,10 @@ export class AddBlogComponent implements OnInit {
 
   updateCharacterCountSubTitle04(): void {  
     this.characterCountSubTitle04 = this.subtitleBlog04.length;
+  }
+
+  updateCharacterCountSubTitle05(): void {  
+    this.characterCountSubTitle05 = this.subtitleBlog05.length;
   }
 
   constructor() {
@@ -104,14 +109,14 @@ export class AddBlogComponent implements OnInit {
       
       // Append all fields
       formData.append('titleBlog', this.titleBlog);
-      formData.append('subtitleBlog', this.subtitleBlog);
+      formData.append('subtitleBlog', this.subtitleBlog01);
       formData.append('subtitleBlog02', this.subtitleBlog02);
       formData.append('subtitleBlog03', this.subtitleBlog03);
       formData.append('subtitleBlog04', this.subtitleBlog04);
       formData.append('subtitleBlog05', this.subtitleBlog05);
 
       formData.append('catBlog', this.catBlog);
-      formData.append('bodyBlog', this.bodyBlog);
+      formData.append('bodyBlog', this.bodyBlog01);
       formData.append('bodyBlog02', this.bodyBlog02);
       formData.append('bodyBlog03', this.bodyBlog03);
       formData.append('bodyBlog04', this.bodyBlog04);
@@ -136,9 +141,9 @@ export class AddBlogComponent implements OnInit {
 
   resetForm(): void {
     this.titleBlog = "";
-    this.subtitleBlog = "";
+    this.subtitleBlog01 = "";
     this.catBlog = "Comics";
-    this.bodyBlog = "";
+    this.bodyBlog01 = "";
     this.imageFile = null;
     this.thumbnailFile = null;
   }
