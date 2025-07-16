@@ -69,6 +69,10 @@ export class AddBlogComponent implements OnInit {
     this.characterCountSubTitle03 = this.subtitleBlog03.length;
   }
 
+  updateCharacterCountSubTitle04(): void {  
+    this.characterCountSubTitle04 = this.subtitleBlog04.length;
+  }
+
   constructor() {
     this.loadData();
   }
