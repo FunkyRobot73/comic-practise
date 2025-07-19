@@ -58,24 +58,24 @@ export class AddBlogComponent implements OnInit {
 
   
 
-  updateCharacterCountSubTitle01(): void {  
-    this.characterCountSubTitle01 = this.subtitleBlog01.length;
-  }
-
-  updateCharacterCountSubTitle02(): void {  
-    this.characterCountSubTitle02 = this.subtitleBlog02.length;
-  }
-
-  updateCharacterCountSubTitle03(): void {  
-    this.characterCountSubTitle03 = this.subtitleBlog03.length;
-  }
-
-  updateCharacterCountSubTitle04(): void {  
-    this.characterCountSubTitle04 = this.subtitleBlog04.length;
-  }
-
-  updateCharacterCountSubTitle05(): void {  
-    this.characterCountSubTitle05 = this.subtitleBlog05.length;
+  updateCharacterCountSubTitle(index: number): void {
+    switch (index) {
+      case 1:
+        this.characterCountSubTitle01 = this.subtitleBlog01.length;
+        break;
+      case 2:
+        this.characterCountSubTitle02 = this.subtitleBlog02.length;
+        break;
+      case 3:
+        this.characterCountSubTitle03 = this.subtitleBlog03.length;
+        break;
+      case 4:
+        this.characterCountSubTitle04 = this.subtitleBlog04.length;
+        break;
+      case 5:
+        this.characterCountSubTitle05 = this.subtitleBlog05.length;
+        break;
+    }
   }
 
   constructor() {
