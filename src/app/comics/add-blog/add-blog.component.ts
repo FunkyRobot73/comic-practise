@@ -39,6 +39,7 @@ export class AddBlogComponent implements OnInit {
   characterCount02: number = 0;
   characterCount03: number = 0;
   characterCount04: number = 0;
+  characterCount05: number = 0;
   characterCountTitle: number = 0;
   characterCountSubTitle01: number = 0;
   characterCountSubTitle02: number = 0;
@@ -60,6 +61,10 @@ export class AddBlogComponent implements OnInit {
 
   updateCharacterCount04(): void {
     this.characterCount04 = this.bodyBlog04.length;
+  }
+
+  updateCharacterCount05(): void {
+    this.characterCount05 = this.bodyBlog05.length;
   }
 
   updateCharacterCountTitle(): void {  
