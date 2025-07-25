@@ -43,7 +43,9 @@ export class AddCharacterComponent {
         this.loadCharacters();
       };
 
-      
+      sortById(): Character[] {
+        return this.characters.sort((a, b) => a.id - b.id);
+      }
 
       loadCharacters(): void {
         
