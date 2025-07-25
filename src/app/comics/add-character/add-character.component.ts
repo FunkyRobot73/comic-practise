@@ -23,7 +23,8 @@ export class AddCharacterComponent {
       addCharacter: string = ""
       editCharacter: Character | null = null;
       imageFile:  File | null = null;
-      imageName: string ="";  
+      imageName: string ="";
+      isSortedAsc: boolean | undefined = undefined;
       
       comicbookService = inject(ComicbookService)
       characterService = inject(CreateCharacterService)
@@ -43,8 +44,24 @@ export class AddCharacterComponent {
         this.loadCharacters();
       };
 
-      sortById(): Character[] {
-        return this.characters.sort((a, b) => a.id - b.id);
+      sortById(): void {
+
+        this.comicbookService.getCharacters().subscribe({
+          next: (data) => {
+            this.characters = data;
+            this.filteredCharacters = data.filter((characters: Character) => characters.imageName);
+            if (this.isSortedAsc === undefined || this.isSortedAsc === false) {
+              this.filteredCharacters.sort((a, b) => a.id - b.id);
+              this.isSortedAsc = true;
+            } else {
+              this.filteredCharacters.sort((a, b) => b.id - a.id);
+              this.isSortedAsc = false;
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
       }
 
       loadCharacters(): void {
