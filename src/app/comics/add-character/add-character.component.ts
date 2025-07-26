@@ -64,6 +64,25 @@ export class AddCharacterComponent {
         });
       }
 
+      sortByName(): void {
+        this.comicbookService.getCharacters().subscribe({
+          next: (data) => {
+            this.characters = data;
+            this.filteredCharacters = data.filter((character: Character) => character.imageName);
+            if (this.isSortedAsc === undefined || this.isSortedAsc === false) {
+              this.filteredCharacters.sort((a, b) => a.name.localeCompare(b.name));
+              this.isSortedAsc = true;
+            } else {
+              this.filteredCharacters.sort((a, b) => b.name.localeCompare(a.name));
+              this.isSortedAsc = false;
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+      }
+
       loadCharacters(): void {
         
         // this.comicbookService.getCharacters().subscribe({
